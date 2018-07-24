@@ -446,12 +446,7 @@ ul {
   }
 
   /* EXPLORE STYLES */
-  .explore {
-    animation: appearRight 0.1s;
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
+
   .explore .exploreHeader {
     display: flex;
     justify-content: space-between;
@@ -702,10 +697,6 @@ ul {
   /* LIKES STYLES */
   .likes {
     max-width: 100%;
-    animation: appearRight 0.1s;
-    position: fixed;
-    top: 0;
-    left: 0;
   }
 
   .likes .likesHeader {
@@ -785,12 +776,6 @@ ul {
     left: 0;
   }
   /* PROFILE STYLES */
-  .profile {
-    animation: appearRight 0.1s;
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
   .profile .myProfileHeaderTop {
     display: flex;
     align-items: center;
