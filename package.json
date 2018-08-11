@@ -1,23 +1,36 @@
 {
-  "name": "instagram-ui",
-  "version": "0.1.0",
-  "private": true,
-  "homepage": "https://jh1992jh.github.io/social-feed-ui/",
-  "dependencies": {
-    "gh-pages": "^1.2.0",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-redux": "^5.0.7",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
-    "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
-  },
+  "name": "social-feed-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jh1992jh/social-feed-ui.git"
+  },
+  "author": "Jani h",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jh1992jh/social-feed-ui/issues"
+  },
+  "homepage": "https://github.com/jh1992jh/social-feed-ui#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "concurrently": "^3.6.1",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.2.6",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^10.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
   }
 }

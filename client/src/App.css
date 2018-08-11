@@ -1021,6 +1021,78 @@ ul {
     height: 33.3vw;
     width: 33.3vw;
   }
+
+  /* LOGIN STYLES */ 
+
+  .login {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    background-color: #f9f9f9;
+  }
+
+  .loginContainer {
+    position: absolute;
+    top: 5vh;
+    left: 5vw;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    width: 80vw;
+  }
+
+  .login .loginContainer .loginHeader {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .login .loginContainer .loginHeader h3 {
+    margin: 1em;
+  }
+
+  .login .loginContainer .loginBrand {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin: 2em 0;
+  }
+
+  .login .loginContainer .loginBrand .fa-camera {
+    font-size: 3rem;
+  }
+
+  .login .loginContainer .loginBrand .brandText {
+    font-size: 3rem;
+    font-family: 'Satisfy', cursive;
+  }
+
+  .login .loginContainer .loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .login .loginContainer .loginForm input {
+    margin: 1em 0;
+  }
+
+  .login .loginContainer .loginForm button {
+    background-color: #0099cc;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 5.5px;
+    padding: 0.6em;
+    margin: 2em 0;
+    width: 30vw;
+  }
+
+  .login .loginContainer .loginHeader .selected {
+    box-shadow: 0 2px 0 -1px #222;
+  }
 }
 
 @media only screen and (min-width: 1000px) {

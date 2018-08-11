@@ -12,6 +12,8 @@ class NavbarBottom extends Component {
           <p>VIDEO</p>
         </nav>
       );
+    } else if (this.props.history.location.pathname === '/login') {
+      outputContent = null;
     } else {
       outputContent = (
         <nav className="navBottom">
