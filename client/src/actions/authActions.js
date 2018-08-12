@@ -1,16 +1,23 @@
-import { SET_CURRENT_USER } from './types';
+import { SET_CURRENT_USER, GET_ERRORS, CLEAR_ERRORS } from './types';
 import axios from 'axios';
 import setAuthToken from '../utilities/setAuthToken';
 import jwt_decode from 'jwt-decode';
 
 export const registerUser = (userData, history) => dispatch => {
+    dispatch(clearErrors())
     axios
         .post('/api/users/register', userData)
         .then(res => history.push('/login'))
-        .catch(err => console.log(err))
+        .catch(err => 
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        )
 }
 
 export const loginUser = userData => dispatch => {
+    dispatch(clearErrors())
     axios
         .post('/api/users/login', userData)
         .then(res => {
@@ -24,7 +31,12 @@ export const loginUser = userData => dispatch => {
             
             dispatch(setCurrentUser(decoded));
         })
-        .catch(err => console.log(err))
+        .catch(err => 
+            dispatch({
+                type: GET_ERRORS,
+                payload: err.response.data
+            })
+        )
 }
 
 export const logoutUser = () => dispatch => {
@@ -37,5 +49,11 @@ export const setCurrentUser = decoded => {
     return {
         type: SET_CURRENT_USER,
         payload: decoded
+    }
+}
+
+export const clearErrors = () => {
+    return {
+        type: CLEAR_ERRORS
     }
 }

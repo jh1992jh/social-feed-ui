@@ -48,6 +48,11 @@ ul {
   width: 20px;
   border-radius: 360px;
 }
+
+.errorText {
+  color: #dd0000;
+  font-size: 0.5rem;
+}
 /* KEYFRAMES */
 @keyframes appear {
   from {
