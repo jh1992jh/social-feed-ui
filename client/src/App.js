@@ -14,6 +14,7 @@ import Likes from './components/likes/Likes';
 import Profile from './components/profile/Profile';
 import Post from './components/posts/Post';
 import Login from './components/login/Login';
+import Register from './components/login/Register';
 import './App.css';
 
 if(localStorage.jwtToken) {
@@ -60,6 +61,7 @@ class App extends Component {
             <PrivateRoute exact path="/profile/:userId" component={Profile} />
             </Switch>
             <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
             <NavbarBottom />
           </div>
         </Router>

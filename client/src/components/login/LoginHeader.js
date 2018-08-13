@@ -1,11 +1,17 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 
-const LoginHeader = ({showSigninForm, showSingupForm, showForm}) => {
+class LoginHeader extends Component {
+    render() {
   return (
     <Fragment>
     <div className="loginHeader">
-    <h3 onClick={() => showSigninForm()} className={showForm === 'signin' ? 'selected' : null}>Sing in</h3>
-    <h3 onClick={() => showSingupForm()} className={showForm === 'signup' ? 'selected' : null}>Sign up</h3>
+    <Link to="/login">
+    <h3 className={this.props.history.location.pathname === '/login' ? 'selected' : null}>Sing in</h3>
+    </Link>
+    <Link to="/register">
+    <h3 className={this.props.history.location.pathname === '/register' ? 'selected' : null}>Sign up</h3>
+    </Link>
 </div>
 
 <div className="loginBrand">
@@ -17,5 +23,6 @@ const LoginHeader = ({showSigninForm, showSingupForm, showForm}) => {
     </Fragment>
   )
 }
+}
 
-export default LoginHeader;
+export default withRouter(LoginHeader);

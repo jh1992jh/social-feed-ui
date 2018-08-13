@@ -12,7 +12,7 @@ class NavbarBottom extends Component {
           <p>VIDEO</p>
         </nav>
       );
-    } else if (this.props.history.location.pathname === '/login') {
+    } else if (this.props.history.location.pathname === '/login' || this.props.history.location.pathname === '/register') {
       outputContent = null;
     } else {
       outputContent = (

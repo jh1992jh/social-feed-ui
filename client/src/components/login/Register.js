@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { loginUser, registerUser } from '../../actions/authActions';
+import { registerUser } from '../../actions/authActions';
 import LoginHeader from './LoginHeader';
 import LoginForm from './LoginForm';
 
-class Login extends Component {
+class Register extends Component {
     state = {
         email: '',
+        username: '',
         password: '',
+        password2: '',
         errors: {}
     }
     
@@ -32,38 +34,51 @@ class Login extends Component {
         this.setState({[e.target.name]: e.target.value})
     }
 
-    onLoginUser = e => {
+
+
+    onRegisterUser = e => {
         e.preventDefault();
 
-        const { email, password } = this.state;
+        const { email, username, password, password2, showForm } = this.state;
 
         const userData = {
             email,
-            password
+            username,
+            password,
+            password2
         }
 
-        this.props.loginUser(userData);
+        this.props.registerUser(userData, this.props.history);
     }
-
-   
   render() {
-      const { email, password, errors } = this.state;     
+      const { email, username, password, password2, errors } = this.state;     
     return (
       <div className="login">
         <div className="loginContainer">
         <LoginHeader  />
        {/* <LoginForm onLoginUser={this.onLoginUser} onRegisterUser={this.onRegisterUser} email={email} username={username} password={password} password2={password2} onInputChange={this.onInputChange} showform={showForm} /> */}
 
-       <form className="loginForm" onSubmit={this.onLoginUser}>
+       <form className="loginForm" onSubmit={this.onRegisterUser}>
                     <input type="email" name="email" value={email} onChange={this.onInputChange} placeholder="Email" />
                     {errors.email ? (
                         <p className="errorText">{errors.email}</p>
                     ): null}
+                        <input type="text" name="username" value={username} onChange={this.onInputChange} placeholder="Username" />
+       
+                    {errors.username ? (
+                        <p className="errorText">{errors.username}</p>
+                    ): null} 
                     <input type="password" name="password" value={password} onChange={this.onInputChange} placeholder="Password"/>
                     {errors.password ? (
                         <p className="errorText">{errors.password}</p>
                     ): null} 
-                    <button>Sign in</button>
+         
+                        <input type="password" name="password2" value={password2} onChange={this.onInputChange} placeholder="Confirm password" />
+
+                    {errors.password2 ? (
+                        <p className="errorText">{errors.password2}</p>
+                    ): null} 
+                    <button>Sign up</button>
                 </form>
 
                 
@@ -79,4 +94,4 @@ const mapStateToProps = state => ({
     errors: state.errors
 })
 
-export default connect(mapStateToProps, { loginUser })(withRouter(Login));
+export default connect(mapStateToProps, { registerUser })(withRouter(Register));
