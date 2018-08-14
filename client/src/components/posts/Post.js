@@ -1,107 +1,147 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { deletePost } from '../../actions/postActions';
+import { Link, withRouter } from 'react-router-dom';
+import { addComment, addCurrentPost, getPost } from '../../actions/post2Actions';
 import PostHeader from './PostHeader';
 import PostBody from './PostBody';
 import PostFooter from './PostFooter';
 
 class Post extends Component {
-  constructor(props) {
-    super(props);
-
-    this.onDeletePost = this.onDeletePost.bind(this);
-    this.onToggleMenu = this.onToggleMenu.bind(this);
-    this.onCommentInputChange = this.onCommentInputChange.bind(this);
-
-    this.state = {
-      showMenu: false,
-      commentInput: ''
-    };
+  componentDidMount() {
+  if (this.props.match.params.postId) {
+    this.props.getPost(this.props.match.params.postId);
+  }
   }
 
-  componentDidMount() {}
-
-  onDeletePost(postId) {
-    this.props.deletePost(postId);
-    this.setState({ showMenu: false });
-  }
-
-  onToggleMenu() {
-    const { showMenu } = this.state;
-    this.setState({ showMenu: !showMenu });
-  }
-
-  onCommentInputChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+  onAddCurrentPost = () => {
+    this.props.addCurrentPost(this.props);
   }
 
   render() {
-    let postContent;
-    const { showMenu, commentInput } = this.state;
+   // let postContent;
+
 
     const {
-      postImg,
+      
+          profileImage,
+          username,
+          postImage,
+          text,
+          likes,
+          date,
+          comments,
+          postId,
+      /* postImg,
       likes,
       name,
       postText,
-      time,
+      date,
       profPic,
-      postId,
       userId,
       loggedUserProfPic,
       authUser,
-      comments
+      comments */
     } = this.props;
 
-    const { currentPost } = this.props.posts;
+    let postContent = (
+      <Fragment>
+      <Link to={`/post/${postId}`} onClick={this.onAddCurrentPost}>
+        <PostHeader
+          
+          onToggleMenu={this.onToggleMenu}
+          profileImage={profileImage}
+          username={username}
+         /* postImg={postImg}
+          likes={likes}
+          postText={postText}
+          date={date}
+          postId={postId}
+          userId={userId}*/
+        />
+        <PostBody
+        postImage={postImage}
+        postId={postId}
+        profileImage={profileImage}
+        username={username}
+          text={text}
+          likes={likes}
+          date={date}
+          comments={comments}
 
-    if (currentPost.name) {
+          /* profPic={profPic}
+          likes={likes}
+          name={name}
+          postText={postText}
+          date={date}
+          comments={comments} */
+        />
+        <PostFooter
+          likes={likes}
+          username={username}
+          text={text}
+          date={date}
+          profileImage={profileImage}
+          postId={postId}
+         /* authUserProfPic={authUser.profPic}
+    userId={userId} */
+          comments={comments}
+          
+    
+      
+        />
+        </Link>
+      </Fragment>
+    ) 
+
+    const { post } = this.props.posts2;
+
+    if (Object.keys(post).length > 0) {
       postContent = (
         <Fragment>
           <PostHeader
-            post={currentPost}
-            showMenu={showMenu}
-            onToggleMenu={this.onToggleMenu}
-            onDeletePost={this.onDeletePost}
-            profPic={currentPost.profPic}
-            name={currentPost.name}
-            userId={currentPost.userId}
+          showMenu={this.showMenu}
+          onToggleMenu={this.onToggleMenu}
+          profileImage={post.profileImage}
+          username={post.username}
+          postId={post.postId}
+          postOwner={post.user}
           />
           <PostBody
-            profPic={currentPost.profPic}
-            postImg={currentPost.postImg}
-            likes={currentPost.likes}
-            name={currentPost.name}
-            postText={currentPost.postText}
-            time={currentPost.time}
-            postId={currentPost.postId}
-            comments={currentPost.comments}
+          postImage={post.postImage}
+          postId={post.postId}
+          profileImage={post.profileImage}
+          username={post.username}
+            text={post.text}
+            likes={post.likes}
+            date={post.date}
+            comments={post.comments}
           />
           <PostFooter
-            likes={currentPost.likes}
-            name={currentPost.name}
-            postText={currentPost.postText}
-            authUserProfPic={authUser.profPic}
-            time={currentPost.time}
-            userId={currentPost.userId}
-            comments={currentPost.comments}
-            commentInput={commentInput}
-            onCommentInputChange={this.onCommentInputChange}
-            onCommentSubmit={this.onCommentSubmit}
+         // likes={post.likes}
+          username={post.username}
+          text={post.text}
+          date={post.date}
+          profileImage={post.profileImage}
+          postId={post.postId}
+          likes={post.likes}
+         /* authUserProfPic={authUser.profPic}
+    userId={userId} */
+          comments={post.comments}
+          
+
+
           />
         </Fragment>
       );
-    } else if (
-      Object.keys(this.props.match.params).length === 1 &&
-      currentPost.length === 0
+    }  else if (
+      this.props.match.params.postId && Object.keys(post).length === 0
     ) {
       postContent = <h3>Loading</h3>;
-    } else {
+    }/* else {
       postContent = (
         <Fragment>
           <PostHeader
-            onDeletePost={this.onDeletePost}
+     
             showMenu={showMenu}
             onToggleMenu={this.onToggleMenu}
             profPic={profPic}
@@ -109,7 +149,7 @@ class Post extends Component {
             likes={likes}
             name={name}
             postText={postText}
-            time={time}
+            date={date}
             postId={postId}
             userId={userId}
           />
@@ -119,7 +159,7 @@ class Post extends Component {
             likes={likes}
             name={name}
             postText={postText}
-            time={time}
+            date={date}
             postId={postId}
             comments={comments}
           />
@@ -128,16 +168,16 @@ class Post extends Component {
             name={name}
             postText={postText}
             authUserProfPic={authUser.profPic}
-            time={time}
+            date={date}
             userId={userId}
             comments={comments}
             commentInput={commentInput}
-            onCommentInputChange={this.onCommentInputChange}
-            onCommentSubmit={this.onCommentSubmit}
+        
+ 
           />
         </Fragment>
       );
-    }
+    } */
     return (
       <Fragment>
         <div className="post">{postContent}</div>
@@ -148,10 +188,12 @@ class Post extends Component {
 
 const mapStateToProps = state => ({
   authUser: state.authUser,
-  posts: state.posts
+  auth: state.auth,
+  posts: state.posts,
+  posts2: state.posts2
 });
 
 export default connect(
   mapStateToProps,
-  { deletePost }
+  { addComment, addCurrentPost, getPost }
 )(withRouter(Post));

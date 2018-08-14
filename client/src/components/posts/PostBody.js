@@ -1,51 +1,60 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addCurrentPost } from '../../actions/postActions';
+import { addCurrentPost, addLike, removeLike } from '../../actions/post2Actions';
 import { Link, withRouter } from 'react-router-dom';
 
 class PostBody extends Component {
-  constructor(props) {
-    super(props);
-
-    this.onAddCurrentPost = this.onAddCurrentPost.bind(this);
+  componentDidMount() {
+    console.log(this.props.match.params.postId)
+  }
+  onAddCurrentPost = () => {
+    this.props.addCurrentPost(this.props);
   }
 
-  onAddCurrentPost() {
-    this.props.addCurrentPost(this.props);
+  onAddLike = () => {
+    this.props.addLike(this.props.match.params.postId)
+  }
+
+  onRemoveLike = () => {
+    this.props.removeLike(this.props.match.params.postId)
   }
   render() {
     const {
-      postImg,
+      postImage,
+      postId,
+      profileImage,
+      username,
+      text,
       likes,
+      time,
+      comments,
+      auth
+     /* likes,
       name,
       postText,
       time,
       profPic,
-      postId,
       onDeletePost,
       showMenu,
       onToggleMenu,
       authUser,
-      comments
+      comments*/
     } = this.props;
+    const checkLikes =  () => likes.filter(like => like.user === auth.user.id).length
     return (
       <div className="postBody">
         <div className="postBodyImg">
-          <img src={postImg} alt="post" />
+          <img src={postImage} alt="post" />
         </div>
         <div
           className="postBodyIcons"
-          style={
-            Object.keys(this.props.match.params).length === 1
-              ? { display: 'none' }
-              : null
-          }
         >
           <div className="postBodyIconsLeft forMobile">
-            <i className="far fa-heart" />
+            <i className="far fa-heart" onClick={checkLikes() === 1 ? this.onRemoveLike : this.onAddLike} style={checkLikes() ? {color:'#dd0000'} : null}/>
             <Link to={`/post/${postId}`}>
               <i className="far fa-comment" onClick={this.onAddCurrentPost} />
-            </Link>
+        </Link>
+
             <i className="far fa-paper-plane" />
           </div>
 
@@ -63,7 +72,11 @@ class PostBody extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
 export default connect(
-  null,
-  { addCurrentPost }
+  mapStateToProps,
+  { addCurrentPost, addLike, removeLike }
 )(withRouter(PostBody));

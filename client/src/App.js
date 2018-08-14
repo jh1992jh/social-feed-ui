@@ -10,6 +10,7 @@ import NavbarBottom from './components/navbars/NavbarBottom';
 import MainView from './components/mainView/MainView';
 import Explore from './components/explore/Explore';
 import CreatePost from './components/create-post/CreatePost';
+import CreatePost2 from './components/create-post/PostaPost';
 import Likes from './components/likes/Likes';
 import Profile from './components/profile/Profile';
 import Post from './components/posts/Post';
@@ -46,7 +47,7 @@ class App extends Component {
             <PrivateRoute exact path="/explore" component={Explore} />
             </Switch>
             <Switch>
-            <PrivateRoute exact path="/create-post" component={CreatePost} />
+            <PrivateRoute exact path="/create-post" component={CreatePost2} />
             </Switch>
             <Switch>
             <PrivateRoute exact path="/likes" component={Likes} />

@@ -37,6 +37,7 @@ const PostSchema = new Schema ({
             text: {
                 type: String,
                 required: true
+        
             },
             username: {
                 type: String

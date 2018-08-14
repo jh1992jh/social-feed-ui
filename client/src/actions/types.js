@@ -1,6 +1,11 @@
 export const ADD_CURRENT_POST = 'ADD_CURRENT_POST';
 export const CLEAR_CURRENT_POST = 'CLEAR_CURRENT_POST';
 export const DELETE_POST = 'DELETE_POST';
+export const GET_POSTS = 'GET_POSTS';
+export const GET_POST = 'GET_POST';
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const POST_LOADING = 'POST_LOADING';
+export const POST_A_POST = 'POST_A_POST';
 export const ADD_CURRENT_PROFILE = 'ADD_CURRENT_PROFILE';
 export const CLEAR_CURRENT_PROFILE = 'CLEAR_CURRENT_PROFILE';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';

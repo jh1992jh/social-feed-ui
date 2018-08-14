@@ -1,45 +1,64 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { deletePost } from '../../actions/postActions';
+import { deletePost } from '../../actions/post2Actions';
 
 class PostHeader extends Component {
+  state = {
+    showMenu: false
+  }
+
+  onGoBack = () => {
+    this.props.history.go(-1);
+  }
+
+  onToggleMenu = () => {
+    const { showMenu } = this.state;
+    this.setState({ showMenu: !showMenu });
+  }
+
+  onDeletePost = () => {
+    this.props.deletePost(this.props.match.params.postId, this.props.history)
+    //this.props.history.go(-1);
+  } 
   render() {
     const {
-      postImg,
+      auth,
+      username,
+      profileImage,
+      postId,
+      postOwner
+      /* postImg,
       likes,
-      name,
       postText,
       time,
-      profPic,
-      postId,
-      onDeletePost,
-      showMenu,
-      onToggleMenu,
       authUser,
       currentPost,
-      userId
+      userId */
     } = this.props;
 
+    const { showMenu } = this.state;
 
     return (
       <div className="postHeader">
+      {this.props.match.params.postId ? <button onClick={this.onGoBack}>Go back</button> : null}
         <div className="postHeaderProfInfo">
           <div className="roundedProfThumbSmall">
-            <img src={profPic} alt="profPic" />
+            <img src={profileImage} alt="profPic" />
           </div>
-          <Link to={`/profile/${userId}`}>
-            <p className="profileName">{name}</p>{' '}
-          </Link>
+         {/* <Link to={`/profile/${userId}`}>
+            <p className="profileName">{username}</p>{' '}
+    </Link> */}
+    <p className="profileName">{username}</p>
         </div>
         <div className="postHeaderProfInfo2">
-          <i onClick={onToggleMenu} className="fas fa-ellipsis-v" />
+          <i onClick={this.onToggleMenu} className="fas fa-ellipsis-v" />
           {showMenu === true ? (
             <div className="showMenuContainer">
-              {this.props.authUser.name === name ? (
-                <p onClick={() => onDeletePost(postId)}>Delete</p>
+              { postOwner === auth.user.id ? (
+                <p onClick={this.onDeletePost}>Delete</p> 
               ) : (
-                <p>Share</p>
+                <p>Copy Url</p>
               )}
             </div>
           ) : null}
@@ -50,7 +69,7 @@ class PostHeader extends Component {
 }
 
 const mapStateToProps = state => ({
-  authUser: state.authUser
+  auth: state.auth
 });
 
 export default connect(

@@ -338,7 +338,7 @@ ul {
 
   .post .postBody img {
     max-height: 300px;
-    max-width: 100%;
+    width: 100%;
   }
 
   .post .postBody .postBodyIcons {
@@ -699,10 +699,56 @@ ul {
     width: calc(25vw - 0.1em);
   }
 
+  /* POSTAPOST STYLES */
+  .postApost {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .postApost .postForm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3em;
+    align-items: flex-st3.5rt;
+    width: 80vw;
+    margin: 3em auto;
+  }
+
+  .postApost .postForm input {
+    margin: 1.5em 0;
+    box-shadow: 0 2px 0 -1px #808080;
+    width: 100%
+  }
+
+  .postApost .postForm button {
+    background-color: #0099cc;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 5.5px;
+    padding: 0.6em;
+    margin: 2em auto;
+    width: 30vw;
+  }
+
+  .postApost .postImageContainer {
+    width: 80vw;
+    height: 40vh;
+    margin-top: 3.5em; 
+  }
+
+  .postApost .postImageContainer img {
+    width: 80vw;
+    height: 40vh;
+  }
+
   /* LIKES STYLES */
   .likes {
     max-width: 100%;
   }
+
 
   .likes .likesHeader {
     display: flex;

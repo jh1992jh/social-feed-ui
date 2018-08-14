@@ -4,15 +4,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 class NavbarBottom extends Component {
   render() {
     let outputContent;
-    if (this.props.history.location.pathname === '/create-post') {
-      outputContent = (
-        <nav className="navBottomCreatePost">
-          <p>GALLERY</p>
-          <p>PHOTO</p>
-          <p>VIDEO</p>
-        </nav>
-      );
-    } else if (this.props.history.location.pathname === '/login' || this.props.history.location.pathname === '/register') {
+ if (this.props.history.location.pathname === '/login' || this.props.history.location.pathname === '/register') {
       outputContent = null;
     } else {
       outputContent = (
@@ -35,7 +27,7 @@ class NavbarBottom extends Component {
             </NavLink>
           </div>
         </nav>
-      );
+      ); 
     }
     return <Fragment>{outputContent}</Fragment>;
   }
