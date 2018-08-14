@@ -29,16 +29,6 @@ class PostBody extends Component {
       time,
       comments,
       auth
-     /* likes,
-      name,
-      postText,
-      time,
-      profPic,
-      onDeletePost,
-      showMenu,
-      onToggleMenu,
-      authUser,
-      comments*/
     } = this.props;
     const checkLikes =  () => likes.filter(like => like.user === auth.user.id).length
     return (

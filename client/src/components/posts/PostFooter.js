@@ -38,9 +38,6 @@ class PostFooter extends Component {
       profileImage,
       postId,
       auth
-      /* postImg,
-      profPic,
-      userId, */
     } = this.props;
    
     const { commentInput } = this.state;
@@ -98,15 +95,6 @@ class PostFooter extends Component {
           </p>
         </div>
         {outputComments}
-        {/* comments.length > 0 ? (
-          <Fragment>
-          <p className="viewAll">View all {comments.length} comments</p>
-          <p>
-            <span className="postCommentName">{comments[0].username} </span>
-            {comments[0].text}
-          </p>
-          </Fragment>
-        ) :  null */}
         <div className="forDesktop ago">{date} HOURS AGO</div>
         <hr className="forDesktop" />
         <div className="postFooterComment">

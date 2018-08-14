@@ -48,34 +48,9 @@ class MainView extends Component {
           likes={post.likes}
           comments={post.comments}
           date={post.date}
-          /* profPic={post.profPic}
-          name={post.name}
-          postImg={post.postImg}
-          likes={post.likes}
-          postText={post.postText}
-          time={post.time}
-          postId={post.postId}
-          userId={post.userId}
-          comments={post.comments} */
         />
       ));
     }
-
-    
-   /* const outputPosts = posts.map((post, i) => (
-      <Post
-        key={i}
-        profPic={post.profPic}
-        name={post.name}
-        postImg={post.postImg}
-        likes={post.likes}
-        postText={post.postText}
-        time={post.time}
-        postId={post.postId}
-        userId={post.userId}
-        comments={post.comments}
-      />
-    ));*/
     return (
       <Fragment>
         <NavbarTop

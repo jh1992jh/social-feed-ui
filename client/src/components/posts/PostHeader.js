@@ -19,7 +19,6 @@ class PostHeader extends Component {
 
   onDeletePost = () => {
     this.props.deletePost(this.props.match.params.postId, this.props.history)
-    //this.props.history.go(-1);
   } 
   render() {
     const {
@@ -28,13 +27,6 @@ class PostHeader extends Component {
       profileImage,
       postId,
       postOwner
-      /* postImg,
-      likes,
-      postText,
-      time,
-      authUser,
-      currentPost,
-      userId */
     } = this.props;
 
     const { showMenu } = this.state;
