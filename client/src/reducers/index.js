@@ -3,6 +3,7 @@ import authUserReducer from './authUserReducer';
 import postReducer from './postReducer';
 import post2Reducer from './post2Reducer';
 import profileReducer from './profileReducer';
+import profile2Reducer from './profile2Reducer';
 import authReducer from './authReducer';
 import errorReducer from './errorReducer';
 
@@ -11,6 +12,7 @@ export default combineReducers({
   posts: postReducer,
   posts2: post2Reducer,
   profile: profileReducer,
+  profile2: profile2Reducer,
   auth: authReducer,
   errors: errorReducer
 });

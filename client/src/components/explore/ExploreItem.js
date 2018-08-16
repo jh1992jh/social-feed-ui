@@ -1,15 +1,15 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-const ExportItem = ({ post, onAddCurrentPost }) => {
-  const { name, postImg, likes, postText, time, postId } = post;
+const ExportItem = ({ post }) => {
+  const {  postImage, _id } = post;
   return (
     <Fragment>
-      <Link to={`/post/${postId}`}>
+      <Link to={`/post/${_id}`}>
         <img
-          src={postImg}
+          src={postImage}
           alt="postImg"
-          onClick={() => onAddCurrentPost(post)}
+         /* onClick={() => onAddCurrentPost(post)} */
         />
       </Link>
     </Fragment>

@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 
 const Post = require('../../models/Post');
-const User = require('../../models/User');
+const Profile = require('../../models/Profile');
 
 const validatePostInput = require('../../validation/post');
 
@@ -44,7 +44,7 @@ router.get('/:id', passport.authenticate('jwt', { session: false}), (req, res) =
 })
 
 router.delete('/:id', passport.authenticate('jwt', { session: false}), (req, res) => {
-    User.findOne({ user: req.user.id }).then(user => {
+    Profile.findOne({ user: req.user.id }).then(user => {
         Post.findById(req.params.id).then(post => {
             if(post.user.toString() !== req.user.id) {
                 return res.status(401).json({ notauthorized: 'User not authorized'})
@@ -57,7 +57,7 @@ router.delete('/:id', passport.authenticate('jwt', { session: false}), (req, res
 })
 
 router.post('/like/:id', passport.authenticate('jwt', { session: false}), (req, res) => {
-    User.findOne({ user: req.user.id }).then(user => {
+    Profile.findOne({ user: req.user.id }).then(user => {
         Post.findById(req.params.id).then(post => {
             if(post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
                 return res.status(400).json({alreadyliked: 'User already liked this post'})
@@ -72,7 +72,7 @@ router.post('/like/:id', passport.authenticate('jwt', { session: false}), (req, 
 })
 
 router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-    User.findOne({ user: req.user.id }).then(user => {
+    Profile.findOne({ user: req.user.id }).then(user => {
         Post.findById(req.params.id).then(post => {
             if(   post.likes.filter(like => like.user.toString() === req.user.id)
             .length === 0) {

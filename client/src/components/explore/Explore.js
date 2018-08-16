@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { addCurrentPost, clearCurrentPost } from '../../actions/postActions';
+import { getPosts } from '../../actions/post2Actions';
+import { getProfiles } from '../../actions/profile2Actions';
 import ExploreHeader from './ExploreHeader';
 import Categories from './Categories';
 import ExploreItem from './ExploreItem';
@@ -8,31 +9,38 @@ import NavbarTop from '../navbars/NavbarTop';
 import SuggestedPeople from './SuggestedPeople';
 
 class Explore extends Component {
-  constructor(props) {
-    super(props);
+componentDidMount() {
+  this.props.getPosts();
+  this.props.getProfiles();
+}
 
-    this.onAddCurrentPost = this.onAddCurrentPost.bind(this);
-  }
-
-  onAddCurrentPost(post) {
+ /*  onAddCurrentPost = post => {
     this.props.addCurrentPost(post);
-  }
+  } */
   render() {
-    const { posts } = this.props.posts;
-    const { profiles } = this.props.profile;
-    const outputContent = posts.map((post, i) => (
-      <Fragment key={i}>
-        <ExploreItem post={post} onAddCurrentPost={this.onAddCurrentPost} />
-      </Fragment>
-    ));
+    const { posts, loading } = this.props.posts2;
+    const { profiles } = this.props.profile2;
+    let outputContent;
+
+    if(loading === true) {
+      outputContent = <h1>Loading</h1>
+    } else if (loading === false && posts.length > 0) {
+      outputContent = posts.map((post, i) => (
+       <Fragment key={i}>
+         <ExploreItem post={post} />
+       </Fragment>
+      ));
+    } else if (loading === false && posts.length === 0) {
+      outputContent = <h3>There are no posts</h3>
+    }
     return (
       <div className="explore">
         <ExploreHeader />
         <div className="forDesktop">
           <NavbarTop />
-          <SuggestedPeople profiles={profiles} />
+          {loading === false && profiles !== null ? <SuggestedPeople profiles={profiles} /> : null }
         </div>
-        <Categories posts={posts} />
+        {loading === true ? null : <Categories posts={posts} /> }
 
         <div className="exploreItems">{outputContent}</div>
       </div>
@@ -42,10 +50,13 @@ class Explore extends Component {
 
 const mapStateToProps = state => ({
   posts: state.posts,
-  profile: state.profile
+  profile: state.profile,
+  auth: state.auth,
+  profile2: state.profile2,
+  posts2: state.posts2
 });
 
 export default connect(
   mapStateToProps,
-  { addCurrentPost, clearCurrentPost }
+  { getPosts, getProfiles }
 )(Explore);

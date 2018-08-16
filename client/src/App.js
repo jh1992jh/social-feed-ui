@@ -12,6 +12,7 @@ import Explore from './components/explore/Explore';
 import CreatePost from './components/create-post/CreatePost';
 import CreatePost2 from './components/create-post/PostaPost';
 import Likes from './components/likes/Likes';
+import CreateProfile from './components/profile/CreateProfile';
 import Profile from './components/profile/Profile';
 import Post from './components/posts/Post';
 import Login from './components/login/Login';
@@ -54,6 +55,9 @@ class App extends Component {
             </Switch>
             <Switch>
             <PrivateRoute exact path="/my-profile" component={Profile} />
+            </Switch>
+            <Switch>
+            <PrivateRoute exact path="/create-profile" component={CreateProfile} />
             </Switch>
             <Switch>
             <PrivateRoute exact path="/post/:postId" component={Post} />

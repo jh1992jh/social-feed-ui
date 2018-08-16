@@ -4,12 +4,12 @@ const SuggestedPeople = ({ profiles }) => {
   const outputSuggestions = profiles.slice(0, 3).map((profile, i) => (
     <div key={i} className="suggestedCard">
       <img
-        src={profile.profPic}
+        src={profile.user.profileImage}
         className="suggestedRoundedProfic"
         alt="Auggested profile"
       />
-      <p className="name">{profile.name}</p>
-      <p>Friend on Facebook</p>
+      <p className="name">{profile.handle}</p>
+
       <button className="suggestedButton">Follow</button>
     </div>
   ));
