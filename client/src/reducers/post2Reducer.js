@@ -1,8 +1,9 @@
-import { GET_POSTS, GET_POST, POST_LOADING, POST_A_POST, ADD_CURRENT_POST, CLEAR_CURRENT_POST, DELETE_POST } from '../actions/types';
+import { GET_POSTS, GET_OWNED_POSTS,GET_POST, POST_LOADING, POST_A_POST, ADD_CURRENT_POST, CLEAR_CURRENT_POST, DELETE_POST } from '../actions/types';
 
 const initialState = {
     loading: false,
     posts: [],
+    ownedPosts: [],
     post: {}
 }
 
@@ -18,6 +19,12 @@ export default function(state = initialState, action) {
                 ...state,
                 posts: action.payload,
                 loading: false
+            }
+        case GET_OWNED_POSTS: 
+            return {
+                ...state,
+                loading: false,
+                ownedPosts: action.payload
             }
         case GET_POST: 
         return {

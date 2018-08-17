@@ -37,6 +37,14 @@ router.get('/', passport.authenticate('jwt', { session: false}), (req, res) => {
     .catch(err => res.json(err));
 })
 
+router.get('/owned/:user_id', passport.authenticate('jwt', { session: false}), (req, res) => {
+    Profile.findOne({user: req.params.user_id}).then(user => {
+        Post.find({user: req.params.user_id})
+            .then(posts => res.json(posts))
+    })
+    .catch(err => res.status(404).json(err));
+})
+
 router.get('/:id', passport.authenticate('jwt', { session: false}), (req, res) => {
     Post.findById(req.params.id)
         .then(post => res.json(post))

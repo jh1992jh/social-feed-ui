@@ -45,6 +45,7 @@ class MainView extends Component {
           postId={post._id}
           profileImage={post.profileImage}
           username={post.username}
+          userId={post.user}
           postImage={post.postImage}
           text={post.text}
           likes={post.likes}

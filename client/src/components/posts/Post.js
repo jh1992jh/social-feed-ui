@@ -23,6 +23,7 @@ class Post extends Component {
       
           profileImage,
           username,
+          userId,
           postImage,
           text,
           likes,
@@ -38,6 +39,7 @@ class Post extends Component {
           onToggleMenu={this.onToggleMenu}
           profileImage={profileImage}
           username={username}
+          userId={userId}
         />
         <PostBody
         postImage={postImage}
@@ -51,6 +53,7 @@ class Post extends Component {
         />
         <PostFooter
           likes={likes}
+          userId={userId}
           username={username}
           text={text}
           date={date}
@@ -73,7 +76,7 @@ class Post extends Component {
           profileImage={post.profileImage}
           username={post.username}
           postId={post.postId}
-          postOwner={post.user}
+          userId={post.user}
           />
           <PostBody
           postImage={post.postImage}
@@ -93,9 +96,7 @@ class Post extends Component {
           postId={post.postId}
           likes={post.likes}
           comments={post.comments}
-          
-
-
+          userId={post.user}
           />
         </Fragment>
       );

@@ -24,6 +24,7 @@ class PostHeader extends Component {
     const {
       auth,
       username,
+      userId,
       profileImage,
       postId,
       postOwner
@@ -38,10 +39,10 @@ class PostHeader extends Component {
           <div className="roundedProfThumbSmall">
             <img src={profileImage} alt="profPic" />
           </div>
-         {/* <Link to={`/profile/${userId}`}>
+          <Link to={`/profile/${userId}`}>
             <p className="profileName">{username}</p>{' '}
-    </Link> */}
-    <p className="profileName">{username}</p>
+    </Link> 
+    {/* <p className="profileName">{username}</p> */}
         </div>
         <div className="postHeaderProfInfo2">
           <i onClick={this.onToggleMenu} className="fas fa-ellipsis-v" />

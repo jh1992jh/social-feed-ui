@@ -1,14 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const ProfileBody = ({ onShowAccountsOff, posts, profile }) => {
-  const profilePosts = posts.filter(post => profile.name === post.name);
-  const outputContent = profilePosts.map((post, i) => (
-    <div key={i} className="profileBodyItem">
-      <img src={post.postImg} alt="postImg" />
+const ProfileBody = ({ ownedPosts }) => {
+  let outputContent;
+
+  if(ownedPosts.length > 0) {
+    outputContent = ownedPosts.map(post => (
+      <Link to={`/post/${post._id}`} key={post._id} className="profileBodyItem">
+        <img src={post.postImage} alt="postImg" />
+      </Link>
+    ));
+  } else if (ownedPosts.length === 0) {
+    outputContent = ( 
+      <div className="noPosts">
+    <i className="far fa-image" />
+    <p>You have no posts yet <br /> 
+      start by adding some
+    </p>
     </div>
-  ));
+  )
+  }
   return (
-    <div className="profileBody" onClick={onShowAccountsOff}>
+    <div className="profileBody">
       {outputContent}
     </div>
   );

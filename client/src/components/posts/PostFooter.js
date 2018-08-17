@@ -37,7 +37,8 @@ class PostFooter extends Component {
       text,
       profileImage,
       postId,
-      auth
+      auth,
+      userId
     } = this.props;
    
     const { commentInput } = this.state;
@@ -53,7 +54,11 @@ class PostFooter extends Component {
                   <img src={comment.profileImage} alt="profPic " />
                 </div>
                 <p>
-                  <span className="postCommentName">{comment.username} </span>
+                  <span className="postCommentName">
+                  <Link to={`/profile/${comment.user}`}>
+                  {comment.username}
+                  </Link>
+                  </span>
                   {comment.text} {auth.user.id === comment.user ? (
                     <i className="far fa-trash-alt" onClick={() => this.props.deleteComment(this.props.match.params.postId, comment._id)} />
                   ) : null}
@@ -72,7 +77,11 @@ class PostFooter extends Component {
         <Fragment>
           <p className="viewAll">View all {comments.length} comments</p>
           <p>
-            <span className="postCommentName">{comments[0].username} </span>
+            <span className="postCommentName">
+            <Link to={`/profile/${comments[0].user}`}>
+            {comments[0].username} 
+            </Link>
+            </span>
             {comments[0].text}
           </p>
         </Fragment>
@@ -87,10 +96,10 @@ class PostFooter extends Component {
         ) : null }
         <div className="postFooterText">
           <p>
-            {/* <Link to={`/profile/${userId}`}>
-              <span className="postFooterUserName">{name}</span>
-    </Link> */}{' '}
-    <span className="postFooterUserName">{username}</span>
+             <Link to={`/profile/${userId}`}>
+              <span className="postFooterUserName">{username}</span>
+    </Link> {' '}
+
             {text}
           </p>
         </div>

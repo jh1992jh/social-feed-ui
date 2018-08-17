@@ -1,141 +1,99 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import {
-  addCurrentProfile,
-  clearCurrentProfile
-} from '../../actions/profileActions';
+import { Link, withRouter } from 'react-router-dom';
+
 import ProfileHeaderTop from './ProfileHeaderTop';
+import ProfileHeaderTopOther from './ProfileHeaderTopOther';
 import ProfileHeaderBottom from './ProfileHeaderBottom';
+import ProfileHeaderBottomOther from './ProfileHeaderBottomOther';
 import ProfileBodyTop from './ProfileBodyTop';
 import ProfileBody from './ProfileBody';
 import NavbarTop from '../navbars/NavbarTop';
+import { getPosts, getOwnedPosts } from '../../actions/post2Actions';
+import { getCurrentProfile, getProfileById } from '../../actions/profile2Actions';;
 
 class Profile extends Component {
-  constructor(props) {
-    super(props);
-
-    this.onToggleShowAccounts = this.onToggleShowAccounts.bind(this);
-    this.onShowAccountsOff = this.onShowAccountsOff.bind(this);
-
-    this.state = {
-      showAccounts: false
-    };
-  }
-
   componentDidMount() {
-    if (Object.keys(this.props.match.params).length > 0) {
-      const findCurrentUser = () => {
-        console.log(this.props.match.params.userId);
-        const currentUser = this.props.match.params.userId;
-        return currentUser;
-      };
-      const currentUserId = findCurrentUser();
-      console.log(`The current users id is ${currentUserId}`);
-      const filterCurrentProfile = () => {
-        const currentProfile = this.props.profile.profiles.filter(
-          profile => profile.userId === currentUserId
-        );
-        return currentProfile;
-      };
-      let currentProfile = filterCurrentProfile();
-      this.props.addCurrentProfile(currentProfile);
+   
+   if(this.props.match.url === '/my-profile') {
+      this.props.getCurrentProfile()
+      this.props.getOwnedPosts(this.props.auth.user.id)
+    } else {
+      this.props.getProfileById(this.props.match.params.userId)
+      this.props.getOwnedPosts(this.props.match.params.userId)
     }
-  }
-
-  componentWillUnmount() {
-    if (Object.keys(this.props.profile.currentProfile).length > 0) {
-      this.props.clearCurrentProfile();
-    }
-  }
-
-  onToggleShowAccounts() {
-    const { showAccounts } = this.state;
-    this.setState({ showAccounts: !showAccounts });
-  }
-
-  onShowAccountsOff() {
-    this.setState({ showAccounts: false });
+    this.props.getPosts();
   }
 
   render() {
-    const { showAccounts } = this.state;
-    const { authUser, posts, profile } = this.props;
+    const { posts2, profile2, auth, authUser } = this.props;
     let outputProfile;
-
-    if (
-      Object.keys(this.props.match.params).length > 0 &&
-      Object.keys(this.props.profile.currentProfile).length > 0
-    ) {
+    if(posts2.loading === true || profile2.loading == true || profile2.profile === null) {
+      outputProfile = <h3>Loading</h3>
+    } else if (posts2.loading === false && posts2.posts.length > 0 && Object.keys(profile2.profile).length > 0 && profile2.profile.user._id === auth.user.id)  {
       outputProfile = (
         <Fragment>
           <div className="forDesktop">
             <NavbarTop />
           </div>
           <ProfileHeaderTop
-            showAccounts={showAccounts}
-            onToggleShowAccounts={this.onToggleShowAccounts}
-            profPic={profile.currentProfile[0].profPic}
-            name={profile.currentProfile[0].name}
-            show={false}
+            username={auth.user.username}
           />
           <ProfileHeaderBottom
-            onShowAccountsOff={this.onShowAccountsOff}
-            profPic={profile.currentProfile[0].profPic}
-            name={profile.currentProfile[0].name}
-            description={profile.currentProfile[0].description}
-            show={false}
-            showOtherProfileBtn={true}
-            authUserId={authUser.userId}
-            currentUserId={profile.currentProfile[0]}
+            profileImage={auth.user.profileImage}
+            username={auth.user.username}
+            description={profile2.profile.description}
           />
-          <ProfileBodyTop onShowAccountsOff={this.onShowAccountsOff} />
+          <ProfileBodyTop />
           <ProfileBody
-            onShowAccountsOff={this.onShowAccountsOff}
-            posts={posts.posts}
-            profile={profile.currentProfile[0]}
+            ownedPosts={posts2.ownedPosts}
           />
         </Fragment>
       );
-    } else {
+    } else if (posts2.loading === false && posts2.posts.length > 0 && Object.keys(profile2.profile).length > 0 && profile2.profile.user._id !== auth.user.id)  {
       outputProfile = (
         <Fragment>
           <div className="forDesktop">
             <NavbarTop />
           </div>
-          <ProfileHeaderTop
-            showAccounts={showAccounts}
-            onToggleShowAccounts={this.onToggleShowAccounts}
-            profPic={authUser.profPic}
-            name={authUser.name}
+          <ProfileHeaderTopOther handle={profile2.profile.handle} />
+          <ProfileHeaderBottomOther
+            profileImage={profile2.profile.user.profileImage}
+            handle={profile2.profile.handle}
+            description={profile2.profile.description}
           />
-          <ProfileHeaderBottom
-            onShowAccountsOff={this.onShowAccountsOff}
-            profPic={authUser.profPic}
-            name={authUser.name}
-            description={authUser.description}
-            authUserId={authUser.userId}
-          />
-          <ProfileBodyTop onShowAccountsOff={this.onShowAccountsOff} />
+          <ProfileBodyTop />
           <ProfileBody
-            onShowAccountsOff={this.onShowAccountsOff}
-            posts={posts.posts}
-            profile={authUser}
+            ownedPosts={posts2.ownedPosts}
           />
         </Fragment>
       );
+    } 
+     else if (Object.keys(profile2.profile).length === 0) {
+      outputProfile = (
+        <div className="noProfile">
+        <i className="far fa-user-circle" />
+        <h3>Hey {auth.user.username}<br /></h3>
+        <p>you have no profile yet<br />
+        click this link to to make one <br />
+        <Link to="/create-profile" className="createProfileLink"> 
+          Create a profile
+        </Link>
+        </p>
+        </div>
+      )
     }
     return <div className="profile">{outputProfile}</div>;
   }
 }
 
 const mapStateToProps = state => ({
-  authUser: state.authUser,
-  posts: state.posts,
-  profile: state.profile
+  auth: state.auth,
+  posts2: state.posts2,
+  profile2: state.profile2
 });
 
 export default connect(
   mapStateToProps,
-  { addCurrentProfile, clearCurrentProfile }
+  { getCurrentProfile, getPosts, getOwnedPosts, getProfileById }
 )(withRouter(Profile));

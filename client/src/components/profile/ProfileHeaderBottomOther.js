@@ -2,38 +2,42 @@ import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-class ProfileHeaderBottom extends Component {
+class ProfileHeaderBottomOther extends Component {
   render() {
     const {
       profileImage,
-      username,
+      handle,
       description,
-      show,
     } = this.props;
-    let profileButtons = (
-      <Fragment>
-        <p className="nameLarge forDesktop">{username}</p>
-        <button
-          className="editProfileBtn"
-          style={show === false ? { display: 'none' } : null}
-        >
-          Edit Profile
-        </button>
-        <i className="fas fa-cog forDesktop" />
-      </Fragment>
-    );
-
     return (
       <Fragment>
         <div className="profileHeaderBottom">
           <div className="profileHeaderBottomLeft">
             <div className="roundedProfPicLarge">
               <img src={profileImage} alt="profPic" />
-                <i className="fas fa-plus-circle" />
             </div>
           </div>
           <div className="profileHeaderBottomRight">
-            <div className="forDesktop">{profileButtons}</div>
+            <div className="forDesktop">
+            <div className="otherProfileBtnsDesktop">
+            <p className="nameLarge">{handle}</p>
+            <button className="follow">Follow</button>
+            <button className="suggested">
+              <i className="fas fa-caret-down" />
+            </button>
+            <i className="fas fa-ellipsis-h" />
+          </div>
+
+          <div className="otherProfileBtns">
+            <button className="message">Message</button>
+            <button className="follow">
+              <i className="fas fa-user-check" />
+            </button>
+            <button className="suggested">
+              <i className="fas fa-caret-down" />
+            </button>
+          </div>
+            </div>
             <div className="profileHeaderBottomRightSubContainer">
               <div className="profileHeaderContent">
                 <p>127</p>
@@ -52,17 +56,27 @@ class ProfileHeaderBottom extends Component {
             <div className="forDesktop">
               <div
                 className="profileAboutDesktop"
-            
               >
-                <p className="name">{username}</p>
+                <p className="name">{handle}</p>
                 <p className="profAboutDesc">{description}</p>
               </div>
             </div>
-            <div className="forMobile">{profileButtons}</div>
+            <div className="forMobile">
+            <div className="otherProfileBtns">
+            <button className="message">Message HEEYYY</button>
+            <button className="follow">
+              <i className="fas fa-user-check" />
+            </button>
+            <button className="suggested">
+              <i className="fas fa-caret-down" />
+            </button>
+          
+          </div>
+            </div>
           </div>
         </div>
         <div className="profileAbout">
-          <p className="name">{username}</p>
+          <p className="name">{handle}</p>
           <p className="description">{description}</p>
         </div>
       </Fragment>
@@ -70,8 +84,4 @@ class ProfileHeaderBottom extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  auth: state.auth
-});
-
-export default connect(mapStateToProps)(withRouter(ProfileHeaderBottom));
+export default withRouter(ProfileHeaderBottomOther);

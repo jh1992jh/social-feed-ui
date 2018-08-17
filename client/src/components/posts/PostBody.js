@@ -4,9 +4,6 @@ import { addCurrentPost, addLike, removeLike } from '../../actions/post2Actions'
 import { Link, withRouter } from 'react-router-dom';
 
 class PostBody extends Component {
-  componentDidMount() {
-    console.log(this.props.match.params.postId)
-  }
   onAddCurrentPost = () => {
     this.props.addCurrentPost(this.props);
   }

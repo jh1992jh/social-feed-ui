@@ -1,4 +1,4 @@
-import { GET_POSTS, POST_LOADING, POST_A_POST, ADD_CURRENT_POST, CLEAR_CURRENT_POST, GET_POST, ADD_COMMENT, DELETE_POST } from './types';
+import { GET_POSTS, GET_OWNED_POSTS,POST_LOADING, POST_A_POST, ADD_CURRENT_POST, CLEAR_CURRENT_POST, GET_POST, ADD_COMMENT, DELETE_POST } from './types';
 import axios from 'axios';
 
 export const getPosts = () => dispatch => {
@@ -11,6 +11,20 @@ export const getPosts = () => dispatch => {
                 type: GET_POSTS,
                 payload: res.data
             })
+        )
+        .catch(err => console.log(err));
+}
+
+export const getOwnedPosts = userId => dispatch => {
+    dispatch(setPostLoading());
+
+    axios
+        .get(`/api/posts/owned/${userId}`)
+        .then(res => 
+        dispatch({
+            type: GET_OWNED_POSTS,
+            payload: res.data
+        })
         )
         .catch(err => console.log(err));
 }
