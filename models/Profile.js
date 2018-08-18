@@ -8,10 +8,13 @@ const ProfileSchema = new Schema({
     },
     handle: {
         type: String,
-        erequired: true
+        required: true
     },
     description: {
         type: String,
+    },
+    profileImage: {
+        type: String
     },
     date: {
         type: Date,

@@ -1,6 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class ProfileHeaderBottom extends Component {
   render() {
@@ -13,12 +13,14 @@ class ProfileHeaderBottom extends Component {
     let profileButtons = (
       <Fragment>
         <p className="nameLarge forDesktop">{username}</p>
+        <Link to="/edit-profile">
         <button
           className="editProfileBtn"
           style={show === false ? { display: 'none' } : null}
         >
           Edit Profile
         </button>
+        </Link>
         <i className="fas fa-cog forDesktop" />
       </Fragment>
     );

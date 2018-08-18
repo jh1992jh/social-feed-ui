@@ -87,6 +87,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     profileFields.user = req.user.id;
     if(req.body.handle) profileFields.handle = req.body.handle;
     if(req.body.description) profileFields.description = req.body.description;
+    if(req.body.profileImage) profileFields.profileImage = req.body.profileImage;
 
     Profile.findOne({user: req.user.id}).then(profile => {
         if(profile) {
@@ -109,5 +110,18 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     })
     .catch(err => console.log(err));
 })
+
+
+router.post('/edit', passport.authenticate('jwt', { session: false }), (req, res) => {
+    const profileFields = {}
+    if (req.body.profileImage) profileFields.profileImage = req.body.profileImage;
+    if (req.body.description) profileFields.description = req.body.description;
+    Profile.findOneAndUpdate(
+      { user: req.user.id },
+      { $set: profileFields },
+      { new: true  }
+    ).then(result => res.json(result))
+      .catch(err => console.log(err))
+  })
 module.exports = router;
 

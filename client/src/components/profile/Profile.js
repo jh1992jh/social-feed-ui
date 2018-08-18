@@ -40,7 +40,7 @@ class Profile extends Component {
             username={auth.user.username}
           />
           <ProfileHeaderBottom
-            profileImage={auth.user.profileImage}
+            profileImage={profile2.profile.profileImage ? profile2.profile.profileImage : auth.user.profileImage}
             username={auth.user.username}
             description={profile2.profile.description}
           />
@@ -58,7 +58,7 @@ class Profile extends Component {
           </div>
           <ProfileHeaderTopOther handle={profile2.profile.handle} />
           <ProfileHeaderBottomOther
-            profileImage={profile2.profile.user.profileImage}
+            profileImage={profile2.profile.profileImage}
             handle={profile2.profile.handle}
             description={profile2.profile.description}
           />

@@ -6,7 +6,8 @@ import { createProfile } from '../../actions/profile2Actions';
 class CreateProfile extends Component {
     state = {
         handle: '',
-        description: ''
+        description: '',
+        profileImage: ''
     }
 
     onInputChange = e => {
@@ -16,17 +17,18 @@ class CreateProfile extends Component {
     onFormSubmit = e => {
         e.preventDefault()
 
-        const { handle, description } = this.state;
+        const { handle, description, profileImage } = this.state;
 
         const profileData = {
             handle,
-            description
+            description,
+            profileImage
         }
 
         this.props.createProfile(profileData, this.props.history)
     }
   render() {
-      const { handle, description } = this.state;
+      const { handle, description, profileImage } = this.state;
 
     return (
       <div className="createProfile">
@@ -35,6 +37,7 @@ class CreateProfile extends Component {
       <form className="createProfileForm" onSubmit={this.onFormSubmit}>
         <input type="text" name="handle" value={handle} onChange={this.onInputChange} placeholder="Handle"/>
         <input type="text" name="description" value={description} onChange={this.onInputChange} placeholder="description" />
+        <input type="text" name="profileImage" value={profileImage} onChange={this.onInputChange} placeholder="http://placehold.it/200x200/92c952" />
         <button>Submit</button>
       </form>
       </div>

@@ -57,6 +57,13 @@ export const createProfile = (profileData, history) => dispatch => {
         .catch(err => console.log(err))
 }
 
+export const editProfile = (profileData, history ) => dispatch => {
+    axios
+        .post('/api/profiles/edit', profileData)
+        .then(res => history.go(-1))
+        .catch(err => console.log(err));
+}
+
 export const getProfiles = () => dispatch => {
     dispatch(setProfileLoading());
 

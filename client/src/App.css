@@ -849,34 +849,35 @@ ul {
     color: #0099cc
   }
 
-  .createProfile {
+  .createProfile, .editProfile {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 4em 2em 2em 2em;
   }
 
-  .createProfile .fa-user-circle {
+  .createProfile .fa-user-circle, .editProfile .fa-user-edit {
     font-size: 8rem;
     color: #808080;
+    margin: auto;
   }
 
-  .createProfile h3 {
+  .createProfile h3, .editProfile h3 {
     margin: 2em 0 4em 0;
   }
 
-  .createProfile .createProfileForm {
+  .createProfile .createProfileForm, .editProfile .editProfileForm {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .createProfile .createProfileForm input {
+  .createProfile .createProfileForm input, .editProfile .editProfileForm input {
     box-shadow: 0 2px 0 -1px #808080;
     margin: 1.5em 0;
   }
 
-  .createProfile .createProfileForm button {
+  .createProfile .createProfileForm button, .editProfile .editProfileForm button {
     background-color: #0099cc;
     color: #fff;
     font-weight: 600;

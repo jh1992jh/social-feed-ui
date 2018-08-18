@@ -19,15 +19,19 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
         return res.status(400).json(errors)
     }
 
-    const newPost = new Post({
-        text: req.body.text,
-        postImage: req.body.postImage,
-        username: req.body.username,
-        profileImage: req.body.profileImage,
-        user: req.user.id
-    });
+    Profile.findOne({ user: req.user.id }).then(profile => {
+        const profileImage = profile.profileImage;
 
-    newPost.save().then(post => res.json(post));
+        const newPost = new Post({
+            text: req.body.text,
+            postImage: req.body.postImage,
+            username: req.body.username,
+            profileImage: profileImage,
+            user: req.user.id
+        });
+    
+        newPost.save().then(post => res.json(post));
+    })
 })
 
 router.get('/', passport.authenticate('jwt', { session: false}), (req, res) => {
@@ -98,17 +102,20 @@ router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), (re
 });
 
 router.post('/comment/:id', passport.authenticate('jwt', { session: false}), (req, res) => {
-    Post.findById(req.params.id).then(post => {
-        const newComment = {
-            text: req.body.text,
-            username: req.body.username,
-            profileImage: req.body.profileImage,
-            user: req.user.id
-        }
+    Profile.findOne({user: req.user.id}).then(profile => {
 
-        post.comments.unshift(newComment);
-
-        post.save().then(post => res.json(post))
+        Post.findById(req.params.id).then(post => {
+            const newComment = {
+                text: req.body.text,
+                username: req.body.username,
+                profileImage: profile.profileImage,
+                user: req.user.id
+            }
+    
+            post.comments.unshift(newComment);
+    
+            post.save().then(post => res.json(post))
+    })
     })
     .catch(err => res.status(404).json({nopostfound: 'No post found with that Id'}));
 })
