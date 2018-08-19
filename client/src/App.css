@@ -280,6 +280,48 @@ ul {
     position: relative;
   }
 
+  .createStory {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .createStory .previewStoryContainer {
+    width: 80vw;
+    height: 50vh;
+    border: 1px solid black;
+  }
+
+  .createStory .createStoryForm {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .createStory .createStoryForm input,
+  .createStory .createStoryForm select {
+    margin: 1em 0;
+    box-shadow: 0 2px 0 -1px #808080;
+    border: none;
+    outline: none;
+  }
+
+  .createStory .createStoryForm button {
+    background-color: #0099cc;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 5.5px;
+    padding: 0.6em;
+    margin: 2em auto 4em auto;
+    width: 30vw;
+  }
+
+  .createStory .createStoryForm button .fa-share-square {
+    margin: 0 0.5em;
+  }
+
+
   /* POSTS STYLES */
   .post {
     margin: 0.8em 0;

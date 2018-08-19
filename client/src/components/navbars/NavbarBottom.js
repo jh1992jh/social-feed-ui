@@ -4,7 +4,7 @@ import { NavLink, withRouter } from 'react-router-dom';
 class NavbarBottom extends Component {
   render() {
     let outputContent;
- if (this.props.history.location.pathname === '/login' || this.props.history.location.pathname === '/register') {
+ if (this.props.history.location.pathname === '/login' || this.props.history.location.pathname === '/register' || this.props.history.location.pathname === '/preview-story' ) {
       outputContent = null;
     } else {
       outputContent = (

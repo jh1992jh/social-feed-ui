@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getStories } from '../../actions/storyActions';
 import { storyItems } from './storyItems';
 import MyStory from './MyStory';
 import Story from './Story';
@@ -6,12 +8,12 @@ import StoryContainerHeader from './StoryContainerHeader';
 import InfoFooter from './InfoFooter';
 
 class Stories extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
+ state = {
       stories: storyItems
-    };
+ }  
+
+  componentDidMount() {
+    this.props.getStories();
   }
   render() {
     const { authUser, showLikes } = this.props;
@@ -57,4 +59,8 @@ class Stories extends Component {
   }
 }
 
-export default Stories;
+const mapStateToProps = state => ({
+  stories: state.stories
+})
+
+export default connect(mapStateToProps, { getStories })(Stories);
