@@ -18,6 +18,7 @@ router.post('/', passport.authenticate('jwt', { session: false}), (req, res) => 
                 handle: profile.handle,
                 profileImage: profile.profileImage,
                 text: req.body.text,
+                color: req.body.color,
                 storyImage: req.body.storyImage,
                 storyBackground: req.body.storyBackground,
                 storyDuration: req.body.storyDuration,

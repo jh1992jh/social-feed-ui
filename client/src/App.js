@@ -20,6 +20,7 @@ import Login from './components/login/Login';
 import Register from './components/login/Register';
 import CreateStory from './components/stories/CreateStory';
 import PreviewStory from './components/stories/PreviewStory';
+import SeeStory from './components/stories/SeeStory';
 import './App.css';
 
 if(localStorage.jwtToken) {
@@ -76,6 +77,9 @@ class App extends Component {
             </Switch>
             <Switch>
             <PrivateRoute exact path="/preview-story" component={PreviewStory} />
+            </Switch>
+            <Switch>
+            <PrivateRoute exact path="/story/:storyId" component={SeeStory} />
             </Switch>
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />

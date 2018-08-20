@@ -17,6 +17,10 @@ const StorySchema = new Schema({
     text: {
         type: String
     },
+    color: {
+        type: String,
+        default: 'black'
+    },
     storyImage: {
         type: String,
     },
@@ -24,8 +28,8 @@ const StorySchema = new Schema({
         type: String
     },
     storyDuration: {
-        type: Number,
-        required: true
+        type: String,
+        default: "seconds4"
     },
     storyLocation: {
         type: String

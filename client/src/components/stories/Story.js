@@ -1,16 +1,16 @@
 import React from 'react';
 
-const Story = ({ img, name }) => {
+const Story = ({ storyImage, handle }) => {
   return (
     <div>
       <div className="story othersStory">
-        <img className="storyImg" src={img} alt="story" />
+        <img className="storyImg" src={storyImage} alt="story" />
         <ul className="forDesktop">
-          <li>{name}</li>
+          <li>{handle}</li>
           <li className="ago">{new Date().getHours()} HOURS AGO</li>
         </ul>
       </div>
-      <p className="storyText">{name}</p>
+      <p className="storyText">{handle}</p>
     </div>
   );
 };

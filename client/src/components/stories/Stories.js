@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getStories } from '../../actions/storyActions';
 import { storyItems } from './storyItems';
 import MyStory from './MyStory';
@@ -16,12 +17,28 @@ class Stories extends Component {
     this.props.getStories();
   }
   render() {
-    const { authUser, showLikes } = this.props;
-    const { stories } = this.state;
+    const { authUser, showLikes, profile2 } = this.props;
+    const { stories, loading } = this.props.stories;
+    // const { stories } = this.state;
 
-    const outputStories = stories.map((story, i) => (
-      <Story key={i} img={story.img} name={story.name} />
-    ));
+    let outputMyStory; 
+    let outputStories;
+
+    if (profile2.loading == true || profile2.profile === null) {
+      outputMyStory = <h3>Loading</h3>
+    } else if ( Object.keys(profile2.profile).length > 0) {
+      outputMyStory = <MyStory handle={profile2.profile.handle} profileImage={profile2.profile.profileImage} />
+    }
+
+    if(loading === true || stories.length === 0 ) {
+      outputStories = <h3>Loading</h3>
+    } else if (loading === false && stories.length > 0) {
+      outputStories = stories.map(story => (
+        <Link to={`/story/${story._id}`}>
+       <Story key={story._id} storyImage={story.storyImage} handle={story.handle} />
+       </Link>
+     ));
+    }
     return (
       <div
         className="stories"
@@ -31,7 +48,7 @@ class Stories extends Component {
           className="forDesktop"
           style={showLikes ? { display: 'none' } : null}
         >
-          <MyStory authUser={authUser} />
+        {outputMyStory}
         </div>
 
         <hr className="forDesktop" />
@@ -46,7 +63,7 @@ class Stories extends Component {
           style={showLikes ? { display: 'none' } : null}
         >
           <div className="forMobile">
-            <MyStory authUser={authUser} />
+            {outputMyStory}
           </div>
           {outputStories}
         </div>
@@ -60,7 +77,8 @@ class Stories extends Component {
 }
 
 const mapStateToProps = state => ({
-  stories: state.stories
+  stories: state.stories,
+  profile2: state.profile2
 })
 
 export default connect(mapStateToProps, { getStories })(Stories);

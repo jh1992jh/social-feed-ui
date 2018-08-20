@@ -286,12 +286,6 @@ ul {
     align-items: center;
   }
 
-  .createStory .previewStoryContainer {
-    width: 80vw;
-    height: 50vh;
-    border: 1px solid black;
-  }
-
   .createStory .createStoryForm {
     width: 80vw;
     display: flex;
@@ -320,8 +314,122 @@ ul {
   .createStory .createStoryForm button .fa-share-square {
     margin: 0 0.5em;
   }
+  
+  .createStory .previewStoryContainer {
+    width: 80vw;
+    height: 50vh;
+    position: relative;
+    font-weight: 600;
+    border: 1px solid black;
+  }
+
+  .submitStoryContainer {
+    position: relative;
+    border: 1px solid black;
+    height: 100vh;
+  }
+
+  .seeStoryContainer {
+    position: relative;
+    height: 100vh;
+  }
+
+  .createStory .previewStoryContainer .storyText,
+  .submitStoryContainer .storyText,
+  .seeStoryContainer .storyText
+  {
+    position: absolute;
+    bottom: 40%;
+    left: calc(50% - 101px);
+    border: 1px solid black;
+    max-width: 200px;
+    font-size: 2rem;
+    font-weight: 600;
+    z-index: 1050;
+  }
 
 
+  .createStory .previewStoryContainer .storyLocation
+  {
+    position: absolute;
+    bottom: 10%;
+    left: calc(62% - 100px);
+    font-size: 2rem;
+    font-weight: 600;
+    max-width: 200px;
+
+  }
+
+  .submitStoryContainer .storylocation,
+  .seeStoryContainer .storylocation
+  {
+    position: absolute;
+    z-index: 1050;
+    bottom: 20%;
+    left: 36%;
+    max-width: 200px;
+    left: calc(53% - 100px);
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .previewStoryContainer img,
+  .submitStoryContainer img,
+  .seeStoryContainer img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+  }
+
+  .submitStoryContainer button {
+    background-color: #0099cc;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 5.5px;
+    padding: 0.6em;
+    margin: 2em auto 4em auto;
+    width: 30vw;
+    position: absolute;
+    bottom: 0;
+    left: 33%;
+    z-index: 1050;
+  }
+
+  .seeStoryContainer .storyDurationBar {
+    width: 1%;
+    height: 50px;
+    background: red;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  .seconds2 {
+    animation: storyDuration 2s linear;
+  }
+
+  .seconds4 {
+    animation: storyDuration 4s linear;
+  }
+
+  .seconds6 {
+    animation: storyDuration 6s linear;
+  }
+
+  .seconds8 {
+    animation: storyDuration 8s linear;
+  }
+
+  .seconds10 {
+    animation: storyDuration 10s linear;
+  }
+
+  @keyframes storyDuration {
+    from { width: 0%;}
+    to { width: 100%;}
+  }
   /* POSTS STYLES */
   .post {
     margin: 0.8em 0;

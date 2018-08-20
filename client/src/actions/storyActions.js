@@ -27,16 +27,17 @@ export const getStory = storyId => dispatch => {
         .catch(err => console.log(err));
 } 
 
-export const postStory = storyData => dispatch => {
+export const postStory = (storyData, history) => dispatch => {
     dispatch(setStoryLoading());
     axios
-        .post('/api/story')
+        .post('/api/stories', storyData)
         .then(res => {
             dispatch({
                 type: POST_A_STORY,
-                payload: res.data
+                payload: storyData
             })
         })
+        .then(() => history.push('/'))
         .catch(err => console.log(err));
 }
 
