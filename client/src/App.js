@@ -15,6 +15,8 @@ import Likes from './components/likes/Likes';
 import CreateProfile from './components/profile/CreateProfile';
 import EditProfile from './components/profile/EditProfile';
 import Profile from './components/profile/Profile';
+import Following from './components/profile/Following';
+import Followers from './components/profile/Followers';
 import Post from './components/posts/Post';
 import Login from './components/login/Login';
 import Register from './components/login/Register';
@@ -73,6 +75,12 @@ class App extends Component {
             <PrivateRoute exact path="/profile/:userId" component={Profile} />
             </Switch>
             <Switch>
+            <Switch>
+              <PrivateRoute exact path="/profile/following/:userId" component={Following} /> 
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/profile/followers/:userId" component={Followers} /> 
+            </Switch>
             <PrivateRoute exact path="/create-story" component={CreateStory} />
             </Switch>
             <Switch>

@@ -1,13 +1,17 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class ProfileHeaderBottomOther extends Component {
   render() {
     const {
       profileImage,
+      userId,
       handle,
       description,
+      ownedPosts,
+      followers,
+      following
     } = this.props;
     return (
       <Fragment>
@@ -40,15 +44,19 @@ class ProfileHeaderBottomOther extends Component {
             </div>
             <div className="profileHeaderBottomRightSubContainer">
               <div className="profileHeaderContent">
-                <p>127</p>
+                <p>{ownedPosts.length}</p>
                 <span>posts</span>
               </div>
               <div className="profileHeaderContent">
-                <p>103</p>
+              <Link to={`/profile/followers/${userId}`}>
+              <p>{followers.length}</p>
+              </Link>
                 <span>followers</span>
               </div>
               <div className="profileHeaderContent">
-                <p>83</p>
+              <Link to={`/profile/following/${userId}`}>
+              <p>{following.length}</p>
+              </Link>
                 <span>following</span>
               </div>
             </div>

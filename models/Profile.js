@@ -16,6 +16,34 @@ const ProfileSchema = new Schema({
     profileImage: {
         type: String
     },
+    followers: [
+       { 
+           user: {
+            type: Schema.Types.ObjectId,
+            ref: 'users'
+        },
+        handle: {
+            type: String
+        },
+        profileImage: {
+            type: String
+        }
+    }
+    ],
+    following: [
+        { 
+            user: {
+             type: Schema.Types.ObjectId,
+             ref: 'users'
+         },
+         handle: {
+             type: String
+         },
+         profileImage: {
+             type: String
+         }
+     }
+     ],
     date: {
         type: Date,
         default: Date.now

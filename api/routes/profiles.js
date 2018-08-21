@@ -123,5 +123,66 @@ router.post('/edit', passport.authenticate('jwt', { session: false }), (req, res
     ).then(result => res.json(result))
       .catch(err => console.log(err))
   })
+
+router.post('/follow/:user_id', passport.authenticate('jwt', { session: false}), (req, res) => {
+    Profile.findOne({ user: req.user.id}).then(authProfile => {
+        Profile.findById(req.params.user_id).then(profile => {
+            if(profile.followers.filter(follow => follow.user.toString() === req.user.id).length > 0) {
+                res.status(400).json({userhasalreadyfollowed: 'User has already followed this profile'})
+            }
+
+            authProfile.following.unshift(
+                {
+                    user: profile.user,
+                    handle: profile.handle,
+                    profileImage: profile.profileImage
+                }
+            )
+
+            authProfile.save()
+
+            profile.followers.unshift(
+                { user: req.user.id,
+                handle: authProfile.handle,
+                profileImage: authProfile.profileImage
+                }
+        );
+            profile.save().then(profile => res.json({followed: 'followed the user'}))
+
+        })
+    })
+    .catch(err => console.log(err))
+})
+
+router.post('/unfollow/:user_id', passport.authenticate('jwt', { session: false}), (req, res) => {
+    Profile.findOne({ user: req.user.id }).then(authProfile => {
+        Profile.findById(req.params.user_id).then(profile => {
+            if(   profile.followers.filter(follow => follow.user.toString() === req.user.id)
+            .length === 0) {
+                return res.status(400).json({notfollowed: 'User has not followed this profile yet'})
+            }
+
+            const removeIndexProfile = profile.followers.map(item => item.user.toString()).indexOf(req.user.id)
+
+            const removeIndexAuthProfile = authProfile.following.map(item => item.user.toString()).indexOf(profile.user)
+
+            profile.followers.splice(removeIndexProfile, 1)
+
+            profile.save()
+            
+            authProfile.following.splice(removeIndexAuthProfile, 1);
+
+            authProfile.save()
+            .then(authProfile => res.json({unfollowed: 'Unfollowed this profile'}))
+        })
+    })
+    .catch(err => console.log(err));
+})
+
+          /*  const removeIndex = profile.followers.map(follower => follower.user.toString()).req.user_id;
+
+            profile.followers.splice(removeIndex, 1);
+
+            profile.save().then(profile => res.json(profile)) */
 module.exports = router;
 

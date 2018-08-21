@@ -1180,7 +1180,38 @@ ul {
     width: 12%;
   }
 
-  .profile .profileAbout {
+  .followingContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+  }
+
+  .followingContainer img {
+    width: 30px;
+    height: 30px;
+    border-radius: 360px;
+  }
+
+  .followingContainer .followItem {
+    display: flex;
+    align-items: center;
+  }
+
+  .followingContainer .followItem span {
+    margin: 0.5em;
+  }
+
+  .followingContainer .followingHeader {
+    display: flex;
+    align-items: center;
+    padding: 0.5em 0;
+  }
+
+.followingContainer .followingHeader h3 {
+  margin: 0.5em
+}
+
+.profile .profileAbout {
     line-height: 1rem;
     padding: 0 0 0.5em 0.5em;
   }

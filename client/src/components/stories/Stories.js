@@ -34,8 +34,8 @@ class Stories extends Component {
       outputStories = <h3>Loading</h3>
     } else if (loading === false && stories.length > 0) {
       outputStories = stories.map(story => (
-        <Link to={`/story/${story._id}`}>
-       <Story key={story._id} storyImage={story.storyImage} handle={story.handle} />
+        <Link key={story._id} to={`/story/${story._id}`}>
+       <Story storyImage={story.storyImage} handle={story.handle} />
        </Link>
      ));
     }

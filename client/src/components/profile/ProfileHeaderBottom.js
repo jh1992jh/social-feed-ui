@@ -1,18 +1,23 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import { getOwnedPosts } from '../../actions/post2Actions';
 
 class ProfileHeaderBottom extends Component {
   render() {
     const {
       profileImage,
-      username,
+      userId,
+      ownedPosts,
+      following,
+      followers,
+      handle,
       description,
       show,
     } = this.props;
     let profileButtons = (
       <Fragment>
-        <p className="nameLarge forDesktop">{username}</p>
+        <p className="nameLarge forDesktop">{handle}</p>
         <Link to="/edit-profile">
         <button
           className="editProfileBtn"
@@ -38,15 +43,19 @@ class ProfileHeaderBottom extends Component {
             <div className="forDesktop">{profileButtons}</div>
             <div className="profileHeaderBottomRightSubContainer">
               <div className="profileHeaderContent">
-                <p>127</p>
+                <p>{ownedPosts.length}</p>
                 <span>posts</span>
               </div>
               <div className="profileHeaderContent">
-                <p>103</p>
+              <Link to={`/profile/followers/${userId}`}>
+              <p>{followers.length}</p>
+              </Link>
                 <span>followers</span>
               </div>
               <div className="profileHeaderContent">
-                <p>83</p>
+              <Link to={`/profile/following/${userId}`} >
+                <p>{following.length}</p>
+                </Link>
                 <span>following</span>
               </div>
             </div>
@@ -56,7 +65,7 @@ class ProfileHeaderBottom extends Component {
                 className="profileAboutDesktop"
             
               >
-                <p className="name">{username}</p>
+                <p className="name">{handle}</p>
                 <p className="profAboutDesc">{description}</p>
               </div>
             </div>
@@ -64,7 +73,7 @@ class ProfileHeaderBottom extends Component {
           </div>
         </div>
         <div className="profileAbout">
-          <p className="name">{username}</p>
+          <p className="name">{handle}</p>
           <p className="description">{description}</p>
         </div>
       </Fragment>

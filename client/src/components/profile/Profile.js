@@ -41,8 +41,12 @@ class Profile extends Component {
           />
           <ProfileHeaderBottom
             profileImage={profile2.profile.profileImage ? profile2.profile.profileImage : auth.user.profileImage}
-            username={auth.user.username}
+            userId={profile2.profile.user._id}
+            following={profile2.profile.following}
+            followers={profile2.profile.followers}
+            handle={profile2.profile.handle}
             description={profile2.profile.description}
+            ownedPosts={posts2.ownedPosts}
           />
           <ProfileBodyTop />
           <ProfileBody
@@ -59,8 +63,12 @@ class Profile extends Component {
           <ProfileHeaderTopOther handle={profile2.profile.handle} />
           <ProfileHeaderBottomOther
             profileImage={profile2.profile.profileImage}
+            userId={profile2.profile.user._id}
             handle={profile2.profile.handle}
             description={profile2.profile.description}
+            following={profile2.profile.following}
+            followers={profile2.profile.followers}
+            ownedPosts={posts2.ownedPosts}
           />
           <ProfileBodyTop />
           <ProfileBody

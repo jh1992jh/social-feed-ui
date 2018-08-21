@@ -9,7 +9,7 @@ render() {
   return (
     <div className="myProfileHeaderTop" >
       <div className="myProfieHeaderTopLeft">
-      <i class="fas fa-arrow-left" onClick={() => this.props.history.go(-1)}/>{' '} <span className="username">{username}</span>
+      <i className="fas fa-arrow-left" onClick={() => this.props.history.go(-1)}/>{' '} <span className="username">{username}</span>
       </div>
       <div className="myProfileHeaderTopRight">
         <a onClick={() => this.props.logoutUser()}>
