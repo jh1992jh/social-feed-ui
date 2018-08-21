@@ -74,13 +74,14 @@ class App extends Component {
             <Switch>
             <PrivateRoute exact path="/profile/:userId" component={Profile} />
             </Switch>
-            <Switch>
+            
             <Switch>
               <PrivateRoute exact path="/profile/following/:userId" component={Following} /> 
             </Switch>
             <Switch>
               <PrivateRoute exact path="/profile/followers/:userId" component={Followers} /> 
             </Switch>
+            <Switch>
             <PrivateRoute exact path="/create-story" component={CreateStory} />
             </Switch>
             <Switch>

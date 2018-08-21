@@ -21,13 +21,13 @@ class Followers extends Component {
                 <span>{follow.handle}</span>
             </Link>
         ))
-    } else if (profile2.profile === false && Object.keys(profile2.profile).length < 0 && profile2.profile.followers.length === 0) {
+    } else {
         outputFollowers = <h3>User has no followers</h3> 
     }
     return (
       <div className="followersContainer">
         <div className="followersHeader"> 
-        <i class="fas fa-arrow-left" onClick={() => this.props.history.go(-1)}/> 
+        <i className="fas fa-arrow-left" onClick={() => this.props.history.go(-1)}/> 
       <h3>Followers</h3>
       </div>
       {outputFollowers}

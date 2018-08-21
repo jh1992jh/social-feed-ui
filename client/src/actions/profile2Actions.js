@@ -83,6 +83,24 @@ export const getProfiles = () => dispatch => {
         })
 }
 
+
+export const followProfile = (profileId, userId )=> dispatch => {
+
+    axios
+        .post(`/api/profiles/follow/${profileId}`)
+        .then(res => dispatch(setProfileLoading()))
+        .then(res => dispatch(getProfileById(userId)))
+        .catch(err => console.log(err));
+}
+
+export const unfollowProfile = (profileId, userId )=> dispatch => {
+
+    axios
+        .post(`/api/profiles/unfollow/${profileId}`)
+        .then(res => dispatch(setProfileLoading()))
+        .then(res => dispatch(getProfileById(userId)))
+        .catch(err => console.log(err));
+}
 export const setProfileLoading = () => {
     return {
         type: PROFILE_LOADING

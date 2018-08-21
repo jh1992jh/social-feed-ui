@@ -1,4 +1,4 @@
-import { GET_STORIES, GET_A_STORY, POST_A_STORY, STORY_LOADING, PREVIEW_STORY } from './types';
+import { GET_STORIES, GET_FOLLOWED_STORIES, GET_A_STORY, POST_A_STORY, STORY_LOADING, PREVIEW_STORY } from './types';
 import axios from 'axios';
 
 export const getStories = () => dispatch => {
@@ -12,6 +12,18 @@ export const getStories = () => dispatch => {
             })
         )
         .catch(err => console.log(err));
+}
+
+export const getFollowedStories = userId => dispatch => {
+    dispatch(setStoryLoading());
+    axios
+        .get(`/api/stories/following/stories/${userId}`)
+        .then(res => {
+            dispatch({
+                type: GET_FOLLOWED_STORIES,
+                payload: res.data
+            })
+        })
 }
 
 export const getStory = storyId => dispatch => {

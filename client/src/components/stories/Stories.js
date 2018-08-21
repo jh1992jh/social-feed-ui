@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getStories } from '../../actions/storyActions';
+import { getStories, getFollowedStories } from '../../actions/storyActions';
 import { storyItems } from './storyItems';
 import MyStory from './MyStory';
 import Story from './Story';
@@ -15,10 +15,11 @@ class Stories extends Component {
 
   componentDidMount() {
     this.props.getStories();
+    this.props.getFollowedStories(this.props.auth.user.id);
   }
   render() {
     const { authUser, showLikes, profile2 } = this.props;
-    const { stories, loading } = this.props.stories;
+    const { stories, loading, followedStories } = this.props.stories;
     // const { stories } = this.state;
 
     let outputMyStory; 
@@ -30,10 +31,10 @@ class Stories extends Component {
       outputMyStory = <MyStory handle={profile2.profile.handle} profileImage={profile2.profile.profileImage} />
     }
 
-    if(loading === true || stories.length === 0 ) {
+    if(loading === true || followedStories.length === 0 ) {
       outputStories = <h3>Loading</h3>
-    } else if (loading === false && stories.length > 0) {
-      outputStories = stories.map(story => (
+    } else if (loading === false && followedStories.length > 0) {
+      outputStories = followedStories.map(story => (
         <Link key={story._id} to={`/story/${story._id}`}>
        <Story storyImage={story.storyImage} handle={story.handle} />
        </Link>
@@ -77,8 +78,9 @@ class Stories extends Component {
 }
 
 const mapStateToProps = state => ({
+  auth: state.auth,
   stories: state.stories,
   profile2: state.profile2
 })
 
-export default connect(mapStateToProps, { getStories })(Stories);
+export default connect(mapStateToProps, { getStories, getFollowedStories })(Stories);

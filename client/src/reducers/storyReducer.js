@@ -1,7 +1,8 @@
-import { GET_STORIES, GET_A_STORY, POST_A_STORY, STORY_LOADING, PREVIEW_STORY } from '../actions/types';
+import { GET_STORIES, GET_FOLLOWED_STORIES, GET_A_STORY, POST_A_STORY, STORY_LOADING, PREVIEW_STORY } from '../actions/types';
 
 const initialState = {
     stories: [],
+    followedStories: [],
     story: {},
     previewStory: null,
     loading: false
@@ -19,6 +20,12 @@ export default function(state = initialState, action ) {
                 ...state,
                 loading: false,
                 stories: action.payload
+            }
+        case GET_FOLLOWED_STORIES: 
+            return {
+                ...state,
+                loading: false,
+                followedStories: action.payload
             }
         case GET_A_STORY: 
             return {

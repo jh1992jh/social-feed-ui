@@ -1169,7 +1169,7 @@ ul {
     .profileHeaderBottomRight
     .otherProfileBtns
     .follow {
-    width: 18%;
+    width: 78%;
   }
 
   .profile
@@ -1180,34 +1180,40 @@ ul {
     width: 12%;
   }
 
-  .followingContainer {
+  .followingContainer,
+  .followersContainer {
     display: flex;
     flex-direction: column;
     padding: 0.5em;
   }
 
-  .followingContainer img {
+  .followingContainer img,
+  .followersContainer img {
     width: 30px;
     height: 30px;
     border-radius: 360px;
   }
 
-  .followingContainer .followItem {
+  .followingContainer .followItem,
+  .followersContainer .followItem {
     display: flex;
     align-items: center;
   }
 
-  .followingContainer .followItem span {
+  .followingContainer .followItem span,
+  .followersContainer .followItem span {
     margin: 0.5em;
   }
 
-  .followingContainer .followingHeader {
+  .followingContainer .followingHeader,
+  .followersContainer .followersHeader {
     display: flex;
     align-items: center;
     padding: 0.5em 0;
   }
 
-.followingContainer .followingHeader h3 {
+.followingContainer .followingHeader h3,
+.followersContainer .followersHeader h3 {
   margin: 0.5em
 }
 

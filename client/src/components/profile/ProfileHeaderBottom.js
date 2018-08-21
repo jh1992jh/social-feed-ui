@@ -43,7 +43,9 @@ class ProfileHeaderBottom extends Component {
             <div className="forDesktop">{profileButtons}</div>
             <div className="profileHeaderBottomRightSubContainer">
               <div className="profileHeaderContent">
+              <a>
                 <p>{ownedPosts.length}</p>
+                </a>
                 <span>posts</span>
               </div>
               <div className="profileHeaderContent">

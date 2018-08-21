@@ -1,4 +1,4 @@
-import { GET_POSTS, GET_OWNED_POSTS,POST_LOADING, POST_A_POST, ADD_CURRENT_POST, CLEAR_CURRENT_POST, GET_POST, ADD_COMMENT, DELETE_POST } from './types';
+import { GET_POSTS, GET_OWNED_POSTS,POST_LOADING, POST_A_POST, ADD_CURRENT_POST, CLEAR_CURRENT_POST, GET_POST, ADD_COMMENT, DELETE_POST, GET_FOLLOWED_POSTS } from './types';
 import axios from 'axios';
 
 export const getPosts = () => dispatch => {
@@ -27,6 +27,19 @@ export const getOwnedPosts = userId => dispatch => {
         })
         )
         .catch(err => console.log(err));
+}
+
+export const getFollowedPosts = userId => dispatch => {
+    dispatch(setPostLoading());
+
+    axios
+        .get(`/api/posts/following/posts/${userId}`)
+        .then(res => 
+            dispatch({
+                type: GET_FOLLOWED_POSTS,
+                payload: res.data
+            })
+        )
 }
 
 export const getPost = postId => dispatch => {

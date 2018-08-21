@@ -124,9 +124,9 @@ router.post('/edit', passport.authenticate('jwt', { session: false }), (req, res
       .catch(err => console.log(err))
   })
 
-router.post('/follow/:user_id', passport.authenticate('jwt', { session: false}), (req, res) => {
+router.post('/follow/:profile_id', passport.authenticate('jwt', { session: false}), (req, res) => {
     Profile.findOne({ user: req.user.id}).then(authProfile => {
-        Profile.findById(req.params.user_id).then(profile => {
+        Profile.findById(req.params.profile_id).then(profile => {
             if(profile.followers.filter(follow => follow.user.toString() === req.user.id).length > 0) {
                 res.status(400).json({userhasalreadyfollowed: 'User has already followed this profile'})
             }
@@ -154,9 +154,9 @@ router.post('/follow/:user_id', passport.authenticate('jwt', { session: false}),
     .catch(err => console.log(err))
 })
 
-router.post('/unfollow/:user_id', passport.authenticate('jwt', { session: false}), (req, res) => {
+router.post('/unfollow/:profile_id', passport.authenticate('jwt', { session: false}), (req, res) => {
     Profile.findOne({ user: req.user.id }).then(authProfile => {
-        Profile.findById(req.params.user_id).then(profile => {
+        Profile.findById(req.params.profile_id).then(profile => {
             if(   profile.followers.filter(follow => follow.user.toString() === req.user.id)
             .length === 0) {
                 return res.status(400).json({notfollowed: 'User has not followed this profile yet'})

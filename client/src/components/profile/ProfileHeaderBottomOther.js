@@ -1,18 +1,33 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import { followProfile, unfollowProfile } from '../../actions/profile2Actions';
 
 class ProfileHeaderBottomOther extends Component {
+  onFollowProfile = () => {
+    const { profileId, userId } = this.props;
+
+    this.props.followProfile(profileId, userId)
+  }
+
+  onUnfollowProfile = () => {
+    const { profileId, userId } = this.props;
+
+    this.props.unfollowProfile(profileId, userId)
+  }
   render() {
     const {
       profileImage,
+      profileId,
       userId,
+      auth,
       handle,
       description,
       ownedPosts,
       followers,
       following
     } = this.props;
+    const checkFollowing = followers.filter(follower => follower.user === auth.user.id).length
     return (
       <Fragment>
         <div className="profileHeaderBottom">
@@ -25,7 +40,7 @@ class ProfileHeaderBottomOther extends Component {
             <div className="forDesktop">
             <div className="otherProfileBtnsDesktop">
             <p className="nameLarge">{handle}</p>
-            <button className="follow">Follow</button>
+            <button className="follow" onClick={checkFollowing === 1 ? this.onUnfollowProfile : this.onFollowProfile}>{checkFollowing === 1 ? 'Unfollow': 'Follow'}</button>
             <button className="suggested">
               <i className="fas fa-caret-down" />
             </button>
@@ -33,9 +48,8 @@ class ProfileHeaderBottomOther extends Component {
           </div>
 
           <div className="otherProfileBtns">
-            <button className="message">Message</button>
-            <button className="follow">
-              <i className="fas fa-user-check" />
+            <button className="follow" onClick={checkFollowing === 1 ? this.onUnfollowProfile : this.onFollowProfile}>
+             {checkFollowing === 1 ? 'Unfollow' : 'Follow'}
             </button>
             <button className="suggested">
               <i className="fas fa-caret-down" />
@@ -44,7 +58,9 @@ class ProfileHeaderBottomOther extends Component {
             </div>
             <div className="profileHeaderBottomRightSubContainer">
               <div className="profileHeaderContent">
+              <a>
                 <p>{ownedPosts.length}</p>
+                </a>
                 <span>posts</span>
               </div>
               <div className="profileHeaderContent">
@@ -71,9 +87,8 @@ class ProfileHeaderBottomOther extends Component {
             </div>
             <div className="forMobile">
             <div className="otherProfileBtns">
-            <button className="message">Message HEEYYY</button>
-            <button className="follow">
-              <i className="fas fa-user-check" />
+            <button className="follow" onClick={checkFollowing === 1 ? this.onUnfollowProfile : this.onFollowProfile}>
+            {checkFollowing === 1 ? 'Unfollow' : 'Follow'}
             </button>
             <button className="suggested">
               <i className="fas fa-caret-down" />
@@ -92,4 +107,8 @@ class ProfileHeaderBottomOther extends Component {
   }
 }
 
-export default withRouter(ProfileHeaderBottomOther);
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps, { followProfile, unfollowProfile })(withRouter(ProfileHeaderBottomOther));

@@ -52,4 +52,13 @@ router.get('/:story_id', passport.authenticate('jwt', { session: false }), (req,
     .catch(err => res.status(404).json({nostoryfound: 'That story doesn\'t exist'}))
 })
 
+router.get('/following/stories/:user_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Profile.findOne({user: req.user.id}).then(profile => {
+        const followers = profile.following.map(follower => follower.user.toString())
+        Story.find({user: followers})
+        .then(stories => res.json(stories))
+    })
+    .catch(err => console.log(err));
+})
+
 module.exports = router;

@@ -42,13 +42,12 @@ class PostHeader extends Component {
           <Link to={`/profile/${userId}`}>
             <p className="profileName">{username}</p>{' '}
     </Link> 
-    {/* <p className="profileName">{username}</p> */}
         </div>
         <div className="postHeaderProfInfo2">
           <i onClick={this.onToggleMenu} className="fas fa-ellipsis-v" />
           {showMenu === true ? (
             <div className="showMenuContainer">
-              { postOwner === auth.user.id ? (
+              { userId === auth.user.id ? (
                 <p onClick={this.onDeletePost}>Delete</p> 
               ) : (
                 <p>Copy Url</p>

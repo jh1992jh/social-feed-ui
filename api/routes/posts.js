@@ -49,6 +49,15 @@ router.get('/owned/:user_id', passport.authenticate('jwt', { session: false}), (
     .catch(err => res.status(404).json(err));
 })
 
+router.get('/following/posts/:user_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Profile.findOne({user: req.user.id }).then(profile => {
+        const followers = profile.following.map(follower => follower.user.toString())
+        Post.find({user: followers})
+        .then(posts => res.json(posts));
+    })
+    .catch(err => console.log(err))
+})
+
 router.get('/:id', passport.authenticate('jwt', { session: false}), (req, res) => {
     Post.findById(req.params.id)
         .then(post => res.json(post))

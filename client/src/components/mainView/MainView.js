@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { getPosts, clearCurrentPost } from '../../actions/post2Actions';
+import { getPosts, getFollowedPosts, clearCurrentPost } from '../../actions/post2Actions';
 import { getCurrentProfile } from '../../actions/profile2Actions';
 import NavbarTop from '../navbars/NavbarTop';
 import Feed from '../feed/Feed';
@@ -23,6 +23,7 @@ class MainView extends Component {
     this.props.clearCurrentPost();
     this.props.getPosts();
     this.props.getCurrentProfile();
+    this.props.getFollowedPosts(this.props.auth.user.id);
   }
 
   onToggleLikesMenu() {
@@ -39,7 +40,7 @@ class MainView extends Component {
     if(posts2.loading === true || profile2.loading == true || profile2.profile === null) {
       outputPosts = <h3>Loading</h3>
     } else if (posts2.loading === false && posts2.posts.length > 0 && Object.keys(profile2.profile).length > 0) {
-      outputPosts = posts2.posts.map((post, i) => (
+      outputPosts = posts2.followedPosts.map((post, i) => (
         <Post
           key={post._id}
           postId={post._id}
@@ -93,5 +94,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { clearCurrentPost, getPosts, getCurrentProfile }
+  { clearCurrentPost, getPosts, getFollowedPosts, getCurrentProfile }
 )(withRouter(MainView));

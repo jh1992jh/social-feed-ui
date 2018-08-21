@@ -63,6 +63,7 @@ class Profile extends Component {
           <ProfileHeaderTopOther handle={profile2.profile.handle} />
           <ProfileHeaderBottomOther
             profileImage={profile2.profile.profileImage}
+            profileId={profile2.profile._id}
             userId={profile2.profile.user._id}
             handle={profile2.profile.handle}
             description={profile2.profile.description}
