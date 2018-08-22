@@ -9,9 +9,16 @@ import NavbarTop from '../navbars/NavbarTop';
 import SuggestedPeople from './SuggestedPeople';
 
 class Explore extends Component {
+  state = {
+    filterCategory: 'All'
+  }
 componentDidMount() {
   this.props.getPosts();
   this.props.getProfiles();
+}
+
+onChooseFilterCategory = (category) => {
+  this.setState({filterCategory: category})
 }
 
  /*  onAddCurrentPost = post => {
@@ -20,12 +27,14 @@ componentDidMount() {
   render() {
     const { posts, loading } = this.props.posts2;
     const { profiles } = this.props.profile2;
+    const { filterCategory } = this.state;
     let outputContent;
 
+    const filteredPosts = posts.filter(post => post.category === filterCategory);
     if(loading === true) {
       outputContent = <h1>Loading</h1>
     } else if (loading === false && posts.length > 0) {
-      outputContent = posts.map((post, i) => (
+      outputContent = filteredPosts.map((post, i) => (
        <Fragment key={i}>
          <ExploreItem post={post} />
        </Fragment>
@@ -40,7 +49,7 @@ componentDidMount() {
           <NavbarTop />
           {loading === false && profiles !== null ? <SuggestedPeople profiles={profiles} /> : null }
         </div>
-        {loading === true ? null : <Categories posts={posts} /> }
+        {loading === true ? null : <Categories onChooseFilterCategory={this.onChooseFilterCategory} posts={posts} /> }
 
         <div className="exploreItems">{outputContent}</div>
       </div>
