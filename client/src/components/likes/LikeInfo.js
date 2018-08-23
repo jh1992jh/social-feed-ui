@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const LikeInfo = ({ comments, postImage, postId}) => {
   return (
@@ -26,5 +27,11 @@ const LikeInfo = ({ comments, postImage, postId}) => {
     </div>
   );
 };
+
+LikeInfo.propTypes = {
+  comments: PropTypes.array.isRequired,
+  postImage: PropTypes.string.isRequired,
+  postId: PropTypes.string.isRequired
+}
 
 export default LikeInfo;

@@ -1,7 +1,8 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { followProfile, unfollowProfile } from '../../actions/profile2Actions';
+import { followProfile, unfollowProfile } from '../../actions/profileActions';
+import PropTypes from 'prop-types';
 
 class ProfileHeaderBottomOther extends Component {
   onFollowProfile = () => {
@@ -104,6 +105,18 @@ class ProfileHeaderBottomOther extends Component {
       </Fragment>
     );
   }
+}
+
+ProfileHeaderBottomOther.propTypes = {
+  profileImage: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
+  ownedPosts: PropTypes.array.isRequired,
+  following: PropTypes.array.isRequired,
+  followers: PropTypes.array.isRequired,
+  handle: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  followProfile: PropTypes.func.isRequired,
+  unFollowProfile: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

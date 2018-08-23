@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const ExportItem = ({ post }) => {
   const {  postImage, _id } = post;
@@ -9,11 +10,14 @@ const ExportItem = ({ post }) => {
         <img
           src={postImage}
           alt="postImg"
-         /* onClick={() => onAddCurrentPost(post)} */
         />
       </Link>
     </Fragment>
   );
 };
+
+ExportItem.propTypes = {
+  post: PropTypes.object.isRequired
+}
 
 export default ExportItem;

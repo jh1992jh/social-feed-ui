@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux'; 
-import { addPost } from '../../actions/post2Actions';
+import { addPost } from '../../actions/postActions';
 
 class PostaPost extends Component {
   state = {
@@ -16,7 +17,7 @@ class PostaPost extends Component {
     e.preventDefault();
 
     const { imageUrl, text } = this.state;
-    const { profile } = this.props.profile2
+    const { profile } = this.props.profile
 
 
     const newPost = {
@@ -47,9 +48,15 @@ class PostaPost extends Component {
   }
 }
 
+PostaPost.propTypes = {
+  addPost: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
+}
+
 const mapStateToProps = state => ({
   auth: state.auth,
-  profile2: state.profile2
+  profile: state.profile
 })
 
 export default connect(mapStateToProps, { addPost })(PostaPost);

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { createProfile } from '../../actions/profile2Actions';
+import { createProfile } from '../../actions/profileActions';
+import PropTypes from 'prop-types';
 
 class CreateProfile extends Component {
     state = {
@@ -45,9 +46,14 @@ class CreateProfile extends Component {
   }
 }
 
+CreateProfile.propTypes = {
+    auth: PropTypes.object.isRequired,
+    createProfile: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
     auth: state.auth,
-    profile2: state.profile2
+    profile2: state.profile
 })
 
 export default connect(mapStateToProps, { createProfile })(withRouter(CreateProfile));

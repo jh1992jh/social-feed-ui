@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { previewStory } from '../../actions/storyActions';
+import PropTypes from 'prop-types';
 
 
 class CreateStory extends Component {
@@ -77,6 +78,11 @@ class CreateStory extends Component {
       </div>
     )
   }
+}
+
+CreateStory.propTypes = {
+    stories: PropTypes.object.isRequired,
+    previewStory: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

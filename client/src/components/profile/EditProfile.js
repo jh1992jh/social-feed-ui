@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { getCurrentProfile, editProfile } from '../../actions/profile2Actions';
+import { getCurrentProfile, editProfile } from '../../actions/profileActions';
+import PropTypes from 'prop-types';
 
 class EditProfile extends Component {
     state = {
@@ -12,8 +13,8 @@ class EditProfile extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(nextProps.profile2.profile !== null ) {
-            this.setState({ description: nextProps.profile2.profile.description, profileImage: nextProps.profile2.profile.profileImage})
+        if(nextProps.profile.profile !== null ) {
+            this.setState({ description: nextProps.profile.profile.description, profileImage: nextProps.profile.profile.profileImage})
         }
     }
 
@@ -35,7 +36,7 @@ class EditProfile extends Component {
     }
     
   render() {
-    const { loading, profile } = this.props.profile2;
+    const { loading, profile } = this.props.profile;
     const { description, profileImage } = this.state;
     
     let outputContent;
@@ -61,8 +62,14 @@ class EditProfile extends Component {
   }
 }
 
+EditProfile.propTypes = {
+    profile: PropTypes.object.isRequired,
+    getCurrentProfile: PropTypes.func.isRequired,
+    editProfile: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
-    profile2: state.profile2
+    profile: state.profile
 })
 
 export default connect(mapStateToProps, { getCurrentProfile, editProfile })(EditProfile);

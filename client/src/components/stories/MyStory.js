@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const MyStory = ({ handle, profileImage }) => {
   return (
@@ -22,5 +23,10 @@ const MyStory = ({ handle, profileImage }) => {
     </div>
   );
 };
+
+MyStory.propTypes = {
+  handle: PropTypes.string.isRequired,
+  profileImage: PropTypes.string.isRequired
+}
 
 export default MyStory;

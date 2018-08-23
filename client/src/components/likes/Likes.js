@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { getCurrentProfile } from '../../actions/profile2Actions';
-import { getOwnedPosts } from '../../actions/post2Actions'
+import { getCurrentProfile } from '../../actions/profileActions';
+import { getOwnedPosts } from '../../actions/postActions'
+import PropTypes from 'prop-types';
 import LikeInfo from './LikeInfo';
 import LikesContainer from './LikesContainer';
 
@@ -11,14 +12,14 @@ class Likes extends Component {
     this.props.getOwnedPosts(this.props.auth.user.id);
   }
   render() {
-    const { loading } = this.props.posts2;
-    const { ownedPosts } = this.props.posts2;
-    const { profile2 } = this.props
+    const { loading } = this.props.posts;
+    const { ownedPosts } = this.props.posts;
+    const { profile } = this.props
     let outputContent; 
     
-    if(profile2.loading === true || loading === true ) {
+    if(profile.loading === true || loading === true ) {
       outputContent = <h3>Loading</h3>
-    } else if (profile2.loading === false && loading === false) {
+    } else if (profile.loading === false && loading === false) {
       outputContent = (
         ownedPosts.map(post => (
           <Fragment key={post._id}>
@@ -41,10 +42,18 @@ class Likes extends Component {
   }
 }
 
+Likes.propTypes = {
+  auth: PropTypes.object.isRequired,
+  posts: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  getOwnedPosts: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
   auth: state.auth,
-  posts2: state.posts2,
-  profile2: state.profile2
+  posts: state.posts,
+  profile: state.profile
 });
 
 export default connect(mapStateToProps, { getCurrentProfile, getOwnedPosts})(Likes);

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Story = ({ storyImage, handle }) => {
   return (
@@ -14,5 +15,10 @@ const Story = ({ storyImage, handle }) => {
     </div>
   );
 };
+
+Story.propTypes = {
+  storyImage: PropTypes.string.isRequired,
+  handle: PropTypes.string.isRequired
+}
 
 export default Story;

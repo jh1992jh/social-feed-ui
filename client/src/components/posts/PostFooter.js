@@ -1,7 +1,8 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
-import { addComment, deleteComment } from '../../actions/post2Actions';
+import { addComment, deleteComment } from '../../actions/postActions';
 import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class PostFooter extends Component {
   state = {
@@ -16,7 +17,7 @@ class PostFooter extends Component {
     e.preventDefault();
 
     const { postId } = this.props.match.params;
-    const { profile } = this.props.profile2;
+    const { profile } = this.props.profile;
     const { text } = this.state;
 
     const commentData = {
@@ -37,7 +38,7 @@ class PostFooter extends Component {
       text,
       auth,
       userId,
-      profile2
+      profile
     } = this.props;
    
     let outputComments;
@@ -106,7 +107,7 @@ class PostFooter extends Component {
         <hr className="forDesktop" />
         <div className="postFooterComment">
           <div className="roundedProfThumbVerySmall">
-            <img src={profile2.profile.profileImage} alt="profPic " />
+            <img src={profile.profile.profileImage} alt="profPic " />
           </div>
           <form onSubmit={this.onCommentSubmit}>
             <input
@@ -125,9 +126,16 @@ class PostFooter extends Component {
   }
 }
 
+PostFooter.propTypes = {
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+  addComment: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
   auth: state.auth,
-  profile2: state.profile2
+  profile: state.profile
 })
 
 export default connect(mapStateToProps, { addComment, deleteComment })(withRouter(PostFooter))

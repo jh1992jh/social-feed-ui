@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ForYou = ({ img, profileImage }) => {
   return (
@@ -11,5 +12,10 @@ const ForYou = ({ img, profileImage }) => {
     </div>
   );
 };
+
+ForYou.propTypes = {
+  img: PropTypes.string.isRequired,
+  profileImage: PropTypes.string.isRequired
+}
 
 export default ForYou;

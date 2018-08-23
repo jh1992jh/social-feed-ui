@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { registerUser } from '../../actions/authActions';
+import PropTypes from 'prop-types';
 import LoginHeader from './LoginHeader';
 
 
@@ -86,6 +87,12 @@ class Register extends Component {
       </div>
     )
   }
+}
+
+Register.propTypes = {
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object,
+    registerUser: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

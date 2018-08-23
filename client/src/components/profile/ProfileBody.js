@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const ProfileBody = ({ ownedPosts }) => {
   let outputContent;
@@ -26,5 +27,9 @@ const ProfileBody = ({ ownedPosts }) => {
     </div>
   );
 };
+
+ProfileBody.propTypes = {
+  ownedPosts: PropTypes.array.isRequired
+}
 
 export default ProfileBody;

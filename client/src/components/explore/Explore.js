@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { getPosts } from '../../actions/post2Actions';
-import { getProfiles } from '../../actions/profile2Actions';
+import { getPosts } from '../../actions/postActions';
+import { getProfiles } from '../../actions/profileActions';
+import PropTypes from 'prop-types';
 import Categories from './Categories';
 import ExploreItem from './ExploreItem';
 import NavbarTop from '../navbars/NavbarTop';
@@ -21,8 +22,8 @@ onChooseFilterCategory = (category) => {
 }
 
   render() {
-    const { posts, loading } = this.props.posts2;
-    const { profiles } = this.props.profile2;
+    const { posts, loading } = this.props.posts;
+    const { profiles } = this.props.profile;
     const { filterCategory } = this.state;
     let outputContent;
 
@@ -53,10 +54,18 @@ onChooseFilterCategory = (category) => {
   }
 }
 
+Explore.propTypes = {
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+  posts: PropTypes.object.isRequired,
+  getPosts: PropTypes.func.isRequired,
+  getProfiles: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
   auth: state.auth,
-  profile2: state.profile2,
-  posts2: state.posts2
+  profile: state.profile,
+  posts: state.posts
 });
 
 export default connect(

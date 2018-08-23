@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { getPosts, getFollowedPosts, clearCurrentPost } from '../../actions/post2Actions';
-import { getCurrentProfile } from '../../actions/profile2Actions';
+import { getPosts, getFollowedPosts, clearCurrentPost } from '../../actions/postActions';
+import { getCurrentProfile } from '../../actions/profileActions';
+import PropTypes from 'prop-types';
 import NavbarTop from '../navbars/NavbarTop';
 import Feed from '../feed/Feed';
 import Stories from '../stories/Stories';
@@ -33,14 +34,14 @@ class MainView extends Component {
   }
   render() {
     const { showLikes } = this.state;
-    const { posts2, auth, profile2 } = this.props;
+    const { posts, auth, profile } = this.props;
   
     let outputPosts; 
     
-    if(posts2.loading === true || profile2.loading === true || profile2.profile === null) {
+    if(posts.loading === true || profile.loading === true || profile.profile === null) {
       outputPosts = <h3>Loading</h3>
-    } else if (posts2.loading === false && posts2.posts.length > 0 && Object.keys(profile2.profile).length > 0) {
-      outputPosts = posts2.followedPosts.map((post, i) => (
+    } else if (posts.loading === false && posts.posts.length > 0 && Object.keys(profile.profile).length > 0) {
+      outputPosts = posts.followedPosts.map((post, i) => (
         <Post
           key={post._id}
           postId={post._id}
@@ -54,7 +55,7 @@ class MainView extends Component {
           date={post.date}
         />
       ));
-    } else if (Object.keys(profile2.profile).length === 0) {
+    } else if (Object.keys(profile.profile).length === 0) {
       outputPosts = (
         <div className="noProfile">
         <i className="far fa-user-circle" />
@@ -83,9 +84,18 @@ class MainView extends Component {
   }
 }
 
+MainView.propTypes = {
+  posts: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
+  clearCurrentPost: PropTypes.func.isRequired,
+  getPosts: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
-  posts2: state.posts2,
-  profile2: state.profile2,
+  posts: state.posts,
+  profile: state.profile,
   auth: state.auth
 });
 

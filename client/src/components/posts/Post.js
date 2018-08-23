@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { addComment, addCurrentPost, getPost } from '../../actions/post2Actions';
+import { addComment, addCurrentPost, getPost } from '../../actions/postActions';
+import PropTypes from 'prop-types';
 import PostHeader from './PostHeader';
 import PostBody from './PostBody';
 import PostFooter from './PostFooter';
@@ -65,7 +66,7 @@ class Post extends Component {
       </Fragment>
     ) 
 
-    const { post } = this.props.posts2;
+    const { post } = this.props.posts;
 
     if (Object.keys(post).length > 0) {
       postContent = (
@@ -113,10 +114,17 @@ class Post extends Component {
   }
 }
 
+Post.propTypes = {
+  auth: PropTypes.object.isRequired,
+  posts: PropTypes.object.isRequired,
+  addComment: PropTypes.func.isRequired,
+  addCurrentPost: PropTypes.func.isRequired,
+  getPost: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
   auth: state.auth,
-  posts: state.posts,
-  posts2: state.posts2
+  posts: state.posts
 });
 
 export default connect(

@@ -1,6 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 
 class ProfileHeaderBottom extends Component {
@@ -81,6 +82,16 @@ class ProfileHeaderBottom extends Component {
       </Fragment>
     );
   }
+}
+
+ProfileHeaderBottom.propTypes = {
+      profileImage: PropTypes.string.isRequired,
+      userId: PropTypes.string.isRequired,
+      ownedPosts: PropTypes.array.isRequired,
+      following: PropTypes.array.isRequired,
+      followers: PropTypes.array.isRequired,
+      handle: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired
 }
 
 const mapStateToProps = state => ({

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
-import { deletePost } from '../../actions/post2Actions';
+import { deletePost } from '../../actions/postActions';
+import PropTypes from 'prop-types';
 
 class PostHeader extends Component {
   state = {
@@ -56,6 +57,11 @@ class PostHeader extends Component {
       </div>
     );
   }
+}
+
+PostHeader.propTypes = {
+  auth: PropTypes.object.isRequired,
+  deletePost: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

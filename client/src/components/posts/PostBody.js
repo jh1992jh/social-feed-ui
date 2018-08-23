@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addCurrentPost, addLike, removeLike } from '../../actions/post2Actions';
+import { addCurrentPost, addLike, removeLike } from '../../actions/postActions';
 import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class PostBody extends Component {
   onAddCurrentPost = () => {
@@ -52,6 +53,13 @@ class PostBody extends Component {
       </div>
     );
   }
+}
+
+PostBody.propTypes = {
+  auth: PropTypes.object.isRequired,
+  addCurrentPost: PropTypes.func.isRequired,
+  addLike: PropTypes.func.isRequired,
+  removeLike: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

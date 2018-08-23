@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import ForYou from './ForYou';
 import Category from './Category';
 
@@ -31,6 +32,12 @@ class Categories extends Component {
       </div>
     );
   }
+}
+
+Categories.propTypes = {
+  onChooseFilterCategory: PropTypes.func.isRequired,
+  posts: PropTypes.array.isRequired,
+  auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps = state => ({

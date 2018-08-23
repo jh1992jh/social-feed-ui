@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { logoutUser } from '../../actions/authActions';
+import PropTypes from 'prop-types';
 
 class ProfileHeaderTop extends Component {
 render() {
@@ -20,5 +21,9 @@ render() {
   );
 }
 };
+
+ProfileHeaderTop.propTypes = {
+  logoutUser: PropTypes.func.isRequired
+}
 
 export default connect(null, { logoutUser })(withRouter(ProfileHeaderTop));

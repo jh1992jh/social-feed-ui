@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getStories, getFollowedStories } from '../../actions/storyActions';
+import PropTypes from 'prop-types';
 import MyStory from './MyStory';
 import Story from './Story';
 import StoryContainerHeader from './StoryContainerHeader';
@@ -13,17 +14,17 @@ class Stories extends Component {
     this.props.getFollowedStories(this.props.auth.user.id);
   }
   render() {
-    const { showLikes, profile2 } = this.props;
+    const { showLikes, profile } = this.props;
     const { loading, followedStories } = this.props.stories;
  
 
     let outputMyStory; 
     let outputStories;
 
-    if (profile2.loading === true || profile2.profile === null) {
+    if (profile.loading === true || profile.profile === null) {
       outputMyStory = <h3>Loading</h3>
-    } else if ( Object.keys(profile2.profile).length > 0) {
-      outputMyStory = <MyStory handle={profile2.profile.handle} profileImage={profile2.profile.profileImage} />
+    } else if ( Object.keys(profile.profile).length > 0) {
+      outputMyStory = <MyStory handle={profile.profile.handle} profileImage={profile.profile.profileImage} />
     }
 
     if(loading === true || followedStories.length === 0 ) {
@@ -72,10 +73,18 @@ class Stories extends Component {
   }
 }
 
+Stories.propTypes = {
+  auth: PropTypes.object.isRequired,
+  stories: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+  getStories: PropTypes.func.isRequired,
+  getFollowedStories: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
   auth: state.auth,
   stories: state.stories,
-  profile2: state.profile2
+  profile: state.profile
 })
 
 export default connect(mapStateToProps, { getStories, getFollowedStories })(Stories);

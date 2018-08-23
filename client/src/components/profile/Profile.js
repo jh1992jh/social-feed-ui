@@ -9,8 +9,9 @@ import ProfileHeaderBottomOther from './ProfileHeaderBottomOther';
 import ProfileBodyTop from './ProfileBodyTop';
 import ProfileBody from './ProfileBody';
 import NavbarTop from '../navbars/NavbarTop';
-import { getPosts, getOwnedPosts } from '../../actions/post2Actions';
-import { getCurrentProfile, getProfileById } from '../../actions/profile2Actions';;
+import { getPosts, getOwnedPosts } from '../../actions/postActions';
+import { getCurrentProfile, getProfileById } from '../../actions/profileActions';
+import PropTypes from 'prop-types';
 
 class Profile extends Component {
   componentDidMount() {
@@ -26,11 +27,11 @@ class Profile extends Component {
   }
 
   render() {
-    const { posts2, profile2, auth } = this.props;
+    const { posts, profile, auth } = this.props;
     let outputProfile;
-    if(posts2.loading === true || profile2.loading === true || profile2.profile === null) {
+    if(posts.loading === true || profile.loading === true || profile.profile === null) {
       outputProfile = <h3>Loading</h3>
-    } else if (posts2.loading === false && posts2.posts.length > 0 && Object.keys(profile2.profile).length > 0 && profile2.profile.user._id === auth.user.id)  {
+    } else if (posts.loading === false && posts.posts.length > 0 && Object.keys(profile.profile).length > 0 && profile.profile.user._id === auth.user.id)  {
       outputProfile = (
         <Fragment>
           <div className="forDesktop">
@@ -40,45 +41,45 @@ class Profile extends Component {
             username={auth.user.username}
           />
           <ProfileHeaderBottom
-            profileImage={profile2.profile.profileImage ? profile2.profile.profileImage : auth.user.profileImage}
-            userId={profile2.profile.user._id}
-            following={profile2.profile.following}
-            followers={profile2.profile.followers}
-            handle={profile2.profile.handle}
-            description={profile2.profile.description}
-            ownedPosts={posts2.ownedPosts}
+            profileImage={profile.profile.profileImage ? profile.profile.profileImage : auth.user.profileImage}
+            userId={profile.profile.user._id}
+            following={profile.profile.following}
+            followers={profile.profile.followers}
+            handle={profile.profile.handle}
+            description={profile.profile.description}
+            ownedPosts={posts.ownedPosts}
           />
           <ProfileBodyTop />
           <ProfileBody
-            ownedPosts={posts2.ownedPosts}
+            ownedPosts={posts.ownedPosts}
           />
         </Fragment>
       );
-    } else if (posts2.loading === false && posts2.posts.length > 0 && Object.keys(profile2.profile).length > 0 && profile2.profile.user._id !== auth.user.id)  {
+    } else if (posts.loading === false && posts.posts.length > 0 && Object.keys(profile.profile).length > 0 && profile.profile.user._id !== auth.user.id)  {
       outputProfile = (
         <Fragment>
           <div className="forDesktop">
             <NavbarTop />
           </div>
-          <ProfileHeaderTopOther handle={profile2.profile.handle} />
+          <ProfileHeaderTopOther handle={profile.profile.handle} />
           <ProfileHeaderBottomOther
-            profileImage={profile2.profile.profileImage}
-            profileId={profile2.profile._id}
-            userId={profile2.profile.user._id}
-            handle={profile2.profile.handle}
-            description={profile2.profile.description}
-            following={profile2.profile.following}
-            followers={profile2.profile.followers}
-            ownedPosts={posts2.ownedPosts}
+            profileImage={profile.profile.profileImage}
+            profileId={profile.profile._id}
+            userId={profile.profile.user._id}
+            handle={profile.profile.handle}
+            description={profile.profile.description}
+            following={profile.profile.following}
+            followers={profile.profile.followers}
+            ownedPosts={posts.ownedPosts}
           />
           <ProfileBodyTop />
           <ProfileBody
-            ownedPosts={posts2.ownedPosts}
+            ownedPosts={posts.ownedPosts}
           />
         </Fragment>
       );
     } 
-     else if (Object.keys(profile2.profile).length === 0) {
+     else if (Object.keys(profile.profile).length === 0) {
       outputProfile = (
         <div className="noProfile">
         <i className="far fa-user-circle" />
@@ -96,10 +97,20 @@ class Profile extends Component {
   }
 }
 
+Profile.propTypes = {
+  auth: PropTypes.object.isRequired,
+  posts: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  getPosts: PropTypes.func.isRequired,
+  getOwnedPosts: PropTypes.func.isRequired,
+  getProfileById: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
   auth: state.auth,
-  posts2: state.posts2,
-  profile2: state.profile2
+  posts: state.posts,
+  profile: state.profile
 });
 
 export default connect(

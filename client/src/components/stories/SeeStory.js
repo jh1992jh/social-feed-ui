@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
-import { getStory } from '../../actions/storyActions'
+import { getStory } from '../../actions/storyActions';
+import PropTypes from 'prop-types';
 
 class SeeStory extends Component {
 componentDidMount() {
@@ -43,6 +44,10 @@ componentWillReceiveProps(nextProps) {
   }
 }
 
+SeeStory.propTypes = {
+    stories: PropTypes.object.isRequired,
+    getStory: PropTypes.func.isRequired
+}
 const mapStateToProps = state => ({
     stories: state.stories
 })

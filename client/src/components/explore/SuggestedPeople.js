@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 const SuggestedPeople = ({ profiles }) => {
   const outputSuggestions = profiles.slice(0, 3).map((profile, i) => (
@@ -25,5 +26,9 @@ const SuggestedPeople = ({ profiles }) => {
     </Fragment>
   );
 };
+
+SuggestedPeople.propTypes = {
+  profiles: PropTypes.array.isRequired
+}
 
 export default SuggestedPeople;

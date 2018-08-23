@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
 import { postStory } from '../../actions/storyActions'
+import PropTypes from 'prop-types';
 
 class PreviewStory extends Component {
     onPostStory = () => {
@@ -41,6 +42,11 @@ class PreviewStory extends Component {
     )
     
   }
+}
+
+PreviewStory.propTypes = {
+    stories: PropTypes.object.isRequired,
+    postStory: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({

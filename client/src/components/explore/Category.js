@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'; 
 
 const Category = ({ category, img , onChooseFilterCategory}) => {
   return (
@@ -8,5 +9,11 @@ const Category = ({ category, img , onChooseFilterCategory}) => {
     </div>
   );
 };
+
+Category.propTypes = {
+  category: PropTypes.string.isRequired,
+  // img: PropTypes.string.isRequired,
+  onChooseFilterCategory: PropTypes.func.isRequired
+}
 
 export default Category;

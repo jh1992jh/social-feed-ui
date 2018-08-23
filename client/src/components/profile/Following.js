@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getProfileById } from '../../actions/profile2Actions';
+import { getProfileById } from '../../actions/profileActions';
+import PropTypes from 'prop-types';
 
 class Following extends Component {
     componentDidMount() {
@@ -9,19 +10,19 @@ class Following extends Component {
         this.props.getProfileById(this.props.match.params.userId)
     }
   render() {
-    const { profile2 } = this.props;
+    const { profile } = this.props;
     let outputFollowing;
 
-    if(profile2.loading === true || profile2.profile === null) {
+    if(profile.loading === true || profile.profile === null) {
         outputFollowing = <h3>Loading</h3>
-    } else if (profile2.loading === false && Object.keys(profile2.profile).length > 0 && profile2.profile.following.length > 0) {
-        outputFollowing = profile2.profile.following.map(follow => (
+    } else if (profile.loading === false && Object.keys(profile.profile).length > 0 && profile.profile.following.length > 0) {
+        outputFollowing = profile.profile.following.map(follow => (
             <Link to={`/profile/${follow.user}`} className="followItem">
                 <img src={follow.profileImage} alt="profile pic"/>
                 <span>{follow.handle}</span>
             </Link>
         ))
-    } else if (profile2.profile === false && Object.keys(profile2.profile).length < 0 && profile2.profile.following.length === 0) {
+    } else if (profile.profile === false && Object.keys(profile.profile).length < 0 && profile.profile.following.length === 0) {
         outputFollowing = <h3>User doesn't follow anyone</h3> 
     }
     return (
@@ -36,8 +37,13 @@ class Following extends Component {
   }
 }
 
+Following.propTypes = {
+    profile: PropTypes.object.isRequired,
+    getProfileById: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
-    profile2: state.profile2
+    profile: state.profile
 })
 
 export default connect(mapStateToProps, { getProfileById })(Following);
