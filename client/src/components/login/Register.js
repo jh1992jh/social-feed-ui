@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { registerUser } from '../../actions/authActions';
 import LoginHeader from './LoginHeader';
-import LoginForm from './LoginForm';
+
 
 class Register extends Component {
     state = {

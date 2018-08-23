@@ -19,12 +19,7 @@ class PostBody extends Component {
     const {
       postImage,
       postId,
-      profileImage,
-      username,
-      text,
       likes,
-      time,
-      comments,
       auth
     } = this.props;
     const checkLikes =  () => likes.filter(like => like.user === auth.user.id).length

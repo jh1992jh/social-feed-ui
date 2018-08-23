@@ -16,12 +16,12 @@ class PostFooter extends Component {
     e.preventDefault();
 
     const { postId } = this.props.match.params;
-    const { user } = this.props.auth;
+    const { profile } = this.props.profile2;
     const { text } = this.state;
 
     const commentData = {
-      username: user.username,
-      profileImage: user.profileImage,
+      handle: profile.handle,
+      profileImage: profile.profileImage,
       text
     }
 
@@ -33,12 +33,13 @@ class PostFooter extends Component {
       likes,
       comments,
       date,
-      username,
+      handle,
       text,
-      profileImage,
-      postId,
+     // profileImage,
+     // postId,
       auth,
-      userId
+      userId,
+      profile2
     } = this.props;
    
     const { commentInput } = this.state;
@@ -56,7 +57,7 @@ class PostFooter extends Component {
                 <p>
                   <span className="postCommentName">
                   <Link to={`/profile/${comment.user}`}>
-                  {comment.username}
+                  {comment.handle}
                   </Link>
                   </span>
                   {comment.text} {auth.user.id === comment.user ? (
@@ -79,7 +80,7 @@ class PostFooter extends Component {
           <p>
             <span className="postCommentName">
             <Link to={`/profile/${comments[0].user}`}>
-            {comments[0].username} 
+            {comments[0].handle} 
             </Link>
             </span>
             {comments[0].text}
@@ -97,7 +98,7 @@ class PostFooter extends Component {
         <div className="postFooterText">
           <p>
              <Link to={`/profile/${userId}`}>
-              <span className="postFooterUserName">{username}</span>
+              <span className="postFooterUserName">{handle}</span>
     </Link> {' '}
 
             {text}
@@ -108,7 +109,7 @@ class PostFooter extends Component {
         <hr className="forDesktop" />
         <div className="postFooterComment">
           <div className="roundedProfThumbVerySmall">
-            <img src={profileImage} alt="profPic " />
+            <img src={profile2.profile.profileImage} alt="profPic " />
           </div>
           <form onSubmit={this.onCommentSubmit}>
             <input
@@ -128,7 +129,8 @@ class PostFooter extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  profile2: state.profile2
 })
 
 export default connect(mapStateToProps, { addComment, deleteComment })(withRouter(PostFooter))

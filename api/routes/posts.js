@@ -21,12 +21,13 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 
     Profile.findOne({ user: req.user.id }).then(profile => {
         const profileImage = profile.profileImage;
+        const handle = profile.handle
 
         const newPost = new Post({
             text: req.body.text,
             postImage: req.body.postImage,
             category: req.body.category,
-            username: req.body.username,
+            handle: handle,
             profileImage: profileImage,
             user: req.user.id
         });
@@ -117,7 +118,7 @@ router.post('/comment/:id', passport.authenticate('jwt', { session: false}), (re
         Post.findById(req.params.id).then(post => {
             const newComment = {
                 text: req.body.text,
-                username: req.body.username,
+                handle: profile.handle,
                 profileImage: profile.profileImage,
                 user: req.user.id
             }

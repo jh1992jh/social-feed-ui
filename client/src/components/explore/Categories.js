@@ -14,14 +14,14 @@ class Categories extends Component {
       outputCategories = (
         <Fragment>
         <ForYou img={auth.user.profileImage} profileImage={auth.user.profileImage} />
-        <Category img={posts[7].postImage} onChooseFilterCategory={onChooseFilterCategory} category="All" /> 
-        <Category img={posts[1].postImage} onChooseFilterCategory={onChooseFilterCategory} category="DIY" />
-        <Category img={posts[2].postImage} onChooseFilterCategory={onChooseFilterCategory} category="Music" />
-        <Category img={posts[3].postImage} onChooseFilterCategory={onChooseFilterCategory} category="Art" />
-        <Category img={posts[4].postImage} onChooseFilterCategory={onChooseFilterCategory} category="Gaming" />
-        <Category img={posts[5].postImage} onChooseFilterCategory={onChooseFilterCategory} category="Fitness" />
-        <Category img={posts[6].postImage} onChooseFilterCategory={onChooseFilterCategory} category="Tech" />
-        <Category img={posts[7].postImage} onChooseFilterCategory={onChooseFilterCategory} category="Art" /> 
+        <Category img={null} onChooseFilterCategory={onChooseFilterCategory} category="All" /> 
+        <Category img={null} onChooseFilterCategory={onChooseFilterCategory} category="DIY" />
+        <Category img={null} onChooseFilterCategory={onChooseFilterCategory} category="Music" />
+        <Category img={null} onChooseFilterCategory={onChooseFilterCategory} category="Art" />
+        <Category img={null} onChooseFilterCategory={onChooseFilterCategory} category="Gaming" />
+        <Category img={null} onChooseFilterCategory={onChooseFilterCategory} category="Fitness" />
+        <Category img={null} onChooseFilterCategory={onChooseFilterCategory} category="Tech" />
+        <Category img={null} onChooseFilterCategory={onChooseFilterCategory} category="Art" /> 
     </Fragment>
       )
     }

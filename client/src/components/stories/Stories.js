@@ -2,25 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getStories, getFollowedStories } from '../../actions/storyActions';
-import { storyItems } from './storyItems';
 import MyStory from './MyStory';
 import Story from './Story';
 import StoryContainerHeader from './StoryContainerHeader';
 import InfoFooter from './InfoFooter';
 
 class Stories extends Component {
- state = {
-      stories: storyItems
- }  
-
   componentDidMount() {
     this.props.getStories();
     this.props.getFollowedStories(this.props.auth.user.id);
   }
   render() {
-    const { authUser, showLikes, profile2 } = this.props;
+    const { showLikes, profile2 } = this.props;
     const { stories, loading, followedStories } = this.props.stories;
-    // const { stories } = this.state;
+ 
 
     let outputMyStory; 
     let outputStories;

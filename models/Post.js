@@ -21,7 +21,7 @@ const PostSchema = new Schema ({
         type: String, 
         default: 'All'
     },
-    username: {
+    handle: {
         type: String
     },
     profileImage: {
@@ -46,7 +46,7 @@ const PostSchema = new Schema ({
                 required: true
         
             },
-            username: {
+            handle: {
                 type: String
             },
             profileImage: {

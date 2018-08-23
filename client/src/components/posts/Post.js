@@ -22,7 +22,7 @@ class Post extends Component {
     const {
       
           profileImage,
-          username,
+          handle,
           userId,
           postImage,
           text,
@@ -38,14 +38,14 @@ class Post extends Component {
         <PostHeader
           onToggleMenu={this.onToggleMenu}
           profileImage={profileImage}
-          username={username}
+          handle={handle}
           userId={userId}
         />
         <PostBody
         postImage={postImage}
         postId={postId}
         profileImage={profileImage}
-        username={username}
+        handle={handle}
         text={text}
         likes={likes}
         date={date}
@@ -54,7 +54,7 @@ class Post extends Component {
         <PostFooter
           likes={likes}
           userId={userId}
-          username={username}
+          handle={handle}
           text={text}
           date={date}
           profileImage={profileImage}
@@ -74,7 +74,7 @@ class Post extends Component {
           showMenu={this.showMenu}
           onToggleMenu={this.onToggleMenu}
           profileImage={post.profileImage}
-          username={post.username}
+          handle={post.handle}
           postId={post.postId}
           userId={post.user}
           />
@@ -82,14 +82,14 @@ class Post extends Component {
           postImage={post.postImage}
           postId={post.postId}
           profileImage={post.profileImage}
-          username={post.username}
+          handle={post.handle}
             text={post.text}
             likes={post.likes}
             date={post.date}
             comments={post.comments}
           />
           <PostFooter
-          username={post.username}
+          handle={post.handle}
           text={post.text}
           date={post.date}
           profileImage={post.profileImage}
@@ -114,7 +114,6 @@ class Post extends Component {
 }
 
 const mapStateToProps = state => ({
-  authUser: state.authUser,
   auth: state.auth,
   posts: state.posts,
   posts2: state.posts2

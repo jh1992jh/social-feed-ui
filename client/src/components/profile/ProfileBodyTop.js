@@ -4,9 +4,28 @@ import { connect } from 'react-redux';
 
 class ProfileBodyTop extends Component {
   render() {
-    const { onShowAccountsOff } = this.props;
     let outputContent;
-    if (
+
+    outputContent = (
+      <div className="forDesktop">
+        <div className="tab selected">
+          <i className="fas fa-th" /> <span>POSTS</span>
+        </div>
+        <div className="tab">
+          <i className="fas fa-tv muted" />{' '}
+          <span className="muted">IGTV</span>
+        </div>
+        <div className="tab">
+          <i className="far fa-bookmark muted" />{' '}
+          <span className="muted">SAVED</span>
+        </div>
+        <div className="tab">
+          <i className="fas fa-user-tag muted" />{' '}
+          <span className="muted">TAGGED</span>
+        </div>
+      </div>
+    );
+    /* if (
       Object.keys(this.props.match.params).length > 0 &&
       Object.keys(this.props.profile.currentProfile).length > 0
     ) {
@@ -41,9 +60,9 @@ class ProfileBodyTop extends Component {
           </div>
         </div>
       );
-    }
+    } */
     return (
-      <div className="profileBodyTop" onClick={onShowAccountsOff}>
+      <div className="profileBodyTop">
         {outputContent}
         <div className="forMobile">
           <i className="fas fa-th selected" />
@@ -55,8 +74,4 @@ class ProfileBodyTop extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  profile: state.profile
-});
-
-export default connect(mapStateToProps)(withRouter(ProfileBodyTop));
+export default connect(null)(withRouter(ProfileBodyTop));

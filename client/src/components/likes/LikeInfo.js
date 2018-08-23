@@ -1,24 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const LikeInfo = ({ profPic, name, eventInfo, postImg, comment }) => {
+const LikeInfo = ({ comments, postImage, postId}) => {
   return (
     <div className="likeInfo">
       <div className="likeInfoContainer">
         <div className="likeRoundedProfPicSmall">
-          <img src={profPic} alt="profPic" />
+          <img src={comments[0].profileImage} alt="profPic" />
         </div>
         <p>
-          <span className="name">{name} </span>
-          {comment ? (
-            <span>commented: {comment}</span>
-          ) : (
-            <span>{eventInfo}</span>
-          )}{' '}
+        <Link to={`/profile/${comments[0].user}`}>
+          <span className="name">{comments[0].handle} </span>
+          </Link>
+          <Link to={`/post/${postId}`}>
+            <span>commented: {comments[0].text}</span>
+        
+
           <span className="ago">{new Date().getHours()}h</span>
+          </Link>
         </p>
       </div>
       <div className="likedPostPic">
-        <img src={postImg} alt="postPic" />
+        <img src={postImage} alt="postPic" />
       </div>
     </div>
   );

@@ -33,7 +33,7 @@ class MainView extends Component {
   }
   render() {
     const { showLikes } = this.state;
-    const { authUser, posts2, auth, profile2 } = this.props;
+    const { posts2, auth, profile2 } = this.props;
   
     let outputPosts; 
     
@@ -45,7 +45,7 @@ class MainView extends Component {
           key={post._id}
           postId={post._id}
           profileImage={post.profileImage}
-          username={post.username}
+          handle={post.handle}
           userId={post.user}
           postImage={post.postImage}
           text={post.text}
@@ -75,7 +75,7 @@ class MainView extends Component {
           onToggleLikesMenu={this.onToggleLikesMenu}
         />
         <Feed>
-          <Stories authUser={authUser} showLikes={showLikes} />
+          <Stories showLikes={showLikes} />
           {outputPosts}
         </Feed>
       </Fragment>
@@ -84,11 +84,8 @@ class MainView extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts,
   posts2: state.posts2,
-  profile: state.profile,
   profile2: state.profile2,
-  authUser: state.authUser,
   auth: state.auth
 });
 

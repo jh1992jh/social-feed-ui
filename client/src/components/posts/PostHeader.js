@@ -23,11 +23,9 @@ class PostHeader extends Component {
   render() {
     const {
       auth,
-      username,
+      handle,
       userId,
       profileImage,
-      postId,
-      postOwner
     } = this.props;
 
     const { showMenu } = this.state;
@@ -40,7 +38,7 @@ class PostHeader extends Component {
             <img src={profileImage} alt="profPic" />
           </div>
           <Link to={`/profile/${userId}`}>
-            <p className="profileName">{username}</p>{' '}
+            <p className="profileName">{handle}</p>{' '}
     </Link> 
         </div>
         <div className="postHeaderProfInfo2">

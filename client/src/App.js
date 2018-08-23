@@ -9,7 +9,6 @@ import PrivateRoute from './components/privateRoute/PrivateRoute';
 import NavbarBottom from './components/navbars/NavbarBottom';
 import MainView from './components/mainView/MainView';
 import Explore from './components/explore/Explore';
-import CreatePost from './components/create-post/CreatePost';
 import CreatePost2 from './components/create-post/PostaPost';
 import Likes from './components/likes/Likes';
 import CreateProfile from './components/profile/CreateProfile';

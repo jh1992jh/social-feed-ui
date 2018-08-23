@@ -16,14 +16,14 @@ class PostaPost extends Component {
     e.preventDefault();
 
     const { imageUrl, text } = this.state;
-    const { user } = this.props.auth
+    const { profile } = this.props.profile2
 
 
     const newPost = {
       postImage: imageUrl,
       text,
-      username: user.username,
-      profileImage: user.profileImage
+      handle: profile.handle,
+      profileImage: profile.profileImage
 
     }
 
@@ -48,7 +48,8 @@ class PostaPost extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  profile2: state.profile2
 })
 
 export default connect(mapStateToProps, { addPost })(PostaPost);

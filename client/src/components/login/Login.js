@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { loginUser, registerUser } from '../../actions/authActions';
 import LoginHeader from './LoginHeader';
-import LoginForm from './LoginForm';
+    
 
 class Login extends Component {
     state = {
@@ -65,7 +65,7 @@ class Login extends Component {
                     ): null} 
                     <button>Sign in</button>
                 </form>
-
+ 
                 
            
         </div>

@@ -9,10 +9,6 @@ class EditProfile extends Component {
     }
     componentDidMount () {
       this.props.getCurrentProfile();
-
-    /*  if(this.props.profile2.profile !== null) {
-        this.setState({ description: this.props.profile2.profile.description, profileImage: this.props.profile2.profileImage})
-      }*/
     }
 
     componentWillReceiveProps(nextProps) {
