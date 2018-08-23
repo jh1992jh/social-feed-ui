@@ -18,7 +18,6 @@ class ProfileHeaderBottomOther extends Component {
   render() {
     const {
       profileImage,
-      profileId,
       userId,
       auth,
       handle,

@@ -10,7 +10,7 @@ componentDidMount() {
 componentWillReceiveProps(nextProps) {
     if(nextProps.stories.story.storyDuration) {
         const storyDurationStr = nextProps.stories.story.storyDuration.charAt(7)
-        const storyDuration = parseInt(storyDurationStr)
+        const storyDuration = Number(storyDurationStr)
 
          setTimeout((storyDuration) => {
             this.props.history.push('/')

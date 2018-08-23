@@ -26,9 +26,9 @@ class Profile extends Component {
   }
 
   render() {
-    const { posts2, profile2, auth, authUser } = this.props;
+    const { posts2, profile2, auth } = this.props;
     let outputProfile;
-    if(posts2.loading === true || profile2.loading == true || profile2.profile === null) {
+    if(posts2.loading === true || profile2.loading === true || profile2.profile === null) {
       outputProfile = <h3>Loading</h3>
     } else if (posts2.loading === false && posts2.posts.length > 0 && Object.keys(profile2.profile).length > 0 && profile2.profile.user._id === auth.user.id)  {
       outputProfile = (

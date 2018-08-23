@@ -39,7 +39,7 @@ class Register extends Component {
     onRegisterUser = e => {
         e.preventDefault();
 
-        const { email, username, password, password2, showForm } = this.state;
+        const { email, username, password, password2 } = this.state;
 
         const userData = {
             email,
@@ -56,7 +56,6 @@ class Register extends Component {
       <div className="login">
         <div className="loginContainer">
         <LoginHeader  />
-       {/* <LoginForm onLoginUser={this.onLoginUser} onRegisterUser={this.onRegisterUser} email={email} username={username} password={password} password2={password2} onInputChange={this.onInputChange} showform={showForm} /> */}
 
        <form className="loginForm" onSubmit={this.onRegisterUser}>
                     <input type="email" name="email" value={email} onChange={this.onInputChange} placeholder="Email" />

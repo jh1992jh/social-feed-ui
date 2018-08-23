@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { getOwnedPosts } from '../../actions/post2Actions';
+
 
 class ProfileHeaderBottom extends Component {
   render() {

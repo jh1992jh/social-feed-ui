@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { getPosts } from '../../actions/post2Actions';
 import { getProfiles } from '../../actions/profile2Actions';
-import ExploreHeader from './ExploreHeader';
 import Categories from './Categories';
 import ExploreItem from './ExploreItem';
 import NavbarTop from '../navbars/NavbarTop';
@@ -21,9 +20,6 @@ onChooseFilterCategory = (category) => {
   this.setState({filterCategory: category})
 }
 
- /*  onAddCurrentPost = post => {
-    this.props.addCurrentPost(post);
-  } */
   render() {
     const { posts, loading } = this.props.posts2;
     const { profiles } = this.props.profile2;
@@ -58,8 +54,6 @@ onChooseFilterCategory = (category) => {
 }
 
 const mapStateToProps = state => ({
- // posts: state.posts,
- // profile: state.profile,
   auth: state.auth,
   profile2: state.profile2,
   posts2: state.posts2

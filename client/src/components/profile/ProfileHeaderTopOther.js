@@ -7,7 +7,7 @@ render() {
   return (
     <div className="myProfileHeaderTop" >
       <div className="myProfieHeaderTopLeft">
-      <i class="fas fa-arrow-left" onClick={() => this.props.history.go(-1)}/>{' '} <span className="username">{handle}</span>
+      <i className="fas fa-arrow-left" onClick={() => this.props.history.go(-1)}/>{' '} <span className="username">{handle}</span>
       </div>
       <div className="myProfileHeaderTopRight">
         <i className="fas fa-ellipsis-v" />

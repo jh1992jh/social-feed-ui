@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile2Actions';
 import { getOwnedPosts } from '../../actions/post2Actions'
-import LikesHeader from './LikesHeader';
 import LikeInfo from './LikeInfo';
 import LikesContainer from './LikesContainer';
 
@@ -28,12 +27,6 @@ class Likes extends Component {
               comments={post.comments}
               postImage={post.postImage}
             />
-            {/*<LikeInfo
-              profPic={post.profPic}
-              name={post.name}
-              postImg={post.postImg}
-              eventInfo="liked your post."
-            />*/}
           </Fragment>
         ))
       )

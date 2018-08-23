@@ -14,13 +14,13 @@ class Stories extends Component {
   }
   render() {
     const { showLikes, profile2 } = this.props;
-    const { stories, loading, followedStories } = this.props.stories;
+    const { loading, followedStories } = this.props.stories;
  
 
     let outputMyStory; 
     let outputStories;
 
-    if (profile2.loading == true || profile2.profile === null) {
+    if (profile2.loading === true || profile2.profile === null) {
       outputMyStory = <h3>Loading</h3>
     } else if ( Object.keys(profile2.profile).length > 0) {
       outputMyStory = <MyStory handle={profile2.profile.handle} profileImage={profile2.profile.profileImage} />

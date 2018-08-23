@@ -35,14 +35,11 @@ class PostFooter extends Component {
       date,
       handle,
       text,
-     // profileImage,
-     // postId,
       auth,
       userId,
       profile2
     } = this.props;
    
-    const { commentInput } = this.state;
     let outputComments;
 
     if (this.props.match.params.postId) {

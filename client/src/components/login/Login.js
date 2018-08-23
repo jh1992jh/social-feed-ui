@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { loginUser, registerUser } from '../../actions/authActions';
+import { loginUser } from '../../actions/authActions';
 import LoginHeader from './LoginHeader';
     
 
@@ -52,7 +52,6 @@ class Login extends Component {
       <div className="login">
         <div className="loginContainer">
         <LoginHeader  />
-       {/* <LoginForm onLoginUser={this.onLoginUser} onRegisterUser={this.onRegisterUser} email={email} username={username} password={password} password2={password2} onInputChange={this.onInputChange} showform={showForm} /> */}
 
        <form className="loginForm" onSubmit={this.onLoginUser}>
                     <input type="email" name="email" value={email} onChange={this.onInputChange} placeholder="Email" />

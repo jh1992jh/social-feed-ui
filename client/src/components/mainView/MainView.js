@@ -37,7 +37,7 @@ class MainView extends Component {
   
     let outputPosts; 
     
-    if(posts2.loading === true || profile2.loading == true || profile2.profile === null) {
+    if(posts2.loading === true || profile2.loading === true || profile2.profile === null) {
       outputPosts = <h3>Loading</h3>
     } else if (posts2.loading === false && posts2.posts.length > 0 && Object.keys(profile2.profile).length > 0) {
       outputPosts = posts2.followedPosts.map((post, i) => (
