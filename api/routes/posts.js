@@ -2,6 +2,32 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function(req, file, cb) {
+        cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname)
+    }
+}) 
+
+const fileFilter = (req, file, cb) => {
+    // reject a file
+    if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+        cb(null, true)
+    } else {
+        cb(null, false)
+    }
+    
+}
+
+const upload = multer({storage: storage, limits: {
+    fileSize: 1024 * 1024 * 5
+},
+fileFilter: fileFilter
+});
 
 const Post = require('../../models/Post');
 const Profile = require('../../models/Profile');
@@ -12,20 +38,22 @@ router.get('/test', (req, res) => {
     res.json({posts: 'The posts route works'});
 })
 
-router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
-    const { errors, isValid } = validatePostInput(req.body);
+router.post('/',upload.single('postImage'), passport.authenticate('jwt', { session: false }), (req, res) => {
+
+    console.log(req.file)
+    /* const { errors, isValid } = validatePostInput(req.body);
 
     if(!isValid) {
         return res.status(400).json(errors)
-    }
-
+    } */
+ 
     Profile.findOne({ user: req.user.id }).then(profile => {
         const profileImage = profile.profileImage;
         const handle = profile.handle
 
         const newPost = new Post({
             text: req.body.text,
-            postImage: req.body.postImage,
+            postImage: req.file.path,
             category: req.body.category,
             handle: handle,
             profileImage: profileImage,
@@ -33,7 +61,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
         });
     
         newPost.save().then(post => res.json(post));
-    })
+    }).catch(err => console.log(err))
 })
 
 router.get('/', passport.authenticate('jwt', { session: false}), (req, res) => {

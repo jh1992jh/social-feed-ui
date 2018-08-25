@@ -11,11 +11,11 @@ const PostSchema = new Schema ({
     },
     text: {
         type: String,
-        required: true
+        //required: true
     },
     postImage: {
         type: String,
-        required: true
+        //required: true
     },
     category: {
         type: String, 

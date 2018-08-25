@@ -5,6 +5,7 @@
 /client/node_modules
 /config
 /client/src/userItems
+/uploads
 
 # testing
 /coverage
