@@ -6,6 +6,7 @@ import { addPost } from '../../actions/postActions';
 class PostaPost extends Component {
   state = {
     postImage: null,
+    postImagePrev: null,
     text: ''
   }
 
@@ -14,7 +15,7 @@ class PostaPost extends Component {
   }
 
   imageHandler = e => {
-    this.setState({postImage: e.target.files[0]})
+    this.setState({postImage: e.target.files[0], postImagePrev: URL.createObjectURL(e.target.files[0])})
   }
   
   onPostSubmit = e => {
@@ -38,11 +39,11 @@ class PostaPost extends Component {
     this.props.addPost(fd, this.props.history);
   }
   render() {
-    const { image, text } = this.state;
+    const { postImagePrev, text } = this.state;
     return (
       <div className="postApost">
         <div className="postImageContainer">
-          {image !== null ? (<img src={image} alt="post pic"/>) : (<img src="http://placehold.it/200x200/92c952" alt="post pic" />)}
+          {postImagePrev !== null ? (<img src={postImagePrev} alt="post pic"/>) : (<img src="http://placehold.it/200x200/92c952" alt="post pic" />)}
         </div>
 
         <form className="postForm" encType="multipart/form-data" onSubmit={this.onPostSubmit}>

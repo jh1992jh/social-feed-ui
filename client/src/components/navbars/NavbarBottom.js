@@ -1,7 +1,14 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
+import { getCurrentProfile } from '../../actions/profileActions';
 
 class NavbarBottom extends Component {
+  componentDidMount() {
+    if(!this.props.history.location.pathname === '/' || !this.props.match.params.userId) {
+      this.props.getCurrentProfile();
+    }
+  }
   render() {
     let outputContent;
  if (this.props.history.location.pathname === '/login' || this.props.history.location.pathname === '/register' || this.props.history.location.pathname === '/preview-story' ) {
@@ -33,4 +40,4 @@ class NavbarBottom extends Component {
   }
 }
 
-export default withRouter(NavbarBottom);
+export default connect(null, { getCurrentProfile })(withRouter(NavbarBottom));

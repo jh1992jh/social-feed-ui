@@ -33,7 +33,7 @@ class PostHeader extends Component {
 
     return (
       <div className="postHeader">
-      {this.props.match.params.postId ? <button onClick={this.onGoBack}>Go back</button> : null}
+      {this.props.match.params.postId ? <button onClick={this.onGoBack} className="goBackBtn"><i className="fas fa-arrow-left" /> Go back</button> : null}
         <div className="postHeaderProfInfo">
           <div className="roundedProfThumbSmall">
             <img src={profileImage} alt="profPic" />

@@ -19,7 +19,7 @@ class Likes extends Component {
     
     if(profile.loading === true || loading === true ) {
       outputContent = <h3>Loading</h3>
-    } else if (profile.loading === false && loading === false) {
+    } else if (profile.loading === false && loading === false && ownedPosts.length > 0)  {
       outputContent = (
         ownedPosts.map(post => (
           <Fragment key={post._id}>
@@ -27,10 +27,13 @@ class Likes extends Component {
               postId={post._id}
               comments={post.comments}
               postImage={post.postImage}
+              post={post}
             />
           </Fragment>
         ))
       )
+    } else if (profile.loading === false && loading === false && ownedPosts.length === 0) {
+      outputContent = <h3>Your Posts don't have any comments yet</h3>
     }
     
     return (

@@ -117,7 +117,6 @@ class PostFooter extends Component {
               type="text"
               placeholder="Add a comment..."
             />
-            <button>Submit</button>
           </form>
         </div>
         <div className="postFooterTime">{date.toString()} HOURS AGO</div>

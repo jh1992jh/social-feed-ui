@@ -21,6 +21,14 @@ i {
   cursor: pointer;
 }
 
+.goBackBtn {
+  background: transparent;
+  border: none;
+}
+
+.goBackBtn i {
+  margin: 0.5em;
+}
 input,
 input:focus {
   border: none;
@@ -578,6 +586,7 @@ ul {
     height: 20px;
     width: 20px;
     border-radius: 360px;
+    margin-right: 0.8em;
   }
 
   .post .postFooter .commentContainer {
