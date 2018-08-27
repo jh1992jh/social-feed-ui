@@ -2,9 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addCurrentPost, addLike, removeLike } from '../../actions/postActions';
 import { Link, withRouter } from 'react-router-dom';
+import axios from 'axios'
 import PropTypes from 'prop-types';
 
 class PostBody extends Component {
+  state = {
+    image: ''
+  }
+  componentDidMount() {
+    console.log(typeof this.props.postImage)
+  }
   onAddCurrentPost = () => {
     this.props.addCurrentPost(this.props);
   }

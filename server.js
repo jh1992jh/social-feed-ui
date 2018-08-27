@@ -12,7 +12,9 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use('/post/uploads', express.static(__dirname + '/uploads'));
+app.use('/profile/uploads', express.static(__dirname + '/uploads'));
 const db = require('./config/keys').mongoURI;
 
 mongoose

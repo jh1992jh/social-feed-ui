@@ -5,7 +5,7 @@ import { addPost } from '../../actions/postActions';
 
 class PostaPost extends Component {
   state = {
-    imageUrl: '',
+    postImage: null,
     text: ''
   }
 
@@ -13,35 +13,43 @@ class PostaPost extends Component {
     this.setState({ [e.target.name]: e.target.value})
   }
 
+  imageHandler = e => {
+    this.setState({postImage: e.target.files[0]})
+  }
+  
   onPostSubmit = e => {
     e.preventDefault();
 
-    const { imageUrl, text } = this.state;
+    const { postImage, text } = this.state;
     const { profile } = this.props.profile
 
-
-    const newPost = {
-      postImage: imageUrl,
+    const fd = new FormData()
+   /*const newPost = {
+      postImage: postImage.name,
       text,
       handle: profile.handle,
       profileImage: profile.profileImage
 
-    }
+    }*/
 
-    this.props.addPost(newPost, this.props.history);
+    fd.append('postImage', this.state.postImage ,this.state.postImage.name )
+    fd.append('text', this.state.text )
+    
+    this.props.addPost(fd, this.props.history);
   }
   render() {
-    const { imageUrl, text } = this.state;
+    const { image, text } = this.state;
     return (
       <div className="postApost">
         <div className="postImageContainer">
-          {imageUrl.length > 0 ? (<img src={imageUrl} alt="post pic"/>) : (<img src="http://placehold.it/200x200/92c952" alt="post pic" />)}
+          {image !== null ? (<img src={image} alt="post pic"/>) : (<img src="http://placehold.it/200x200/92c952" alt="post pic" />)}
         </div>
 
-        <form className="postForm" onSubmit={this.onPostSubmit}>
-          <input type="text" name="imageUrl" value={imageUrl} onChange={this.onInputChange} placeholder="Image"/>
+        <form className="postForm" encType="multipart/form-data" onSubmit={this.onPostSubmit}>
+          <input type="file" name="postImage" onChange={this.imageHandler} placeholder="Image"/>
           <input type="text" name="text" value={text} onChange={this.onInputChange} placeholder="text"/>
           <button>Submit <i className="far fa-paper-plane" /></button>
+         
         </form>
       </div>
     )

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 class EditProfile extends Component {
     state = {
         description: '',
-        profileImage: ''
+        profileImage: null
     }
     componentDidMount () {
       this.props.getCurrentProfile();
@@ -22,17 +22,25 @@ class EditProfile extends Component {
         this.setState({[e.target.name]: e.target.value})
     }
 
+    profileImageHandler = e => {
+        this.setState({profileImage: e.target.files[0]})
+    }
     onFormSubmit = e => {
         e.preventDefault()
 
         const { description, profileImage } = this.state;
 
-        const profileData = {
+        /*const profileData = {
             description,
             profileImage
-        }
+        }*/
 
-        this.props.editProfile(profileData, this.props.history);
+        const fd = new FormData();
+
+        fd.append('description', description)
+        fd.append('profileImage', profileImage)
+
+        this.props.editProfile(fd, this.props.history);
     }
     
   render() {
@@ -47,7 +55,7 @@ class EditProfile extends Component {
         outputContent = (
             <form className="editProfileForm" onSubmit={this.onFormSubmit}>
                 <input type="text" name="description" value={description} onChange={this.onInputChange} />
-                <input type="text" name="profileImage" value={profileImage} onChange={this.onInputChange} />
+                <input type="file" name="profileImage" onChange={this.profileImageHandler} />
                 <button>Submit</button>
             </form>
         )

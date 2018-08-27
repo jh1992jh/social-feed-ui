@@ -6,6 +6,33 @@ const passport = require('passport');
 const User = require('../../models/User');
 const Profile = require('../../models/Profile');
 
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function(req, file, cb) {
+        cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname)
+    }
+}) 
+
+const fileFilter = (req, file, cb) => {
+    // reject a file
+    if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+        cb(null, true)
+    } else {
+        cb(null, false)
+    }
+    
+}
+
+const upload = multer({storage: storage, limits: {
+    fileSize: 1024 * 1024 * 5
+},
+fileFilter: fileFilter
+});
+
 const validateProfileInput = require('../../validation/profile');
 
 router.get('/test', (req, res) => {
@@ -76,7 +103,7 @@ router.get('/user/:user_id', (req, res) => {
         .catch(err => res.status(404).json({noprofile: 'There is no profile for this user'}))
 })
 
-router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/', upload.single('profileImage'), passport.authenticate('jwt', { session: false }), (req, res) => {
     const { errors, isValid } = validateProfileInput(req.body)
 
     if(!isValid) {
@@ -87,7 +114,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     profileFields.user = req.user.id;
     if(req.body.handle) profileFields.handle = req.body.handle;
     if(req.body.description) profileFields.description = req.body.description;
-    if(req.body.profileImage) profileFields.profileImage = req.body.profileImage;
+    if(req.file.path) profileFields.profileImage = req.file.path;
 
     Profile.findOne({user: req.user.id}).then(profile => {
         if(profile) {
@@ -112,9 +139,9 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
 })
 
 
-router.post('/edit', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.post('/edit', upload.single('profileImage'), passport.authenticate('jwt', { session: false }), (req, res) => {
     const profileFields = {}
-    if (req.body.profileImage) profileFields.profileImage = req.body.profileImage;
+    if (req.file.path) profileFields.profileImage = req.file.path;
     if (req.body.description) profileFields.description = req.body.description;
     Profile.findOneAndUpdate(
       { user: req.user.id },
@@ -179,10 +206,5 @@ router.post('/unfollow/:profile_id', passport.authenticate('jwt', { session: fal
     .catch(err => console.log(err));
 })
 
-          /*  const removeIndex = profile.followers.map(follower => follower.user.toString()).req.user_id;
-
-            profile.followers.splice(removeIndex, 1);
-
-            profile.save().then(profile => res.json(profile)) */
 module.exports = router;
 

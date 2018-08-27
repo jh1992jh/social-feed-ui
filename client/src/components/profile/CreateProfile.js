@@ -8,11 +8,15 @@ class CreateProfile extends Component {
     state = {
         handle: '',
         description: '',
-        profileImage: ''
+        profileImage: null
     }
 
     onInputChange = e => {
         this.setState({[e.target.name]: e.target.value})
+    }
+
+    profileImageUpload = e => {
+        this.setState({ profileImage: e.target.files[0]})
     }
 
     onFormSubmit = e => {
@@ -20,16 +24,22 @@ class CreateProfile extends Component {
 
         const { handle, description, profileImage } = this.state;
 
-        const profileData = {
+        /* const profileData = {
             handle,
             description,
             profileImage
-        }
+        } */
 
-        this.props.createProfile(profileData, this.props.history)
+        const fd = new FormData();
+
+        fd.append('handle', handle);
+        fd.append('description', description);
+        fd.append('profileImage', profileImage)
+
+        this.props.createProfile(fd, this.props.history)
     }
   render() {
-      const { handle, description, profileImage } = this.state;
+      const { handle, description } = this.state;
 
     return (
       <div className="createProfile">
@@ -38,7 +48,7 @@ class CreateProfile extends Component {
       <form className="createProfileForm" onSubmit={this.onFormSubmit}>
         <input type="text" name="handle" value={handle} onChange={this.onInputChange} placeholder="Handle"/>
         <input type="text" name="description" value={description} onChange={this.onInputChange} placeholder="description" />
-        <input type="text" name="profileImage" value={profileImage} onChange={this.onInputChange} placeholder="http://placehold.it/200x200/92c952" />
+        <input type="file" name="profileImage" onChange={this.profileImageUpload} placeholder="Profile image" />
         <button>Submit</button>
       </form>
       </div>
