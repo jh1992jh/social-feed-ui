@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { getCurrentProfile, editProfile } from '../../actions/profileActions';
 import PropTypes from 'prop-types';
+import Spinner from '../../utilities/Spinner';
 
 class EditProfile extends Component {
     state = {
@@ -50,11 +51,12 @@ class EditProfile extends Component {
     let outputContent;
 
     if(loading === true || profile === null ) {
-        outputContent = <h1>Loading</h1>
+        outputContent = <Spinner width="200px" />
     } else if (loading === false && profile !== null ) {
         outputContent = (
             <form className="editProfileForm" onSubmit={this.onFormSubmit}>
-                <input type="text" name="description" value={description} onChange={this.onInputChange} />
+                <input type="text" name="description" value={description} onChange={this.onInputChange}
+                placeholder="description" />
                 <input type="file" name="profileImage" onChange={this.profileImageHandler} />
                 <button>Submit</button>
             </form>

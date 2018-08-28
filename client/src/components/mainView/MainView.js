@@ -8,6 +8,7 @@ import NavbarTop from '../navbars/NavbarTop';
 import Feed from '../feed/Feed';
 import Stories from '../stories/Stories';
 import Post from '../posts/Post';
+import Spinner from '../../utilities/Spinner';
 
 class MainView extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class MainView extends Component {
     let outputPosts; 
     
     if(posts.loading === true || profile.loading === true || profile.profile === null) {
-      outputPosts = <h3>Loading</h3>
+      outputPosts = <Spinner  width="200px"/>
     } else if (posts.loading === false && posts.posts.length > 0 && Object.keys(profile.profile).length > 0) {
       outputPosts = posts.followedPosts.map((post, i) => (
         <Post

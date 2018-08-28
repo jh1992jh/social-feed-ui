@@ -5,6 +5,7 @@ import { getOwnedPosts } from '../../actions/postActions'
 import PropTypes from 'prop-types';
 import LikeInfo from './LikeInfo';
 import LikesContainer from './LikesContainer';
+import Spinner from '../../utilities/Spinner';
 
 class Likes extends Component {
   componentDidMount() {
@@ -18,7 +19,7 @@ class Likes extends Component {
     let outputContent; 
     
     if(profile.loading === true || loading === true ) {
-      outputContent = <h3>Loading</h3>
+      outputContent = <Spinner width="200px" />
     } else if (profile.loading === false && loading === false && ownedPosts.length > 0)  {
       outputContent = (
         ownedPosts.map(post => (

@@ -7,6 +7,7 @@ import MyStory from './MyStory';
 import Story from './Story';
 import StoryContainerHeader from './StoryContainerHeader';
 import InfoFooter from './InfoFooter';
+import Spinner from '../../utilities/Spinner';
 
 class Stories extends Component {
   componentDidMount() {
@@ -22,13 +23,15 @@ class Stories extends Component {
     let outputStories;
 
     if (profile.loading === true || profile.profile === null) {
-      outputMyStory = <h3>Loading</h3>
+      outputMyStory = <Spinner width="50px" />
     } else if ( Object.keys(profile.profile).length > 0) {
       outputMyStory = <MyStory handle={profile.profile.handle} profileImage={profile.profile.profileImage} />
     }
 
-    if(loading === true || followedStories.length === 0 ) {
-      outputStories = <h3>Loading</h3>
+    if(loading === true) {
+      outputStories = <Spinner width="50px" />
+    } else if (loading === false && followedStories.length === 0) {
+      outputStories = null;
     } else if (loading === false && followedStories.length > 0) {
       outputStories = followedStories.map(story => (
         <Link key={story._id} to={`/story/${story._id}`}>

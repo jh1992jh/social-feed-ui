@@ -5,13 +5,13 @@ import { getCurrentProfile } from '../../actions/profileActions';
 
 class NavbarBottom extends Component {
   componentDidMount() {
-    if(!this.props.history.location.pathname === '/' || !this.props.match.params.userId) {
+    if(!this.props.history.location.pathname === '/' || !this.props.match.params.userId && this.props.auth.isAuthenticated === true) {
       this.props.getCurrentProfile();
     }
   }
   render() {
     let outputContent;
- if (this.props.history.location.pathname === '/login' || this.props.history.location.pathname === '/register' || this.props.history.location.pathname === '/preview-story' ) {
+ if (this.props.auth.isAuthenticated === false ) {
       outputContent = null;
     } else {
       outputContent = (
@@ -40,4 +40,8 @@ class NavbarBottom extends Component {
   }
 }
 
-export default connect(null, { getCurrentProfile })(withRouter(NavbarBottom));
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps, { getCurrentProfile })(withRouter(NavbarBottom));

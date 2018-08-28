@@ -2,6 +2,7 @@ import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { addComment, deleteComment } from '../../actions/postActions';
 import { Link, withRouter } from 'react-router-dom';
+import Moment from 'react-moment';
 import PropTypes from 'prop-types';
 
 class PostFooter extends Component {
@@ -43,7 +44,7 @@ class PostFooter extends Component {
    
     let outputComments;
 
-    if (this.props.match.params.postId) {
+    if (this.props.match.params.postId && this.props.profile.profile !== null) {
       outputComments = (
         <Fragment>
           {this.props.comments.map((comment, i) => (
@@ -58,13 +59,15 @@ class PostFooter extends Component {
                   {comment.handle}
                   </Link>
                   </span>
+                  
+                  <span className="commentText">
                   {comment.text} {auth.user.id === comment.user ? (
                     <i className="far fa-trash-alt" onClick={() => this.props.deleteComment(this.props.match.params.postId, comment._id)} />
-                  ) : null}
+                  ) : null} </span>
                 </p>
                 <br />
               </div>
-              <p className="commentTime">{comment.date}</p>
+              <Moment fromNow className="commentTime">{comment.date}</Moment>
             </Fragment>
           ))}
         </Fragment>
@@ -81,6 +84,7 @@ class PostFooter extends Component {
             {comments[0].handle} 
             </Link>
             </span>
+            {' '}
             {comments[0].text}
           </p>
         </Fragment>
@@ -88,26 +92,32 @@ class PostFooter extends Component {
     }
     return (
       <div className="postFooter">
+      
         {likes.length > 0 ? (
           <div className="postFooterLikes">
-          <p>{likes.length} likes</p>
+          <p>{likes.length} likes <br />
+          {this.props.match.params.postId ? <Moment fromNow className="postFooterTime">{date}</Moment> : null}
+          </p>
         </div>
         ) : null }
         <div className="postFooterText">
-          <p>
-             <Link to={`/profile/${userId}`}>
-              <span className="postFooterUserName">{handle}</span>
-    </Link> {' '}
-
-            {text}
-          </p>
+        <p>
+        <Link to={`/profile/${userId}`}>
+        <span className="postFooterUserName">{handle}</span>
+        </Link> {' '}
+        
+        {text}
+        </p>
+        
         </div>
+        <div className="postFooterComments">
         {outputComments}
-        <div className="forDesktop ago">{date} HOURS AGO</div>
+        <Moment fromNow className="forDesktop ago">{date} HOURS AGO</Moment>
         <hr className="forDesktop" />
-        <div className="postFooterComment">
+        </div>
+        <div className={this.props.match.params.postId ? 'postFooterComment singlePostForm' : 'postFooterComment'}>
           <div className="roundedProfThumbVerySmall">
-            <img src={profile.profile.profileImage} alt="profPic " />
+            {profile.profile !== null ? <img src={profile.profile.profileImage} alt="profPic " /> : null}
           </div>
           <form onSubmit={this.onCommentSubmit}>
             <input
@@ -119,7 +129,8 @@ class PostFooter extends Component {
             />
           </form>
         </div>
-        <div className="postFooterTime">{date.toString()} HOURS AGO</div>
+        
+        {this.props.match.params.postId ? null : <Moment fromNow className="postFooterTime">{date}</Moment>}
       </div>
     );
   }

@@ -9,9 +9,7 @@ class PostBody extends Component {
   state = {
     image: ''
   }
-  componentDidMount() {
-    console.log(typeof this.props.postImage)
-  }
+  
   onAddCurrentPost = () => {
     this.props.addCurrentPost(this.props);
   }

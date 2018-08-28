@@ -7,7 +7,7 @@ const ForYou = ({ img, profileImage }) => {
       <div className="exploreCategoriesRoundedProfThumbSmall">
         <img src={profileImage} alt="profImg" />
       </div>
-      <img src={img} alt="For you" />
+      <img src={profileImage} alt="For you" />
       <h4>For You</h4>
     </div>
   );

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Moment from 'react-moment';
 
 const LikeInfo = ({ post }) => {
   const { comments, _id, postImage } = post;
@@ -20,8 +21,8 @@ const LikeInfo = ({ post }) => {
           <Link to={`/post/${_id}`}>
             <span>commented: {comments[0].text}</span>
         
-
-          <span className="ago">{new Date().getHours()}h</span>
+          {' '}
+          <Moment fromNow className="ago">{comments[0].date}</Moment>
           </Link>
         </p>
       </div>

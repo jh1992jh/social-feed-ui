@@ -7,6 +7,7 @@ import Categories from './Categories';
 import ExploreItem from './ExploreItem';
 import NavbarTop from '../navbars/NavbarTop';
 import SuggestedPeople from './SuggestedPeople';
+import Spinner from '../../utilities/Spinner';
 
 class Explore extends Component {
   state = {
@@ -29,7 +30,7 @@ onChooseFilterCategory = (category) => {
 
     const filteredPosts = posts.filter(post => post.category === filterCategory);
     if(loading === true) {
-      outputContent = <h1>Loading</h1>
+      outputContent = <Spinner width="360px" />
     } else if (loading === false && posts.length > 0) {
       outputContent = filteredPosts.map((post, i) => (
        <Fragment key={i}>
