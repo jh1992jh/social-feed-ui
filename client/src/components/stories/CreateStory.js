@@ -12,7 +12,7 @@ class CreateStory extends Component {
         storyImage: null,
         storyImagePrev: null,
         storyBackground: 'None',
-        storyDuration: 4,
+        storyDuration: 'seconds4',
         storyLocation: ''
     }
 

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import Likes from '../likes/Likes';
+import { logoutUser } from '../../actions/authActions';
 
 class NavbarTop extends Component {
   render() {
@@ -35,10 +37,17 @@ class NavbarTop extends Component {
           <NavLink to="/my-profile">
             <i className="far fa-user" />
           </NavLink>
+          <div className="navTopLogout">
+          <a onClick={() => this.props.logoutUser()}>
+          <i className="fas fa-sign-out-alt" />
+          <br/> 
+          <span>Sign Out</span>
+        </a>
+        </div>
         </div>
       </nav>
     );
   }
 }
 
-export default NavbarTop;
+export default connect(null, { logoutUser })(NavbarTop);

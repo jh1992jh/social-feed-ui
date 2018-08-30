@@ -1,17 +1,19 @@
 import React, { Fragment } from 'react';
+import{ Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const SuggestedPeople = ({ profiles }) => {
-  const outputSuggestions = profiles.slice(0, 3).map((profile, i) => (
-    <div key={i} className="suggestedCard">
+  const outputSuggestions = profiles.slice(0, 3).map(profile => (
+    <div key={profile.user._id} className="suggestedCard">
       <img
         src={profile.user.profileImage}
         className="suggestedRoundedProfic"
         alt="Auggested profile"
       />
       <p className="name">{profile.handle}</p>
-
-      <button className="suggestedButton">Follow</button>
+      <Link to={`/profile/${profile.user._id}`}>
+      <button className="suggestedButton">See their profile</button>
+      </Link>
     </div>
   ));
   return (

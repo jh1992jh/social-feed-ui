@@ -17,9 +17,9 @@ const PostSchema = new Schema ({
         type: String,
         //required: true
     },
-    category: {
-        type: String, 
-        default: 'All'
+    categories: {
+        type: [String], 
+        default: ['All']
     },
     handle: {
         type: String

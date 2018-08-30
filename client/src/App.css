@@ -231,16 +231,23 @@ ul {
     margin-left: -1em;
     height: 58px;
     display: flex;
-    padding: 10px;
+    padding: 15px 0 5px 18px;
     align-items: center;
     justify-content: space-around;
     border-bottom: 1px solid #e0e0e0;
+    overflow-x: scroll;
   }
 
+  .storiesContainer .otherStories {
+    display: flex;
+    overflow-x: scroll;
+    margin: 0 1em; 
+  }
   .story {
     height: 50px;
     width: 50px;
     border-radius: 360px;
+    margin-right: 0.5em;
   }
 
   .stories img {
@@ -263,13 +270,15 @@ ul {
     font-weight: 300;
     color: #222;
     text-align: center;
+    margin-right: 0.5em;
   }
 
   .myStoryText {
     color: #222;
     font-size: 0.6rem;
     text-align: center;
-    margin-top: -0.8em;
+    margin-top: -1.5em;
+    margin-right: 0.5em;
   }
 
   .myStory .fa-plus-circle {
@@ -375,11 +384,12 @@ ul {
   {
     position: absolute;
     bottom: 40%;
-    left: calc(50% - 101px);
-    max-width: 200px;
+    left: 0;
+    min-width: 100%;
     font-size: 2rem;
     font-weight: 600;
     z-index: 1050;
+    text-align: center;
   }
 
 
@@ -399,10 +409,9 @@ ul {
     position: absolute;
     z-index: 1050;
     bottom: 20%;
-    left: 36%;
-    min-width: 200px;
+    left: 0;
+    min-width: 100%;
     text-align: center;
-    left: calc(53% - 100px);
     font-size: 2rem;
     font-weight: 600;
   }
@@ -521,7 +530,7 @@ ul {
   }
 
   .post .postBody img {
-    max-height: 300px;
+    height: 300px;
     width: 100%;
   }
 
@@ -544,6 +553,7 @@ ul {
   .post .postFooter {
     padding: 0.3em;
     font-size: 0.9rem;
+  
   }
 
   .post .postFooter * {
@@ -597,9 +607,11 @@ ul {
 
   .post .postFooter .singlePostForm {
     position: relative;
-    bottom: 1.5em;
+    bottom: 1.7em;
     left: 0;
+    width: 100%;
     background: #fff;
+  
   }
 
   .post .postFooter .postFooterComment .roundedProfThumbSmall {
@@ -680,7 +692,6 @@ ul {
   }
 
   .post .commentInputForm {
-    border: 1px solid red;
     position: fixed;
     top: 0;
     left: 0;
@@ -1509,7 +1520,17 @@ ul {
   .navTop .tvAndDms {
     display: none;
   }
+.navTop .navTopLogout {
+  margin-left: 5em;
+  text-align: center;
+  line-height: 0.1rem;
+  margin-top: -0.2em;
+}
 
+.navTop .navTopLogout span {
+  font-size: 0.5rem;
+  margin-top: -100px;
+}
   .navTop .likes {
     position: absolute;
     display: inline-block;
@@ -1614,10 +1635,12 @@ ul {
     top: 15.5%;
     right: 20.85%;
     z-index: 0;
+    
   }
 
   .stories .storiesContainer {
-    overflow-y: auto;
+    overflow-y: scroll;
+    max-height: 300px;
     box-shadow: 0 -15px 20px inset rgba(250, 250, 230, 0.9);
   }
 
@@ -1665,6 +1688,201 @@ ul {
     margin: 0.167em 0.33em;
   }
 
+  .createStory {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .createStory .previewStoryContainer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .createStory .previewStoryContainer img {
+    width: 50%;
+    height: auto;
+  }
+
+  .createStory .createStoryForm {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .createStory .createStoryForm input,
+  .createStory .createStoryForm select {
+    margin: 1em 0;
+    box-shadow: 0 2px 0 -1px #808080;
+    border: none;
+    outline: none;
+  }
+
+  .createStory .createStoryForm button {
+    background-color: #0099cc;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 5.5px;
+    padding: 0.6em;
+    margin: 2em auto 4em auto;
+    width: 30vw;
+  }
+
+  .createStory .createStoryForm button .fa-share-square {
+    margin: 0 0.5em;
+  }
+  
+  .createStory .previewStoryContainer {
+    width: 80vw;
+    height: 50vh;
+    position: relative;
+    font-weight: 600;
+  }
+
+  .submitStoryContainer {
+    position: relative;
+    height: 100vh;
+  }
+
+  .seeStoryContainer {
+    height: 100vh;
+    width: 100vw;
+    background: #222;
+    display: flex;
+    padding-top: 5%;
+    align-items: center;
+    flex-direction: column;
+    z-index: 0;
+    
+  }
+
+  .seeStoryContainer .storyInfo {
+    z-index: 1030;
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+  }
+
+  .seeStoryContainer .storyInfo .storyCreator {
+    display: flex;
+    align-items: center;
+    margin: 0.5em 0 0 0.5em;
+  }
+
+  .seeStoryContainer .storyInfo .storyCreator img {
+    height: 28px;
+    width: 28px;
+    border-radius: 360px;
+    margin-right: 0.5em;
+  }
+
+  
+  .seeStoryContainer .storyInfo .storyCreated {
+    display: flex;
+    align-items: center;
+    margin: 0.5em 0.5em 0 0;
+  }
+  .createStory .previewStoryContainer .storyText,
+  .submitStoryContainer .storyText,
+  .seeStoryContainer .storyText
+  {
+    position: absolute;
+    bottom: 35%;
+    left: 0;
+    display: block;
+    min-width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    z-index: 1050;
+  }
+
+
+  .createStory .previewStoryContainer .storyLocation
+  {
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    min-width: 100%;
+    
+  }
+
+  .submitStoryContainer .storylocation,
+  .seeStoryContainer .storylocation
+  {
+    position: absolute;
+    z-index: 1050;
+    bottom: 25%;
+    left: 0;
+    min-width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .previewStoryContainer img,
+  .submitStoryContainer img,
+  .seeStoryContainer img {
+    width: 30%;
+    height: 60%;
+    position: relative;
+
+  }
+
+  .submitStoryContainer button {
+    background-color: #0099cc;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 5.5px;
+    padding: 0.6em;
+    margin: 2em auto 4em auto;
+    width: 30vw;
+    position: absolute;
+    bottom: 0;
+    left: 33%;
+    z-index: 1050;
+  }
+
+  .seeStoryContainer .storyDurationBar {
+    width: 1%;
+    height: 50px;
+    background: red;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  .seconds2 {
+    animation: storyDuration 2s linear;
+  }
+
+  .seconds4 {
+    animation: storyDuration 4s linear;
+  }
+
+  .seconds6 {
+    animation: storyDuration 6s linear;
+  }
+
+  .seconds8 {
+    animation: storyDuration 8s linear;
+  }
+
+  .seconds10 {
+    animation: storyDuration 10s linear;
+  }
+
+  @keyframes storyDuration {
+    from { width: 0%;}
+    to { width: 100%;}
+  }
+
   /* POST STYLES */
   .post {
     border: 1px solid #d0d0d0;
@@ -1696,14 +1914,14 @@ ul {
   }
 
   .post .postBody {
-    width: 38vw;
-    height: 83vh;
+    width: 50vw;
+    height: 50vh;
     margin-bottom: 5.5em;
   }
 
   .post .postBody img {
-    width: 38vw;
-    height: 83vh;
+    width: 50vw;
+    height: 50vh;
   }
 
   .post .postBody .postBodyIcons {
@@ -1781,6 +1999,7 @@ ul {
   .explore .suggestedPeopleContainer .suggestedPeopleHeader {
     display: flex;
     justify-content: space-between;
+    margin-top: 5em;
   }
 
   .explore .suggestedPeopleContainer .suggestedPeopleHeader p {
@@ -1927,7 +2146,7 @@ ul {
     .forDesktop
     .editProfileBtn {
     display: block;
-    width: 28%;
+    width: 100%;
     border: 1px solid #808080;
     border-radius: 5px;
     padding: 0.5em;
@@ -1938,6 +2157,7 @@ ul {
 
   .profile .profileHeaderBottom .profileHeaderBottomRight .forDesktop .fa-cog {
     font-size: 2rem;
+    margin: 1em;  
   }
 
   .profile .profileHeaderBottom .profileHeaderBottomRight .otherProfileBtns {
@@ -2032,5 +2252,113 @@ ul {
   .profile .profileBody .profileBodyItem img {
     height: 15vw;
     width: 15vw;
+  }
+
+  .createProfile, .editProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4em 2em 2em 2em;
+  }
+
+  .createProfile .fa-user-circle, .editProfile .fa-user-edit {
+    font-size: 8rem;
+    color: #808080;
+    margin: auto;
+  }
+
+  .createProfile h3, .editProfile h3 {
+    margin: 2em 0 4em 0;
+  }
+
+  .createProfile .createProfileForm, .editProfile .editProfileForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .createProfile .createProfileForm input, .editProfile .editProfileForm input {
+    box-shadow: 0 2px 0 -1px #808080;
+    margin: 1.5em 0;
+  }
+
+  .createProfile .createProfileForm button, .editProfile .editProfileForm button {
+    background-color: #0099cc;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 5.5px;
+    padding: 0.6em;
+    margin: 2em 0;
+    width: 30vw;
+  }
+
+
+/* LOGIN STYLES */ 
+  .login {
+    height: 100vh;
+    width: 100vw;
+    background-color: #f9f9f9;
+  }
+
+  .loginContainer {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    width: 80vw;
+  }
+
+  .login .loginContainer .loginHeader {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .login .loginContainer .loginHeader h3 {
+    margin: 1em;
+  }
+
+  .login .loginContainer .loginBrand {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin: 2em 0;
+  }
+
+  .login .loginContainer .loginBrand .fa-camera {
+    font-size: 3rem;
+  }
+
+  .login .loginContainer .loginBrand .brandText {
+    font-size: 3rem;
+    font-family: 'Satisfy', cursive;
+  }
+
+  .login .loginContainer .loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .login .loginContainer .loginForm input {
+    margin: 1em 0;
+  }
+
+  .login .loginContainer .loginForm button {
+    background-color: #0099cc;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 5.5px;
+    padding: 0.6em;
+    margin: 2em 0;
+    width: 30vw;
+  }
+
+  .login .loginContainer .loginHeader .selected {
+    box-shadow: 0 2px 0 -1px #222;
   }
 }

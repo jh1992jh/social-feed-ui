@@ -47,13 +47,11 @@ class PostBody extends Component {
           </div>
 
           <div className="postBodyIconsLeft forDesktop">
-            <i className="far fa-heart" />
+            <i className="far fa-heart" onClick={checkLikes() === 1 ? this.onRemoveLike : this.onAddLike} style={checkLikes() ? {color:'#dd0000'} : null} />
 
             <i className="far fa-comment" />
           </div>
-          <div className="postBodyIconsRight">
-            <i className="far fa-bookmark" />
-          </div>
+          
         </div>
       </div>
     );

@@ -5,7 +5,7 @@ import { getCurrentProfile } from '../../actions/profileActions';
 
 class NavbarBottom extends Component {
   componentDidMount() {
-    if(!this.props.history.location.pathname === '/' || !this.props.match.params.userId && this.props.auth.isAuthenticated === true) {
+    if(!this.props.history.location.pathname === '/' || !this.props.match.params.userId) {
       this.props.getCurrentProfile();
     }
   }

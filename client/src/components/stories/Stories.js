@@ -65,7 +65,9 @@ class Stories extends Component {
           <div className="forMobile">
             {outputMyStory}
           </div>
+          <div className="otherStories">
           {outputStories}
+          </div>
         </div>
         <hr className="forDesktop" />
         <div className="forDesktop">
