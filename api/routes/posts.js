@@ -55,6 +55,7 @@ router.post('/',upload.single('postImage'), passport.authenticate('jwt', { sessi
             text: req.body.text,
             postImage: req.file.path,
             category: req.body.category,
+            filter: req.body.filter,
             handle: handle,
             profileImage: profileImage,
             user: req.user.id

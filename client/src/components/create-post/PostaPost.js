@@ -7,7 +7,9 @@ class PostaPost extends Component {
   state = {
     postImage: null,
     postImagePrev: null,
-    text: ''
+    text: '',
+    category: 'all',
+    filter: 'none'
   }
 
   onInputChange = e => {
@@ -21,7 +23,7 @@ class PostaPost extends Component {
   onPostSubmit = e => {
     e.preventDefault();
 
-    const { postImage, text } = this.state;
+    const { postImage, text, filter } = this.state;
     const { profile } = this.props.profile
 
     const fd = new FormData()
@@ -35,20 +37,42 @@ class PostaPost extends Component {
 
     fd.append('postImage', this.state.postImage ,this.state.postImage.name )
     fd.append('text', this.state.text )
+    fd.append('category', this.state.category )
+    fd.append('filter', this.state.filter)
     
     this.props.addPost(fd, this.props.history);
   }
   render() {
-    const { postImagePrev, text } = this.state;
+    const { postImagePrev, text, category, filter } = this.state;
     return (
       <div className="postApost">
         <div className="postImageContainer">
-          {postImagePrev !== null ? (<img src={postImagePrev} alt="post pic"/>) : (<img src="http://placehold.it/200x200/92c952" alt="post pic" />)}
+          {postImagePrev !== null ? (
+            <img src={postImagePrev} className={filter !== null ? `${filter}` : null} alt="post pic"/>
+          ) : (<img src="http://placehold.it/200x200/92c952" alt="post pic" />)}
         </div>
 
         <form className="postForm" encType="multipart/form-data" onSubmit={this.onPostSubmit}>
           <input type="file" name="postImage" onChange={this.imageHandler} placeholder="Image"/>
-          <input type="text" name="text" value={text} onChange={this.onInputChange} placeholder="text"/>
+          <input type="text" name="text" value={text} onChange={this.onInputChange} placeholder="Text"/>
+          <select name="filter" onChange={this.onInputChange}>
+            <option value="none">None</option>
+            <option value="bw">Black and white</option>
+            <option value="bright">Bright</option>
+            <option value="hue1">Hue 1</option>
+            <option value="hue5">Hue 5</option>
+            <option value="saturate">Saturate</option>
+            <option value="sepia">Sepia</option>
+          </select>
+          <select name="category" onChange={this.onInputChange}>
+            <option value="all">All</option>
+            <option value="diy">DIY</option>
+            <option value="music">Music</option>
+            <option value="art">Art</option>
+            <option value="gaming">Gaming</option>
+            <option value="fitness">Fitness</option>
+            <option value="tech">Tech</option>
+          </select>
           <button>Submit <i className="far fa-paper-plane" /></button>
          
         </form>

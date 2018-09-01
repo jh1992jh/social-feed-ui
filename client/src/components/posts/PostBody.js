@@ -24,6 +24,7 @@ class PostBody extends Component {
   render() {
     const {
       postImage,
+      filter,
       postId,
       likes,
       auth
@@ -31,8 +32,11 @@ class PostBody extends Component {
     const checkLikes =  () => likes.filter(like => like.user === auth.user.id).length
     return (
       <div className="postBody">
-        <div className="postBodyImg">
-          <img src={postImage} alt="post" />
+        <div className="postBodyImg forMobile">
+          <img src={postImage} className={filter !== 'none' ? filter : null } alt="post" />
+        </div>
+        <div className={this.props.match.params.postId ? 'singlePostImage forDesktop' : 'postBodyImage forDesktop'}>
+          <img src={postImage} alt="post" className={filter !== 'none' ? filter : null } />
         </div>
         <div
           className="postBodyIcons"

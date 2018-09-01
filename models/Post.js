@@ -17,9 +17,13 @@ const PostSchema = new Schema ({
         type: String,
         //required: true
     },
-    categories: {
-        type: [String], 
-        default: ['All']
+    filter: {
+        type: String,
+        default: 'none'
+    },
+    category: {
+        type: String, 
+        default: 'all'
     },
     handle: {
         type: String

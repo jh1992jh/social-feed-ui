@@ -30,6 +30,7 @@ class Post extends Component {
           handle,
           userId,
           postImage,
+          filter,
           text,
           likes,
           date,
@@ -48,6 +49,7 @@ class Post extends Component {
         />
         <PostBody
         postImage={postImage}
+        filter={filter}
         postId={postId}
         profileImage={profileImage}
         handle={handle}
@@ -85,6 +87,7 @@ class Post extends Component {
           />
           <PostBody
           postImage={post.postImage}
+          filter={post.filter}
           postId={post.postId}
           profileImage={post.profileImage}
           handle={post.handle}

@@ -50,6 +50,7 @@ class MainView extends Component {
           handle={post.handle}
           userId={post.user}
           postImage={post.postImage}
+          filter={post.filter}
           text={post.text}
           likes={post.likes}
           comments={post.comments}

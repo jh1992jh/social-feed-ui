@@ -26,13 +26,13 @@ class Categories extends Component {
       outputCategories = (
         <Fragment>
         <ForYou profileImage={profile.profile.profileImage} />
-        <Category img={all} onChooseFilterCategory={onChooseFilterCategory} category="All" /> 
-        <Category img={diy} onChooseFilterCategory={onChooseFilterCategory} category="DIY" />
-        <Category img={music} onChooseFilterCategory={onChooseFilterCategory} category="Music" />
-        <Category img={art} onChooseFilterCategory={onChooseFilterCategory} category="Art" />
-        <Category img={gaming} onChooseFilterCategory={onChooseFilterCategory} category="Gaming" />
-        <Category img={fitness} onChooseFilterCategory={onChooseFilterCategory} category="Fitness" />
-        <Category img={tech} onChooseFilterCategory={onChooseFilterCategory} category="Tech" />
+        <Category img={all} onChooseFilterCategory={onChooseFilterCategory} category="all" /> 
+        <Category img={diy} onChooseFilterCategory={onChooseFilterCategory} category="diy" />
+        <Category img={music} onChooseFilterCategory={onChooseFilterCategory} category="music" />
+        <Category img={art} onChooseFilterCategory={onChooseFilterCategory} category="art" />
+        <Category img={gaming} onChooseFilterCategory={onChooseFilterCategory} category="gaming" />
+        <Category img={fitness} onChooseFilterCategory={onChooseFilterCategory} category="fitness" />
+        <Category img={tech} onChooseFilterCategory={onChooseFilterCategory} category="tech" />
     </Fragment>
       )
     }

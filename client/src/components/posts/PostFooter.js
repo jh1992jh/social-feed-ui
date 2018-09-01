@@ -98,7 +98,7 @@ class PostFooter extends Component {
           <p>{likes.length} likes <br />
           </p>
         </div>
-        ) : null }
+        ) : <div className="postFooterLikes"/> }
   
         <div className="postFooterText">
         {this.props.match.params.postId ? <Moment fromNow className="postFooterTime">{date}</Moment> : null}
@@ -106,12 +106,12 @@ class PostFooter extends Component {
         <Link to={`/profile/${userId}`}>
         <span className="postFooterUserName">{handle}</span>
         </Link> {' '}
+       <p>{text}</p> 
         
-        {text}
         
         </p>
         </div>
-        <div className="postFooterComments">
+        <div className={this.props.match.params.postId ? "postFooterComments postFooterCommentsSingle" : "postFooterComments"}>
         {outputComments}
         <Moment fromNow className="forDesktop ago">{date}</Moment>
         <hr className="forDesktop" />

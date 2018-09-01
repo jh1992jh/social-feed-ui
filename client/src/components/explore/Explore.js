@@ -11,7 +11,7 @@ import Spinner from '../../utilities/Spinner';
 
 class Explore extends Component {
   state = {
-    filterCategory: 'All'
+    filterCategory: 'all'
   }
 componentDidMount() {
   this.props.getPosts();

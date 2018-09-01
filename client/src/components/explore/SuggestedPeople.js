@@ -6,7 +6,7 @@ const SuggestedPeople = ({ profiles }) => {
   const outputSuggestions = profiles.slice(0, 3).map(profile => (
     <div key={profile.user._id} className="suggestedCard">
       <img
-        src={profile.user.profileImage}
+        src={profile.profileImage}
         className="suggestedRoundedProfic"
         alt="Auggested profile"
       />
