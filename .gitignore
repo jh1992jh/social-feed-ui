@@ -5,7 +5,7 @@
 /client/node_modules
 /config/keys_dev.js
 /client/src/userItems
-/uploads
+
 
 # testing
 /coverage
