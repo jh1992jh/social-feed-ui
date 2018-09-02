@@ -80,7 +80,7 @@ class CreateStory extends Component {
             <option value="seconds6">6 Seconds</option>
             <option value="seconds8">8 Seconds</option>
             </select> 
-            <button>Preview <i className="fas fa-share-square" /></button>
+            <button>Share <i className="fas fa-share-square" /></button>
         </form>
       </div>
     )

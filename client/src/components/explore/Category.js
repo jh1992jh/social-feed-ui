@@ -12,7 +12,6 @@ const Category = ({ category, img , onChooseFilterCategory}) => {
 
 Category.propTypes = {
   category: PropTypes.string.isRequired,
-  // img: PropTypes.string.isRequired,
   onChooseFilterCategory: PropTypes.func.isRequired
 }
 

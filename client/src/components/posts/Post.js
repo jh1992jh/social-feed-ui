@@ -14,10 +14,6 @@ class Post extends Component {
   }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if(nextProps) console.log(typeof nextProps.posts.post.postImage);
-  }
-
   onAddCurrentPost = () => {
     this.props.addCurrentPost(this.props);
   }

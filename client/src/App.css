@@ -65,6 +65,10 @@ ul {
 .next {
   color: #0099cc
 }
+
+hr {
+  color: #efefef;
+}
 /* KEYFRAMES */
 @keyframes appear {
   from {
@@ -231,8 +235,7 @@ ul {
   /* STORIES STYLES */
   .storiesContainer {
     margin-top: 3.3em;
-    min-width: 100%;
- 
+    min-width: 100%; 
     height: 58px;
     display: flex;
     padding: 15px 0 5px 18px;
@@ -299,149 +302,6 @@ ul {
     border: 1px solid orangered;
     position: relative;
   }
-
- /* .createStory {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .createStory .createStoryForm {
-    width: 80vw;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .createStory .createStoryForm input,
-  .createStory .createStoryForm select {
-    margin: 1em 0;
-    box-shadow: 0 2px 0 -1px #808080;
-    border: none;
-    outline: none;
-  }
-
-  .createStory .createStoryForm button {
-    background-color: #0099cc;
-    color: #fff;
-    font-weight: 600;
-    border: none;
-    border-radius: 5.5px;
-    padding: 0.6em;
-    margin: 2em auto 4em auto;
-    width: 30vw;
-  }
-
-  .createStory .createStoryForm button .fa-share-square {
-    margin: 0 0.5em;
-  }
-  
-  .createStory .previewStoryContainer {
-    width: 80vw;
-    height: 50vh;
-    position: relative;
-    font-weight: 600;
-  }
-
-  .submitStoryContainer {
-    position: relative;
-    height: 100vh;
-  }
-
-  .seeStoryContainer {
-    position: relative;
-    height: 100vh;
-  }
-
-  .seeStoryContainer .storyInfo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1030;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .seeStoryContainer .storyInfo .storyCreator {
-    display: flex;
-    align-items: center;
-    margin: 0.5em 0 0 0.5em;
-  }
-
-  .seeStoryContainer .storyInfo .storyCreator img {
-    height: 28px;
-    width: 28px;
-    border-radius: 360px;
-    margin-right: 0.5em;
-  }
-
-  
-  .seeStoryContainer .storyInfo .storyCreated {
-    display: flex;
-    align-items: center;
-    margin: 0.5em 0.5em 0 0;
-  }
-  .createStory .previewStoryContainer .storyText,
-  .submitStoryContainer .storyText,
-  .seeStoryContainer .storyText
-  {
-    position: absolute;
-    bottom: 40%;
-    left: 0;
-    min-width: 100%;
-    font-size: 2rem;
-    font-weight: 600;
-    z-index: 1050;
-    text-align: center;
-  }
-
-
-  .createStory .previewStoryContainer .storyLocation
-  {
-    position: absolute;
-    bottom: 10%;
-    left: calc(62% - 100px);
-    font-size: 2rem;
-    font-weight: 600;
-    max-width: 200px;
-  }
-
-  .submitStoryContainer .storylocation,
-  .seeStoryContainer .storylocation
-  {
-    position: absolute;
-    z-index: 1050;
-    bottom: 20%;
-    left: 0;
-    min-width: 100%;
-    text-align: center;
-    font-size: 2rem;
-    font-weight: 600;
-  }
-
-  .previewStoryContainer img,
-  .submitStoryContainer img,
-  .seeStoryContainer img {
-    width: 100%;
-    height: 100%;
-    position: relative;
-
-  }
-
-  .submitStoryContainer button {
-    background-color: #0099cc;
-    color: #fff;
-    font-weight: 600;
-    border: none;
-    border-radius: 5.5px;
-    padding: 0.6em;
-    margin: 2em auto 4em auto;
-    width: 30vw;
-    position: absolute;
-    bottom: 0;
-    left: 33%;
-    z-index: 1050;
-  } */
 
   .createStory {
     display: flex;
@@ -702,7 +562,6 @@ ul {
   .post .postFooter .postFooterLikes {
     font-weight: 600;
     margin-top: -0.8em;
-    border: 2px solid red;
     min-height: 2rem;
   }
 
@@ -753,7 +612,7 @@ ul {
 
   .post .postFooter .singlePostForm {
     position: relative;
-    bottom: 1em;
+    bottom: 2em;
     left: 0;
     width: 100%;
     background: #fff;
@@ -767,7 +626,7 @@ ul {
     }
     .post .postFooter .singlePostForm {
       position: relative;
-      bottom: 0;
+      bottom: 1.2em;
       left: 0;
       width: 100%;
       background: #fff;
@@ -1040,152 +899,8 @@ ul {
   .exploreItems :nth-child(18n + 14) {
     margin-right: -33vw;
   }
-
-  /* CREATEPOST STYLES */
-  .createPost {
-    max-width: 100vw;
-  }
-
-  .createPost .createPostHeader {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.8em 0.5em 0.8em 0.8em;
-    box-shadow: 0 0.5px 1px #909090;
-  }
-
-  .createPost .createPostHeaderLeft .fa-times {
-    font-size: 1.2em;
-    color: #222;
-    margin-right: 1em;
-  }
-
-  .createPost .createPostHeaderLeft select,
-  .createPost .createPostHeaderLeft select:focus,
-  .createPost .screatePotHeaderLeft select:active {
-    border: none;
-    text-decoration: none;
-  }
-
-  .createPost .createPostHeaderRight span {
-    color: #0099cc;
-  }
-
-  .createPost .createPostContent .createPostMainContent {
-    height: 60vh;
-    width: 100vw;
-    margin-bottom: 0.1em;
-    position: relative;
-  }
-  .createPost .createPostContent .createPostMainContent .mainContentIconsLeft {
-    position: absolute;
-    bottom: -7vw;
-    left: 0;
-  }
-
-  .createPost .createPostContent .createPostMainContent .mainContentIconsRight {
-    position: absolute;
-    bottom: -7vw;
-    right: 49vw;
-    max-width: 100%;
-    display: flex;
-    margin-right: 0.85em;
-  }
-
-  .createPost .createPostContent .createPostMainContent .mainContentIcon {
-    border-radius: 360px;
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    max-height: 30px;
-    width: 30px;
-    margin: 0.4em;
-    padding: 0.2em;
-  }
-
-  .createPost .createPostContent .createPostMainContent .mainContentIcon i,
-  .createPost .createPostContent .createPostMainContent .mainContentIconText i {
-    margin: 0.45em;
-  }
-
-  .createPost .createPostContent .createPostMainContent .mainContentIconText {
-    border-radius: 360px;
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    max-height: 30px;
-    min-width: 42.3vw;
-    margin: 0 0.3em;
-    display: flex;
-    align-items: center;
-    margin: 0.5em;
-    padding: 0.2em;
-  }
-
-  .createPost .createPostContent .createPostMainContent img {
-    height: 60vh;
-    width: 100vw;
-  }
-  .createPost .createPostContent .createPostContentItems {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 0.1em;
-    max-width: 100%;
-    margin-bottom: 9.3em;
-  }
-
-  .createPost .createPostContent div {
-    height: 23vw;
-    width: calc(25vw - 0.1em);
-  }
-
-  .createPost .createPostContent div img {
-    height: 23vw;
-    width: calc(25vw - 0.1em);
-  }
-
+ 
   /* POSTAPOST STYLES */
-  /* .postApost {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-  }
-
-  .postApost .postForm {
-    display: flex;
-    flex-direction: column;
-    margin-top: 3em;
-    align-items: flex-st3.5rt;
-    width: 80vw;
-    margin: 3em auto;
-  }
-
-  .postApost .postForm input {
-    margin: 1.5em 0;
-    box-shadow: 0 2px 0 -1px #808080;
-    width: 100%
-  }
-
-  .postApost .postForm button {
-    background-color: #0099cc;
-    color: #fff;
-    font-weight: 600;
-    border: none;
-    border-radius: 5.5px;
-    padding: 0.6em;
-    margin: 2em auto;
-    width: 30vw;
-  }
-
-  .postApost .postImageContainer {
-    width: 80vw;
-    height: 40vh;
-    margin-top: 3.5em; 
-  }
-
-  .postApost .postImageContainer img {
-    width: 80vw;
-    height: 40vh;
-  } */
-
   .previewPost {
     height: 100vh;
     width: 100vw;
@@ -2098,8 +1813,7 @@ ul {
     text-align: center;
     font-size: 2rem;
     font-weight: 600;
-    min-width: 100%;
-    
+    min-width: 100%;    
   }
 
   .submitStoryContainer .storylocation,
@@ -2191,6 +1905,10 @@ ul {
     flex: 1;
   }
 
+  .post .postHeader .postHeaderProfInfo .profileName {
+    margin: 2em 0.8em;
+  }
+
   .post .postHeader .postHeaderProfInfo2 {
     display: flex;
     flex: 9;
@@ -2228,7 +1946,6 @@ ul {
   .post .postBody {
     min-width: 100%;
     margin: 0.5em 0;
-    border: 2px solid red;
   }
 
   .post .postBody img {
@@ -2238,14 +1955,12 @@ ul {
 
   .post .postBody .singlePostImage {
     width: 100%;
-    border: 2px solid red;
     margin: auto;
   }
 
   .post .postBody .postBodyIcons {
     display: flex;
     justify-content: space-between;
-    
   }
 
   .post .postBody .postBodyIcons .postBodyIconsLeft > i {
@@ -2261,7 +1976,6 @@ ul {
   .post .postFooter {
     padding: 0.3em;
     font-size: 0.9rem;
-    border: 2px solid red;
     width: 45vw;
     margin: auto;
   }
@@ -2345,7 +2059,6 @@ ul {
     margin: 0 0.5em 0.3em 0.2em;
     position: relative;
     background: #eee;
-  
   }
 
   .post .postFooter .commentContainer .roundedProfThumbSmall img {
@@ -2492,6 +2205,66 @@ ul {
   }
 
   /* PROFILE STYLES */
+  .noProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4em 2em 2em 2em;
+  }
+
+  .noProfile .fa-user-circle {
+    font-size: 8rem;
+    color: #808080;
+  }
+
+  .noProfile p {
+    text-align: center;
+    line-height: 1.8rem;
+  }
+
+  .noProfile .createProfileLink {
+    color: #0099cc
+  }
+
+  .createProfile, .editProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4em 2em 2em 2em;
+  }
+
+  .createProfile .fa-user-circle, .editProfile .fa-user-edit {
+    font-size: 8rem;
+    color: #808080;
+    margin: auto;
+  }
+
+  .createProfile h3, .editProfile h3 {
+    margin: 2em 0 4em 0;
+  }
+
+  .createProfile .createProfileForm, .editProfile .editProfileForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .createProfile .createProfileForm input, .editProfile .editProfileForm input {
+    box-shadow: 0 2px 0 -1px #808080;
+    margin: 1.5em 0;
+  }
+
+  .createProfile .createProfileForm button, .editProfile .editProfileForm button {
+    background-color: #0099cc;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 5.5px;
+    padding: 0.6em;
+    margin: 2em 0;
+    width: 30vw;
+  }
+
   .profile .myProfileHeaderTop {
     display: none;
   }
@@ -2683,6 +2456,20 @@ ul {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1em;
+  }
+
+  .profile .profileBody .noPosts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 3em 12em;
+  }
+
+  .profile .profileBody .noPosts i {
+    font-size: 5rem;
+    text-align: center;
   }
 
   .profile .profileBody .profileBodyItem {

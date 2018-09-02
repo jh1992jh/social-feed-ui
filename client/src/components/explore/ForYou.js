@@ -14,7 +14,6 @@ const ForYou = ({ img, profileImage }) => {
 };
 
 ForYou.propTypes = {
-  img: PropTypes.string.isRequired,
   profileImage: PropTypes.string.isRequired
 }
 
