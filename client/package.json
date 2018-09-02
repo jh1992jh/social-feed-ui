@@ -1,8 +1,7 @@
 {
-  "name": "instagram-ui",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jh1992jh.github.io/social-feed-ui/",
   "dependencies": {
     "axios": "^0.18.0",
     "gh-pages": "^1.2.0",
@@ -20,8 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:5000"
 }
