@@ -20,7 +20,6 @@
   "bugs": {
     "url": "https://github.com/jh1992jh/social-feed-ui/issues"
   },
-  "homepage": "https://github.com/jh1992jh/social-feed-ui#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
