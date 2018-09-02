@@ -61,6 +61,10 @@ ul {
   color: #dd0000;
   font-size: 0.5rem;
 }
+
+.next {
+  color: #0099cc
+}
 /* KEYFRAMES */
 @keyframes appear {
   from {
@@ -296,7 +300,7 @@ ul {
     position: relative;
   }
 
-  .createStory {
+ /* .createStory {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -437,6 +441,143 @@ ul {
     bottom: 0;
     left: 33%;
     z-index: 1050;
+  } */
+
+  .createStory {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .createStory .createStoryForm {
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    background: #222;
+  }
+
+  .createStory .createStoryForm input,
+  .createStory .createStoryForm select {
+    margin: 0.5em;
+    width: 46%;
+    max-height: 1rem;
+    box-shadow: 0 2px 0 -1px #808080;
+    border: none;
+    outline: none;
+  }
+
+  .createStory .createStoryForm .storyImageInput {
+    min-width: 96%;
+    background: #fff;
+    min-height: 1.3rem;
+  }
+
+  .createStory .createStoryForm button {
+    background-color: #0099cc;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 5.5px;
+    padding: 0.6em;
+    margin: 1em auto;
+    width: 96%;
+    display: block;
+  }
+
+  .createStory .createStoryForm button .fa-share-square {
+    margin: 0 0.5em;
+  }
+  
+  .createStory .previewStoryContainer {
+    width: 100vw;
+    height: 76vh;
+    position: relative;
+    font-weight: 600;
+  }
+
+  .seeStoryContainer {
+    position: relative;
+    height: 100vh;
+  }
+
+  .seeStoryContainer .storyInfo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1030;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .seeStoryContainer .storyInfo .storyCreator {
+    display: flex;
+    align-items: center;
+    margin: 0.5em 0 0 0.5em;
+  }
+
+  .seeStoryContainer .storyInfo .storyCreator img {
+    height: 28px;
+    width: 28px;
+    border-radius: 360px;
+    margin-right: 0.5em;
+  }
+
+  
+  .seeStoryContainer .storyInfo .storyCreated {
+    display: flex;
+    align-items: center;
+    margin: 0.5em 0.5em 0 0;
+  }
+  .createStory .previewStoryContainer .storyText,
+  .seeStoryContainer .storyText
+  {
+    position: absolute;
+    bottom: 40%;
+    left: 0;
+    min-width: 100%;
+    max-width: 100%;
+    background: transparent;
+    font-size: 2rem;
+    font-weight: 600;
+    z-index: 1050;
+    text-align: center;
+  }
+
+
+  .createStory .previewStoryContainer .storyLocation
+  {
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    min-width: 100%;
+    max-width: 100%;
+    background: transparent;
+  }
+
+  .submitStoryContainer .storylocation,
+  .seeStoryContainer .storylocation
+  {
+    position: absolute;
+    z-index: 1050;
+    bottom: 20%;
+    left: 0;
+    min-width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+
+  .previewStoryContainer img,
+  .submitStoryContainer img,
+  .seeStoryContainer img {
+    width: 100%;
+    height: 100%;
+    position: relative;
   }
 
   .seeStoryContainer .storyDurationBar {
@@ -1001,7 +1142,7 @@ ul {
   }
 
   /* POSTAPOST STYLES */
-  .postApost {
+  /* .postApost {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1043,6 +1184,99 @@ ul {
   .postApost .postImageContainer img {
     width: 80vw;
     height: 40vh;
+  } */
+
+  .previewPost {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .previewPost .previewHeader {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;  
+  }
+
+  .previewPost .previewHeader span {
+    margin: 0.5em 1em;
+  }
+
+  .previewPost .postForm {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    }
+
+  .previewPost .postForm .textAndImage {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+  }
+  .previewPost .postForm .textAndImage img {
+    max-width: 30vw;
+    max-height: 30vw;
+    margin: 2.5vw;
+  }
+
+  .previewPost .postForm .textAndImage textarea {
+    margin: 2.5vw 2.5vw 2.5vw 0;
+    outline: none;
+    width: 60vw;
+    height: 30vw;
+  }
+
+  .previewPost .postForm select {
+    margin: 4em auto;
+    width: calc(100% - 2.5vw);
+  }
+
+  .previewPost .postForm button {
+    background-color: #0099cc;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 5.5px;
+    padding: 0.6em;
+    margin: 2em auto;
+    width: calc(100% - 2.5vw);
+    display: block
+  }
+
+  .previewPost .previewImage {
+    margin: auto;
+    width: 70vw;
+    height: 70vw;
+  }
+
+  .previewPost .previewImage img {
+    width: 70vw;
+    height: 70vw;
+    margin: auto;
+  }
+
+  .previewPost .previewImage input {
+    margin-top: 1em;
+  }
+
+  .previewFilterContainer {
+    display: flex;
+    width: 100%;
+    overflow-x: scroll;
+    margin: 3.5em 0;
+  }
+
+  .previewFilterContainer .previewFilter {
+    margin: 0 0.5em;
+    text-align: center;
+  }
+
+  .previewFilterContainer .previewFilter img {
+    height: 100px;
+    width: 100px;
   }
 
   /* LIKES STYLES */
@@ -1848,6 +2082,7 @@ ul {
     left: 0;
     display: block;
     min-width: 100%;
+    
     text-align: center;
     font-size: 2rem;
     font-weight: 600;

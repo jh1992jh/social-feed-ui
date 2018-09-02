@@ -46,7 +46,7 @@ router.post('/', upload.single('storyImage'), passport.authenticate('jwt', { ses
                 text: req.body.text,
                 color: req.body.color,
                 storyImage: req.file.path,
-                storyBackground: req.body.storyBackground,
+               // storyBackground: req.body.storyBackground,
                 storyDuration: req.body.storyDuration,
                 storyLocation: req.body.storyLocation
             })

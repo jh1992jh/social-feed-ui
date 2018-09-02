@@ -28,7 +28,8 @@ onChooseFilterCategory = (category) => {
     const { filterCategory } = this.state;
     let outputContent;
 
-    const filteredPosts = posts.filter(post => post.category === filterCategory);
+    let filteredPosts = posts.filter(post => post.category === filterCategory);
+    if(filterCategory === 'all') filteredPosts = posts;
     if(loading === true) {
       outputContent = <Spinner width="360px" />
     } else if (loading === false && posts.length > 0) {

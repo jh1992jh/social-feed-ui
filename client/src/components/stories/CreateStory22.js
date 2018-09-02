@@ -53,16 +53,17 @@ class CreateStory extends Component {
       const { text, color, storyImagePrev, storyBackground, storyDuration, storyLocation } = this.state;
     return (
       <div className="createStory">
-      
-      <div className="previewStoryContainer">
-      {storyImagePrev !== null ? <img src={storyImagePrev} className="storyBackgroundImage" alt="story background" /> : null}
-      <input type="text"  className="storyText" style={{color: `${color}`}} name="text" onChange={this.onInputChange} placeholder="Text"/>
-      <input type="text"  className="storyLocation" style={{color: `${color}`}} name="storyLocation" value={storyLocation} onChange={this.onInputChange} placeholder="Location"/>
-      </div>
-      
-      <form className="createStoryForm" onSubmit={this.onFormSubmit}>
-        <input type="file" className="storyImageInput" name="storyImage" accept="image/*" onChange={this.storyImageHandler} placeholder="Story Image" />
-           
+        <h3>Create A Story</h3>
+        <div className="previewStoryContainer">
+        {storyImagePrev !== null ? <img src={storyImagePrev} className="storyBackgroundImage" alt="story background" /> : null}
+        {text.length > 0 ? <p className="storyText" style={{color: `${color}`}}>{text}</p> : null}
+        {storyLocation.length > 0 ? <h4 className="storyLocation" style={{color: `${color}`}}>{storyLocation}</h4> : null}
+        </div>
+
+        <form className="createStoryForm" onSubmit={this.onFormSubmit}>
+            <input type="text" name="text" value={text} onChange={this.onInputChange} placeholder="Story Text"/>
+            <input type="file" className="storyImageInput" name="storyImage" accept="image/*" onChange={this.storyImageHandler} placeholder="Story Image"/>
+            <input type="text" name="storyLocation" value={storyLocation} onChange={this.onInputChange} placeholder="Location"/>
             <select name="color" value={color} onChange={this.onInputChange}>
                 <option value="black">Black</option>
                 <option value="blue">Blue</option>
@@ -73,6 +74,13 @@ class CreateStory extends Component {
                 <option value="red">Red</option>
                 <option value="pink">Pink</option>
                 <option value="violet">Violet</option>
+            </select>
+            <select name="storyBackground" value={storyBackground} onChange={this.onInputChange} >
+                <option value="none">None</option> 
+                <option value="blueGradient">Blue Gradient</option>
+                <option value="greenGradient">Green Gradient</option>
+                <option value="PinkGradient">Pink Gradient</option>
+                <option value="goldGradient">Gold Gradient</option>
             </select>
             <select name="storyDuration" value={storyDuration} onChange={this.onInputChange}>
             <option value="seconds2">2 Seconds</option>

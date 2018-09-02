@@ -24,9 +24,9 @@ const StorySchema = new Schema({
     storyImage: {
         type: String,
     },
-    storyBackground: {
+    /*storyBackground: {
         type: String
-    },
+    },*/
     storyDuration: {
         type: String,
         default: "seconds4"
