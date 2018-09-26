@@ -530,7 +530,7 @@ hr {
   }
 
   .post .postBody img {
-    height: 300px;
+    height: auto;
     width: 100%;
   }
 
@@ -1379,7 +1379,7 @@ hr {
   /* LOGIN STYLES */ 
 
   .login {
-    height: 100vh;
+    min-height: 100%;
     width: 100vw;
     position: relative;
     background-color: #f9f9f9;
@@ -1410,7 +1410,7 @@ hr {
     flex-direction: column;
     width: 100%;
     align-items: center;
-    margin: 2em 0;
+    margin: 1em 0;
   }
 
   .login .loginContainer .loginBrand .fa-camera {
@@ -1428,9 +1428,13 @@ hr {
     align-items: center;
     width: 100%;
   }
+  .login .loginContainer .loginForm .errorContainer {
+    
+    min-height: 1rem;
+  }
 
   .login .loginContainer .loginForm input {
-    margin: 1em 0;
+    margin:0;
   }
 
   .login .loginContainer .loginForm button {
@@ -1503,6 +1507,12 @@ hr {
 
   .navTop .marginLR {
     margin: 0 6em 0 6em;
+  }
+
+  @media only screen and (min-width: 980px) and (max-width: 1024px) {
+    .navTop .marginLR {
+      margin: 0 2em 0 2em;
+    }
   }
 
   .navTop .forDesktop input {
@@ -1949,8 +1959,8 @@ hr {
   }
 
   .post .postBody img {
-    height: 300px;
-    min-width: 100%;
+    height: auto;
+    max-width: 100%;
   }
 
   .post .postBody .singlePostImage {
@@ -2523,7 +2533,7 @@ hr {
 
 /* LOGIN STYLES */ 
   .login {
-    height: 100vh;
+    min-height: 100%;
     width: 100vw;
     background-color: #f9f9f9;
   }
@@ -2551,7 +2561,7 @@ hr {
     flex-direction: column;
     width: 100%;
     align-items: center;
-    margin: 2em 0;
+    margin: 1em 0;
   }
 
   .login .loginContainer .loginBrand .fa-camera {
@@ -2570,8 +2580,13 @@ hr {
     width: 100%;
   }
 
+  .login .loginContainer .loginForm .errorContainer {
+    
+    min-height: 1rem;
+  }
+
   .login .loginContainer .loginForm input {
-    margin: 1em 0;
+    margin: 0;
   }
 
   .login .loginContainer .loginForm button {
@@ -2588,6 +2603,8 @@ hr {
   .login .loginContainer .loginHeader .selected {
     box-shadow: 0 2px 0 -1px #222;
   }
+
+
 }
 
 

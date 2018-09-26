@@ -46,7 +46,7 @@ class EditProfile extends Component {
     
   render() {
     const { loading, profile } = this.props.profile;
-    const { description, profileImage } = this.state;
+    const { description } = this.state;
     
     let outputContent;
 

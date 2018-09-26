@@ -60,24 +60,30 @@ class Register extends Component {
 
        <form className="loginForm" onSubmit={this.onRegisterUser}>
                     <input type="email" name="email" value={email} onChange={this.onInputChange} placeholder="Email" />
+                    <div className="errorContainer">
                     {errors.email ? (
                         <p className="errorText">{errors.email}</p>
                     ): null}
+                    </div>
                         <input type="text" name="username" value={username} onChange={this.onInputChange} placeholder="Username" />
-       
+                        <div className="errorContainer">
                     {errors.username ? (
                         <p className="errorText">{errors.username}</p>
                     ): null} 
+                    </div>
+                    
                     <input type="password" name="password" value={password} onChange={this.onInputChange} placeholder="Password"/>
+                    <div className="errorContainer">
                     {errors.password ? (
                         <p className="errorText">{errors.password}</p>
                     ): null} 
-         
+                        </div>
                         <input type="password" name="password2" value={password2} onChange={this.onInputChange} placeholder="Confirm password" />
-
+                        <div className="errorContainer">
                     {errors.password2 ? (
                         <p className="errorText">{errors.password2}</p>
                     ): null} 
+                    </div>
                     <button>Sign up</button>
                 </form>
 

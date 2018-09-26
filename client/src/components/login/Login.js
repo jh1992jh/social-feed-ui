@@ -56,13 +56,17 @@ class Login extends Component {
 
        <form className="loginForm" onSubmit={this.onLoginUser}>
                     <input type="email" name="email" value={email} onChange={this.onInputChange} placeholder="Email" />
+                    <div className="errorContainer">
                     {errors.email ? (
                         <p className="errorText">{errors.email}</p>
                     ): null}
+                    </div>
                     <input type="password" name="password" value={password} onChange={this.onInputChange} placeholder="Password"/>
+                    <div className="errorContainer">
                     {errors.password ? (
                         <p className="errorText">{errors.password}</p>
                     ): null} 
+                    </div>
                     <button>Sign in</button>
                 </form>
  

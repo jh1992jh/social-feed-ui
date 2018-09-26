@@ -30,8 +30,6 @@ class PreviewPost extends Component {
   onPostSubmit = e => {
     e.preventDefault();
 
-    const { postImage, text, filter } = this.state;
-
     const fd = new FormData()
 
 
@@ -44,7 +42,7 @@ class PreviewPost extends Component {
   }
 
   render() {
-    const { previewImage, postImage, filter, showForm } = this.state;
+    const { previewImage, filter, showForm } = this.state;
 
     let displayForm;
 

@@ -27,7 +27,7 @@ class CreateStory extends Component {
     onFormSubmit = e => {
         e.preventDefault();
 
-        const { text, color, storyImage, storyImagePrev, storyBackground, storyDuration, storyLocation } = this.state;
+        const { text, color, storyImage, storyBackground, storyDuration, storyLocation } = this.state;
 
         /*const storyData = {
             text,
@@ -50,7 +50,7 @@ class CreateStory extends Component {
         this.props.postStory(fd, this.props.history);
     }
   render() {
-      const { text, color, storyImagePrev, storyBackground, storyDuration, storyLocation } = this.state;
+      const { color, storyImagePrev, storyDuration, storyLocation } = this.state;
     return (
       <div className="createStory">
       
