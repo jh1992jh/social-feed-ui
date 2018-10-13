@@ -31,7 +31,7 @@ onChooseFilterCategory = (category) => {
     let filteredPosts = posts.filter(post => post.category === filterCategory);
     if(filterCategory === 'all') filteredPosts = posts;
     if(loading === true) {
-      outputContent = <Loading />
+      outputContent = null;
     } else if (loading === false && posts.length > 0) {
       outputContent = filteredPosts.map((post, i) => (
        <Fragment key={i}>

@@ -1,9 +1,9 @@
 import React from 'react';
 
 
-const Loading = ({ width }) => {
+const Loading = ({ width, maxHeight }) => {
   return (
-    <div className="loading">
+    <div className="loading" style={{width: `${width}`, maxHeight: `${maxHeight}`}}>
       <div className="circle1" />
       <div className="circle2" />
       <div className="circle3" />
