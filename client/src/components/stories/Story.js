@@ -5,7 +5,7 @@ const Story = ({ storyImage, handle }) => {
   return (
     <div>
       <div className="story othersStory">
-        <img className="storyImg" src={storyImage} alt="story" />
+        {storyImage !== undefined ? <img className="storyImg" src={storyImage} alt="story" /> : null}
         <ul className="forDesktop">
           <li>{handle}</li>
           <li className="ago">{new Date().getHours()} HOURS AGO</li>

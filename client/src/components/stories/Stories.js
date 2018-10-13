@@ -7,7 +7,7 @@ import MyStory from './MyStory';
 import Story from './Story';
 import StoryContainerHeader from './StoryContainerHeader';
 import InfoFooter from './InfoFooter';
-import Spinner from '../../utilities/Spinner';
+import Loading from '../../utilities/Loading';
 
 class Stories extends Component {
   componentDidMount() {
@@ -23,13 +23,13 @@ class Stories extends Component {
     let outputStories;
 
     if (profile.loading === true || profile.profile === null) {
-      outputMyStory = <Spinner width="50px" />
+      outputMyStory = <MyStory />
     } else if ( Object.keys(profile.profile).length > 0) {
       outputMyStory = <MyStory handle={profile.profile.handle} profileImage={profile.profile.profileImage} />
     }
 
     if(loading === true) {
-      outputStories = <Spinner width="50px" />
+      outputStories = <Story />
     } else if (loading === false && followedStories.length === 0) {
       outputStories = null;
     } else if (loading === false && followedStories.length > 0) {
@@ -45,7 +45,7 @@ class Stories extends Component {
         style={showLikes ? { paddingTop: '32.28%' } : null}
       >
         <div
-          className="forDesktop"
+          className="forDesktop myStoryContainer"
           style={showLikes ? { display: 'none' } : null}
         >
         {outputMyStory}

@@ -9,7 +9,7 @@ import ProfileHeaderBottomOther from './ProfileHeaderBottomOther';
 import ProfileBodyTop from './ProfileBodyTop';
 import ProfileBody from './ProfileBody';
 import NavbarTop from '../navbars/NavbarTop';
-import Spinner from '../../utilities/Spinner';
+import Loading from '../../utilities/Loading';
 import { getPosts, getOwnedPosts } from '../../actions/postActions';
 import { getCurrentProfile, getProfileById } from '../../actions/profileActions';
 import PropTypes from 'prop-types';
@@ -31,7 +31,7 @@ class Profile extends Component {
     const { posts, profile, auth } = this.props;
     let outputProfile;
     if(posts.loading === true || profile.loading === true || profile.profile === null) {
-      outputProfile = <Spinner width="200px" />
+      outputProfile = <Loading  />
     } else if (posts.loading === false && posts.posts.length > 0 && Object.keys(profile.profile).length > 0 && profile.profile.user._id === auth.user.id)  {
       outputProfile = (
         <Fragment>

@@ -21,10 +21,7 @@ class NavbarTop extends Component {
           <input type="search" placeholder="Search" />
         </div>
 
-        <div className="tvAndDms">
-          <i className="fas fa-tv" />
-          <i className="far fa-paper-plane" />
-        </div>
+        
 
         <div className="forDesktop icons">
           <NavLink to="/explore">

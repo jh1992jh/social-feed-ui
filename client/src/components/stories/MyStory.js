@@ -7,11 +7,11 @@ const MyStory = ({ handle, profileImage }) => {
     <div>
     <Link to="/create-story">
       <div className="story myStory">
-        <img
+        {profileImage !== undefined ? (<img
           src={profileImage}
           alt="My Story"
           className="myStoryImg"
-        />
+        />) : null}
         <ul className="forDesktop">
           <li>{handle}</li>
         </ul>

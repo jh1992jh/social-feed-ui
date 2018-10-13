@@ -27,7 +27,7 @@ class ProfileHeaderBottom extends Component {
           Edit Profile
         </button>
         </Link>
-        <i className="fas fa-cog forDesktop" />
+      
       </Fragment>
     );
 

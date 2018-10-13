@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { getStory } from '../../actions/storyActions';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
-import Spinner from '../../utilities/Spinner';
+import Loading from '../../utilities/Loading';
 
 class SeeStory extends Component {
 componentDidMount() {
@@ -26,7 +26,7 @@ componentWillReceiveProps(nextProps) {
     const { story, loading } = this.props.stories;
 
     if(loading === true || Object.keys(story).length === 0) {
-        outputContent = <Spinner width="200px" />
+        outputContent = <Loading  />
     } else if (loading === false && Object.keys(story).length > 0) {
         outputContent = (
             <Fragment>

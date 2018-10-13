@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ForYou from './ForYou';
 import Category from './Category';
-import Spinner from '../../utilities/Spinner';
+import Loading from '../../utilities/Loading';
 import all from './images/all.jpeg'
 import diy from './images/diy.jpeg';
 import music from './images/music.jpeg';
@@ -20,7 +20,7 @@ class Categories extends Component {
     if(!posts) {
       outputCategories = null
     } else if (profile.loading === true) {
-      outputCategories = <Spinner width="50px" />
+      outputCategories = <Loading />
     }
      else if (posts.length > 0 && profile.loading === false && profile.profile !== null ) {
       outputCategories = (

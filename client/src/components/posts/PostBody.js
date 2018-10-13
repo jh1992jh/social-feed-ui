@@ -45,8 +45,6 @@ class PostBody extends Component {
             <Link to={`/post/${postId}`}>
               <i className="far fa-comment" onClick={this.onAddCurrentPost} />
         </Link>
-
-            <i className="far fa-paper-plane" />
           </div>
 
           <div className="postBodyIconsLeft forDesktop">
