@@ -23,7 +23,7 @@ class MainView extends Component {
 
   componentDidMount() {
     this.props.clearCurrentPost();
-    this.props.getPosts();
+    //this.props.getPosts();
     this.props.getCurrentProfile();
     this.props.getFollowedPosts(this.props.auth.user.id);
   }
@@ -41,7 +41,7 @@ class MainView extends Component {
     
     if(posts.loading === true || profile.loading === true || profile.profile === null) {
       outputPosts = <Loading />
-    } else if (posts.loading === false && posts.posts.length > 0 && Object.keys(profile.profile).length > 0) {
+    } else if (posts.loading === false && posts.followedPosts.length > 0 && Object.keys(profile.profile).length > 0) {
       outputPosts = posts.followedPosts.map((post, i) => (
         <Post
           key={post._id}
@@ -86,14 +86,14 @@ class MainView extends Component {
   }
 }
 
-MainView.propTypes = {
+/* MainView.propTypes = {
   posts: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   clearCurrentPost: PropTypes.func.isRequired,
   getPosts: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired
-}
+} */
 
 const mapStateToProps = state => ({
   posts: state.posts,
@@ -103,5 +103,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { clearCurrentPost, getPosts, getFollowedPosts, getCurrentProfile }
+  { clearCurrentPost, getFollowedPosts, getCurrentProfile }
 )(withRouter(MainView));

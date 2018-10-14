@@ -42,7 +42,7 @@ class Stories extends Component {
     return (
       <div
         className="stories"
-        style={showLikes ? { paddingTop: '32.28%' } : null}
+        
       >
         <div
           className="forDesktop myStoryContainer"
@@ -78,13 +78,13 @@ class Stories extends Component {
   }
 }
 
-Stories.propTypes = {
+/* Stories.propTypes = {
   auth: PropTypes.object.isRequired,
   stories: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
   getStories: PropTypes.func.isRequired,
   getFollowedStories: PropTypes.func.isRequired
-}
+} */
 
 const mapStateToProps = state => ({
   auth: state.auth,

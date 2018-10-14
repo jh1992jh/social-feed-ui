@@ -1689,7 +1689,7 @@ hr {
     font-size: 0.7rem;
     position: fixed;
     top: 15.5%;
-    right: 10%;
+    right: 8%;
     z-index: 0;
   }
 
@@ -1712,19 +1712,19 @@ hr {
   .stories img {
     max-width: 100%;
     height: auto;
-    border-radius: 360px;
+    border-radius: 100%;
   }
 
   .story {
-    max-width: 10vw;
-    min-width: 10vw;
-    min-height: 20vh;
-    max-height: 20vh;
+    max-width: 7vw;
+    min-width: 7vw;
+    height: 12vh;
+    max-height: 12vh;
     display: flex;
     flex-direction: row;
     margin: 0.55em 0;
     border: 2px solid orangered;
-    border-radius: 360px;
+    border-radius: 100%;
   }
 
   .storyText,
@@ -2090,7 +2090,7 @@ hr {
 
   .post .postFooter .singlePostForm {
     position: relative;
-    bottom: 1.7em;
+    bottom: 3em;
     left: 0;
     width: 100%;
     background: #fff;

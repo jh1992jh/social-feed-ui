@@ -7,7 +7,7 @@ class LoginHeader extends Component {
     <Fragment>
     <div className="loginHeader">
     <Link to="/login">
-    <h3 className={this.props.history.location.pathname === '/login' ? 'selected' : null}>Sing in</h3>
+    <h3 className={this.props.history.location.pathname === '/login' ? 'selected' : null}>Sign in</h3>
     </Link>
     <Link to="/register">
     <h3 className={this.props.history.location.pathname === '/register' ? 'selected' : null}>Sign up</h3>
