@@ -16,7 +16,7 @@ export const getPosts = () => dispatch => {
 }
 
 export const getOwnedPosts = userId => dispatch => {
-    dispatch(setPostLoading());
+    //dispatch(setPostLoading());
 
     axios
         .get(`/api/posts/owned/${userId}`)

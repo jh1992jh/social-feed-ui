@@ -9,8 +9,13 @@ import Loading from '../../utilities/Loading';
 
 class Likes extends Component {
   componentDidMount() {
-    this.props.getCurrentProfile();
+  
     this.props.getOwnedPosts(this.props.auth.user.id);
+
+    if(Object.keys(this.props.profile).length === 0) {
+      this.props.getCurrentProfile();
+    }
+   
   }
   render() {
     const { loading } = this.props.posts;

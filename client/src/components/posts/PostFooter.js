@@ -113,8 +113,7 @@ class PostFooter extends Component {
         </div>
         <div className={this.props.match.params.postId ? "postFooterComments postFooterCommentsSingle" : "postFooterComments"}>
         {outputComments}
-        <Moment fromNow className="forDesktop ago">{date}</Moment>
-        <hr className="forDesktop" />
+        <hr className="forDesktop ago" />
         </div>
         <div className={this.props.match.params.postId ? 'postFooterComment singlePostForm' : 'postFooterComment'}>
           <div className="roundedProfThumbVerySmall">
@@ -131,7 +130,7 @@ class PostFooter extends Component {
           </form>
         </div>
         
-        {this.props.match.params.postId ? null : <Moment fromNow className="postFooterTime">{date}</Moment>}
+        
       </div>
     );
   }

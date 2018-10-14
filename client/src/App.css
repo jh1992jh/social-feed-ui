@@ -547,7 +547,7 @@ hr {
     margin-left: -0.5em;
     box-shadow: 0 5px 5px 0px #222;
     z-index: 1030;
-    animation: appear 0.5s;
+    animation: appear 0.2s;
   }
 
   .post .postHeader .profileName {
@@ -1601,7 +1601,7 @@ hr {
     border-radius: 5px;
     font-size: 1rem;
     opacity: 1;
-    animation: appear 0.5s;
+    animation: appear 0.2s;
   }
 
   .navTop .likes .likeInfo {
@@ -1670,7 +1670,7 @@ hr {
     flex-direction: column;
     flex-wrap: wrap;
     max-width: 100%;
-    padding: 3em;
+    padding: 1em 3em;
     margin: 4.8em 0 3em -13em;
     z-index: 1;
   }
@@ -1948,9 +1948,13 @@ hr {
 
   /* POST STYLES */
   .post {
-    margin: 0.8em 0;
+    margin: 1em auto !important;
     max-width: 45vw;
     margin: auto;
+    border: 1px solid #d0d0d0;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 0.5px 1px #d0d0d0;
   }
 
   .post .postHeader {
@@ -2019,23 +2023,22 @@ hr {
 
   .post .postBody .postBodyIcons {
     display: flex;
-    justify-content: space-between;
+    margin: 0.2em 0;
   }
 
-  .post .postBody .postBodyIcons .postBodyIconsLeft > i {
-    margin: 0 0.5em;
-    font-size: 1.2rem;
-  }
-
-  .post .postBody .postBodyIcons .postBodyIconsRight > i {
+  .post .postBody .postBodyIcons .postBodyIconsLeft  i {
     margin-right: 0.5em;
     font-size: 1.2rem;
   }
 
+  /*.post .postBody .postBodyIcons .postBodyIconsRight > i {
+    margin-right: 0.5em;
+    font-size: 1.2rem;
+  } */
+
   .post .postFooter {
-    padding: 0.3em;
     font-size: 0.9rem;
-    width: 45vw;
+    width: 100%;
     margin: auto;
   }
 
@@ -2049,11 +2052,17 @@ hr {
   }
 
   .post .postFooter .postFooterText {
-    margin-top: -1.3em;
+    margin: 1em 0;
+    width: 100%; 
+    word-break: break-all;
+  }
+
+  .post .postFooter .postFooterText p {
+    display: inline;
   }
 
   .post .postFooter .postFooterText .postFooterTime {
-    margin-top: -1.7em; 
+     
     margin-bottom: 0.5em;
   }
   .post .postFooter .postFooterText .postFooterUserName,
@@ -2079,8 +2088,14 @@ hr {
   .post .postFooter .postFooterComments {
     overflow-y: auto;
     max-height: 26vh;
-    margin-top: -1em;
     margin-bottom: 0.5em;
+  }
+
+  .post .postFooter .postFooterComments hr {
+    margin: 0.5em;
+    height: 1px;
+    background: #d0d0d0;
+    border: none;
   }
 
   .post .postFooter .postFooterComment {
@@ -2089,9 +2104,7 @@ hr {
   }
 
   .post .postFooter .singlePostForm {
-    position: relative;
-    bottom: 3em;
-    left: 0;
+    margin: 0.5em;
     width: 100%;
     background: #fff;
   }
@@ -2173,7 +2186,7 @@ hr {
 
   .post .postFooter .postFooterTime {
     color: #707070;
-    margin-top: 0;
+    margin: 1em 0;
     font-size: 0.5rem;
   }
 

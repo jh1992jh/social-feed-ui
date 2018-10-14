@@ -7,7 +7,6 @@ import MyStory from './MyStory';
 import Story from './Story';
 import StoryContainerHeader from './StoryContainerHeader';
 import InfoFooter from './InfoFooter';
-import Loading from '../../utilities/Loading';
 
 class Stories extends Component {
   componentDidMount() {
@@ -46,7 +45,7 @@ class Stories extends Component {
       >
         <div
           className="forDesktop myStoryContainer"
-          style={showLikes ? { display: 'none' } : null}
+         
         >
         {outputMyStory}
         </div>
@@ -54,13 +53,11 @@ class Stories extends Component {
         <hr className="forDesktop" />
         <div
           className="forDesktop"
-          style={showLikes ? { display: 'none' } : null}
         >
           <StoryContainerHeader />
         </div>
         <div
           className="storiesContainer"
-          style={showLikes ? { display: 'none' } : null}
         >
           <div className="forMobile">
             {outputMyStory}
