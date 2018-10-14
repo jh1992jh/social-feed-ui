@@ -12,6 +12,7 @@ class Stories extends Component {
   componentDidMount() {
     this.props.getStories();
     this.props.getFollowedStories(this.props.auth.user.id);
+    console.log(this.props.stories.watchAll)
   }
   render() {
     const { showLikes, profile } = this.props;

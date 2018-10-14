@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { watchAllStories } from '../../actions/storyActions';
 
-const StoryContainerHeader = () => {
-  return (
-    <div className="storyContainerHeader">
-      <span className="muted">Stories</span>
-      <span>Watch All</span>
-    </div>
-  )
+class StoryContainerHeader extends Component {
+  render()  {
+    return (
+ 
+        <div className="storyContainerHeader">
+          <span className="muted">Stories</span>
+          <span onClick={() => this.props.watchAllStories()}>Watch All</span>
+        </div>
+      
+    )
+  }
 }
 
-export default StoryContainerHeader;
+export default connect(null, { watchAllStories })(StoryContainerHeader);

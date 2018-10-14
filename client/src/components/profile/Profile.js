@@ -50,7 +50,7 @@ class Profile extends Component {
             description={profile.profile.description}
             ownedPosts={posts.ownedPosts}
           />
-          <ProfileBodyTop />
+      {/* TODO: MAKE VISIBLE AFTER THE ROUTES FOR THE LINKS IN THE COMPONENT ARE FINISHED <ProfileBodyTop /> */}
           <ProfileBody
             ownedPosts={posts.ownedPosts}
           />
@@ -73,7 +73,7 @@ class Profile extends Component {
             followers={profile.profile.followers}
             ownedPosts={posts.ownedPosts}
           />
-          <ProfileBodyTop />
+      {/* TODO: MAKE VISIBLE AFTER THE ROUTES FOR THE LINKS IN THE COMPONENT ARE FINISHED <ProfileBodyTop /> */}
           <ProfileBody
             ownedPosts={posts.ownedPosts}
           />

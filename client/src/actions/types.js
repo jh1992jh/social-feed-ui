@@ -20,5 +20,6 @@ export const GET_STORIES = 'GET_STORIES';
 export const GET_FOLLOWED_STORIES = 'GET_FOLLOWED_STORIES';
 export const GET_A_STORY = 'GET_A_STORY';
 export const POST_A_STORY = 'POST_A_STORY';
+export const WATCH_ALL_STORIES = 'WATCH_ALL_STORIES';
 export const PREVIEW_STORY = 'PREVIEW_STORY';
 export const STORY_LOADING = 'STORY_LOADING';
