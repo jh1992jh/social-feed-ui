@@ -188,19 +188,39 @@ router.post('/unfollow/:profile_id', passport.authenticate('jwt', { session: fal
             .length === 0) {
                 return res.status(400).json({notfollowed: 'User has not followed this profile yet'})
             }
+            console.log(profile + 'first')
+            Profile.findOne({user: profile.user._id}).then(profile => {
+               // console.log(profile.user + 'second')
 
-            const removeIndexProfile = profile.followers.map(item => item.user.toString()).indexOf(req.user.id)
+                const removeIndexProfile = profile.followers.map(item => item.user.toString()).indexOf(req.user.id)
+                    console.log(profile.user);
+                 // authProfile.following.filter(followed => profile.user.toString() !== followed.user.toString())
+                 const authProfileUsers = authProfile.following.map(user => user)
+                 // console.log(authProfileUsers);
+                const userIds = authProfileUsers.map(followed => followed.user.toString());
+               // console.log(userIds);
+               // console.log(profile.user.toString());
+                const userIdIndex = userIds.indexOf(profile.user.toString());
+                authProfile.following.splice(userIdIndex, 1);
+                authProfile.save();
+                 profile.followers.splice(removeIndexProfile, 1)
+                 profile.save();
+            })
+       
+            /* const removeIndexProfile = profile.followers.map(item => item.user.toString()).indexOf(req.user.id)
 
-            const removeIndexAuthProfile = authProfile.following.map(item => item.user.toString()).indexOf(profile.user)
+          /*  const removeIndexAuthProfile = authProfile.following.map(item => item.user.toString()).indexOf(profile.user)
 
-            profile.followers.splice(removeIndexProfile, 1)
-
-            profile.save()
-            
-            authProfile.following.splice(removeIndexAuthProfile, 1);
-
+    
+            authProfile.following.filter(profile => profile !== profile.user)
+            //authProfile.following.splice(removeIndexAuthProfile, 1);
             authProfile.save()
             .then(authProfile => res.json({unfollowed: 'Unfollowed this profile'}))
+            profile.followers.splice(removeIndexProfile, 1)
+            
+            profile.save() */
+      
+
         })
     })
     .catch(err => console.log(err));
