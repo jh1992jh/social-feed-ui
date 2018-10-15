@@ -645,8 +645,8 @@ hr {
   }
 
   .post .postFooter .singlePostForm {
-    position: relative;
-    bottom: calc(100vh - 100vh);
+    position: fixed;
+    bottom: 4em;
     left: 0;
     width: 100%;
     background: #fff;
@@ -1114,7 +1114,7 @@ hr {
   }
   /* PROFILE STYLES */
 
-  .noProfile {
+  .noProfile, .notFollowing {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1126,12 +1126,12 @@ hr {
     color: #808080;
   }
 
-  .noProfile p {
+  .noProfile p, .notFollowing p {
     text-align: center;
     line-height: 1.8rem;
   }
 
-  .noProfile .createProfileLink {
+  .noProfile .createProfileLink, .notFollowing .notFollwingLink {
     color: #0099cc
   }
 
@@ -2277,7 +2277,7 @@ hr {
   }
 
   /* PROFILE STYLES */
-  .noProfile {
+  .noProfile, .notFollowing {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -2289,12 +2289,12 @@ hr {
     color: #808080;
   }
 
-  .noProfile p {
+  .noProfile p, .notFollowing p {
     text-align: center;
     line-height: 1.8rem;
   }
 
-  .noProfile .createProfileLink {
+  .noProfile .createProfileLink, .notFollowing .notFollwingLink {
     color: #0099cc
   }
 

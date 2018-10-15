@@ -23,9 +23,10 @@ class MainView extends Component {
 
   componentDidMount() {
     this.props.clearCurrentPost();
-    //this.props.getPosts();
+    this.props.getPosts();
     this.props.getCurrentProfile();
     this.props.getFollowedPosts(this.props.auth.user.id);
+   
   }
 
   onToggleLikesMenu() {
@@ -39,7 +40,7 @@ class MainView extends Component {
   
     let outputPosts; 
     
-    if(posts.loading === true || profile.loading === true || profile.profile === null) {
+    if(posts.loading === true || profile.profile === null ){
       outputPosts = <Loading />
     } else if (posts.loading === false && posts.followedPosts.length > 0 && Object.keys(profile.profile).length > 0) {
       outputPosts = posts.followedPosts.map((post, i) => (
@@ -57,7 +58,7 @@ class MainView extends Component {
           date={post.date}
         />
       ));
-    } else if (Object.keys(profile.profile).length === 0) {
+    } else if (Object.keys(profile.profile).length === 0 && profile.loading === false) {
       outputPosts = (
         <div className="noProfile">
         <i className="far fa-user-circle" />
@@ -68,6 +69,17 @@ class MainView extends Component {
           Create a profile
         </Link>
         </p>
+        </div>
+      )
+    } else if (profile.profile.following.length === 0) {
+      outputPosts = (
+        <div className="notFollowing">
+          <p>You have not followed anyone yet<br />
+          <Link to="/explore" className="notFollwingLink">
+            click here{' '}
+          </Link>
+            to see posts <br />and to find people to follow.
+          </p>
         </div>
       )
     }
@@ -103,5 +115,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { clearCurrentPost, getFollowedPosts, getCurrentProfile }
+  { getPosts ,clearCurrentPost, getFollowedPosts, getCurrentProfile }
 )(withRouter(MainView));
