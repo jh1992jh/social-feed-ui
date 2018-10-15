@@ -1586,7 +1586,17 @@ hr {
   font-size: 0.5rem;
   margin-top: -100px;
 }
-  .navTop .likes {
+
+.navTop .closeLikesMenuOverLay {
+  width: 100vw;
+  height: 100vh;
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  background: rgba(0,0,0, 0);
+}
+
+.navTop .likes {
     position: absolute;
     display: inline-block;
     right: 9em;
@@ -1620,6 +1630,7 @@ hr {
     border-radius: 360px;
     border: 1px solid #808080;
     margin: 0.5em;
+    position: relative;
   }
 
   .navTop .likes .likeInfo .likeRoundedProfPicSmall img {
@@ -1637,8 +1648,7 @@ hr {
   }
 
   .navTop .likes .likeInfo .likeInfoContainer p {
-    max-width: 28vw;
-    width: 22vw;
+    flex: 4;
   }
 
   .navTop .likes .likeInfo .likeInfoContainer .time {
@@ -1647,11 +1657,13 @@ hr {
 
   .navTop .likes .likeInfo .likedPostPic {
     min-height: 30px;
-    min-width: 30px;
+    max-width: 30px;
     border: 1px solid #808080;
     margin: 0.8em;
     align-self: flex-start;
+    display: inline;
     position: relative;
+    flex: 1;
   }
 
   .navTop .likes .likeInfo .likedPostPic img {

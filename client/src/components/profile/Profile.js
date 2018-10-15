@@ -20,13 +20,14 @@ class Profile extends Component {
    if(this.props.match.url === '/my-profile') {
       this.props.getCurrentProfile()
       this.props.getOwnedPosts(this.props.auth.user.id)
-    } else {
+    } else if (this.props.match.params.userId) {
       this.props.getProfileById(this.props.match.params.userId)
       this.props.getOwnedPosts(this.props.match.params.userId)
     }
     this.props.getPosts();
   }
 
+ 
   render() {
     const { posts, profile, auth } = this.props;
     let outputProfile;

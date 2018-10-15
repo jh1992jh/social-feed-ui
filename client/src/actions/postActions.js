@@ -1,4 +1,4 @@
-import { GET_POSTS, GET_OWNED_POSTS,POST_LOADING, POST_A_POST, ADD_CURRENT_POST, CLEAR_CURRENT_POST, GET_POST,  DELETE_POST, GET_FOLLOWED_POSTS } from './types';
+import { GET_POSTS, GET_OWNED_POSTS,POST_LOADING, POST_A_POST, ADD_CURRENT_POST, CLEAR_CURRENT_POST, GET_POST,  DELETE_POST, GET_FOLLOWED_POSTS,TOGGLE_LIKES_MENU, GET_POST_NOTIFICATIONS } from './types';
 import axios from 'axios';
 
 export const getPosts = () => dispatch => {
@@ -16,13 +16,27 @@ export const getPosts = () => dispatch => {
 }
 
 export const getOwnedPosts = userId => dispatch => {
-    //dispatch(setPostLoading());
+    dispatch(setPostLoading());
 
     axios
         .get(`/api/posts/owned/${userId}`)
         .then(res => 
         dispatch({
             type: GET_OWNED_POSTS,
+            payload: res.data
+        })
+        )
+        .catch(err => console.log(err));
+}
+
+export const getPostNotifications = userId => dispatch => {
+    //dispatch(setPostLoading());
+
+    axios
+        .get(`/api/posts/owned/${userId}`)
+        .then(res => 
+        dispatch({
+            type: GET_POST_NOTIFICATIONS,
             payload: res.data
         })
         )
@@ -135,6 +149,12 @@ export const addCurrentPost = postData => dispatch => {
         )
         .catch(err => console.log(err));
   }
+
+export const toggleLikesMenu = () => dispatch => {
+    dispatch({
+        type: TOGGLE_LIKES_MENU
+    })
+}
 
 export const setPostLoading = () => {
     return {

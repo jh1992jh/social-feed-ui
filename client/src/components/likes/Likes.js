@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profileActions';
-import { getOwnedPosts } from '../../actions/postActions'
+import { getOwnedPosts, getPostNotifications } from '../../actions/postActions'
 import PropTypes from 'prop-types';
 import LikeInfo from './LikeInfo';
 import LikesContainer from './LikesContainer';
@@ -9,25 +9,19 @@ import Loading from '../../utilities/Loading';
 
 class Likes extends Component {
   componentDidMount() {
-  
-    this.props.getOwnedPosts(this.props.auth.user.id);
-
-    if(Object.keys(this.props.profile).length === 0) {
-      this.props.getCurrentProfile();
-    }
-   
+  this.props.getPostNotifications(this.props.auth.user.id)
   }
   render() {
     const { loading } = this.props.posts;
-    const { ownedPosts } = this.props.posts;
+    const { postNotifications } = this.props.posts;
     const { profile } = this.props
     let outputContent; 
     
     if(profile.loading === true || loading === true ) {
       outputContent = <Loading />
-    } else if (profile.loading === false && loading === false && ownedPosts.length > 0)  {
+    } else if (profile.loading === false && loading === false && postNotifications.length > 0)  {
       outputContent = (
-        ownedPosts.map(post => (
+        postNotifications.map(post => (
           <Fragment key={post._id}>
             <LikeInfo
               postId={post._id}
@@ -38,7 +32,7 @@ class Likes extends Component {
           </Fragment>
         ))
       )
-    } else if (profile.loading === false && loading === false && ownedPosts.length === 0) {
+    } else if (profile.loading === false && loading === false && postNotifications.length === 0) {
       outputContent = <h3>Your Posts don't have any comments yet</h3>
     }
     
@@ -65,4 +59,4 @@ const mapStateToProps = state => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, getOwnedPosts})(Likes);
+export default connect(mapStateToProps, { getCurrentProfile, getOwnedPosts, getPostNotifications})(Likes);

@@ -1,11 +1,13 @@
-import { GET_POSTS, GET_OWNED_POSTS, GET_FOLLOWED_POSTS, GET_POST, POST_LOADING, POST_A_POST, ADD_CURRENT_POST, CLEAR_CURRENT_POST, DELETE_POST } from '../actions/types';
+import { GET_POSTS, GET_OWNED_POSTS, GET_FOLLOWED_POSTS, GET_POST, POST_LOADING, POST_A_POST, ADD_CURRENT_POST, CLEAR_CURRENT_POST, DELETE_POST, TOGGLE_LIKES_MENU, GET_POST_NOTIFICATIONS } from '../actions/types';
 
 const initialState = {
     loading: false,
     posts: [],
     ownedPosts: [],
     followedPosts: [],
-    post: {}
+    postNotifications: [],
+    post: {},
+    likesMenuOpen: false
 }
 
 export default function(state = initialState, action) {
@@ -60,6 +62,18 @@ export default function(state = initialState, action) {
                 ...state,
                 posts: state.posts.filter(post => post._id !== action.payload)
             }
+        case TOGGLE_LIKES_MENU: 
+            return {
+                ...state,
+                likesMenuOpen: !state.likesMenuOpen
+            }
+        case GET_POST_NOTIFICATIONS: {
+            return {
+                ...state,
+                loading: false,
+                postNotifications: action.payload
+            }
+        }
         default:
             return state
     }

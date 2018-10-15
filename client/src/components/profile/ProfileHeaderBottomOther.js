@@ -7,13 +7,13 @@ import PropTypes from 'prop-types';
 class ProfileHeaderBottomOther extends Component {
   onFollowProfile = () => {
     const { profileId, userId } = this.props;
-
+    console.log(profileId)
     this.props.followProfile(profileId, userId)
   }
 
   onUnfollowProfile = () => {
     const { profileId, userId } = this.props;
-
+    console.log(profileId)
     this.props.unfollowProfile(profileId, userId)
   }
   render() {
@@ -52,7 +52,7 @@ class ProfileHeaderBottomOther extends Component {
              {checkFollowing === 1 ? 'Unfollow' : 'Follow'}
             </button>
             <button className="suggested">
-              <i className="fas fa-caret-down" />
+              <i className="fas fa-caret-down"/>
             </button>
           </div>
             </div>

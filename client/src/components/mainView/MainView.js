@@ -11,15 +11,6 @@ import Post from '../posts/Post';
 import Loading from '../../utilities/Loading';
 
 class MainView extends Component {
-  constructor(props) {
-    super(props);
-
-    this.onToggleLikesMenu = this.onToggleLikesMenu.bind(this);
-
-    this.state = {
-      showLikes: false
-    };
-  }
 
   componentDidMount() {
     this.props.clearCurrentPost();
@@ -29,13 +20,7 @@ class MainView extends Component {
    
   }
 
-  onToggleLikesMenu() {
-    const { showLikes } = this.state;
-
-    this.setState({ showLikes: !showLikes });
-  }
   render() {
-    const { showLikes } = this.state;
     const { posts, auth, profile } = this.props;
   
     let outputPosts; 
@@ -85,12 +70,9 @@ class MainView extends Component {
     }
     return (
       <Fragment>
-        <NavbarTop
-          showLikes={showLikes}
-          onToggleLikesMenu={this.onToggleLikesMenu}
-        />
+        <NavbarTop />
         <Feed>
-          <Stories showLikes={showLikes} />
+          <Stories />
           {outputPosts}
         </Feed>
       </Fragment>
