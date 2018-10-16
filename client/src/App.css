@@ -1540,9 +1540,10 @@ hr {
 
   .navTop .forDesktop {
     display: flex;
-    background-color: #f9f9f9;
+    /*background-color: #f9f9f9;*/
+    background: transparent;
     max-height: 2rem;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     padding: 0.2em;
   }
 
@@ -1596,12 +1597,22 @@ hr {
   background: rgba(0,0,0, 0);
 }
 
+.navTop .triangle {
+  width: 0px;
+  height: 0px;
+  border-left: 25px solid transparent;
+  border-right: 25px solid transparent;
+  border-bottom: 50px solid #efefef;
+  margin: 1.05em 2.23em;
+  position: absolute;
+}
+
 .navTop .likes {
     position: absolute;
     display: inline-block;
-    right: 9em;
-    top: 3em;
-    height: 30vw;
+    right: 25em;
+    top: 4em;
+    max-height: 30vw;
     width: 30vw;
     max-width: 30vw;
     z-index: 2050;

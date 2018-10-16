@@ -15,11 +15,14 @@ class Likes extends Component {
     const { loading } = this.props.posts;
     const { postNotifications } = this.props.posts;
     const { profile } = this.props
+
+    
     let outputContent; 
     
     if(profile.loading === true || loading === true ) {
       outputContent = <Loading />
     } else if (profile.loading === false && loading === false && postNotifications.length > 0)  {
+      postNotifications.sort((a, b ) => a.date < b.date.toString())
       outputContent = (
         postNotifications.map(post => (
           <Fragment key={post._id}>

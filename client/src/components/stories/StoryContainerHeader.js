@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { watchAllStories } from '../../actions/storyActions';
 
 class StoryContainerHeader extends Component {
@@ -8,7 +9,9 @@ class StoryContainerHeader extends Component {
  
         <div className="storyContainerHeader">
           <span className="muted">Stories</span>
-          <span onClick={() => this.props.watchAllStories()}>Watch All</span>
+          <Link to="/stories">
+          <span>Watch All</span>
+          </Link>
         </div>
       
     )

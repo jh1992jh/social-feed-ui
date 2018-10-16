@@ -18,7 +18,8 @@ app.use('/post/uploads', express.static(__dirname + '/uploads'));
 app.use('/profile/uploads', express.static(__dirname + '/uploads'));
 app.use('/profile/followers/uploads', express.static(__dirname + '/uploads'));
 app.use('/profile/following/uploads', express.static(__dirname + '/uploads'));
-app.use('/story/uploads', express.static(__dirname + '/uploads')); 
+app.use('/story/uploads', express.static(__dirname + '/uploads'));
+//app.use('/story/watchall/uploads', express.static(__dirname + '/uploads')); 
 const db = require('./config/keys').mongoURI;
  /* TEST */
 mongoose

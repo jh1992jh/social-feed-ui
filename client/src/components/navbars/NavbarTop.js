@@ -31,8 +31,8 @@ class NavbarTop extends Component {
         </NavLink>
 
         <div className="forDesktop marginLR">
-          <i className="fas fa-search" />
-          <input type="search" placeholder="Search" />
+          {/* TODO: <i className="fas fa-search" />
+    <input type="search" placeholder="Search" /> */}
         </div>
 
         
@@ -46,6 +46,7 @@ class NavbarTop extends Component {
 
           {likesMenuOpen ? (
            <Fragment>
+            <div className="triangle" />
             <Likes />
             <div className="closeLikesMenuOverLay" onClick={() => this.props.toggleLikesMenu()}/>
             </Fragment>

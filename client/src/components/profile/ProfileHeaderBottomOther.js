@@ -15,6 +15,7 @@ class ProfileHeaderBottomOther extends Component {
     const { profileId, userId } = this.props;
     console.log(profileId)
     this.props.unfollowProfile(profileId, userId)
+    setTimeout(() => this.props.history.push('/'), 100)
   }
   render() {
     const {
