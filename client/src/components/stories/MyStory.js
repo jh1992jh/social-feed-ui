@@ -78,7 +78,10 @@ const ForMobile = styled.p`
   margin: 0;
   margin-top: 0.5em;
   font-size: 0.7rem;
-
+  
+  a {
+    color: #0099cc;
+  }
   @media (min-width: 1000px) {
     display: none;
   }
@@ -126,7 +129,7 @@ const MyStory = ({ handle, profileImage  }) => {
           <Link to="/create-story">Create a Story</Link>
         </ForDesktop> 
       <ForMobile>
-          Your Story
+        <Link to="/create-story">Create</Link>
       </ForMobile>
 
       <br />

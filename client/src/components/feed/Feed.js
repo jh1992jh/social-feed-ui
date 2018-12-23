@@ -24,6 +24,11 @@ const FeedStyled = styled.div`
       max-width: 38vw;
     }
 }
+
+
+@media (max-width: 980px) {
+  padding-top: 6em;
+}
 `
 class Feed extends Component {
   render() {

@@ -4,6 +4,7 @@ import { addCurrentPost, addLike, removeLike } from '../../actions/postActions';
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { icons } from '../../images-and-icons';
 
 const PostBodyStyled = styled.div`
   min-width: 100%;
@@ -32,10 +33,14 @@ const Icons = styled.div`
   margin: 0.2em 0;
   padding: 0 1em;
 
-  i {
-    margin-right: 0.5em;
-    font-size: 1.2rem;
+  img {
+    width: 30px;
+    height: auto;
   }
+`
+
+const Like = styled.div`
+  margin-right: 0.5em;
 `
 
 class SinglePostBody extends Component {
@@ -66,9 +71,17 @@ class SinglePostBody extends Component {
     </div> */}
         <Icons>
           
-            <i className="far fa-heart" onClick={liked ? () => onRemoveLike() : () => onAddLike()} style={liked ? {color:'#dd0000'} : null}/>
+        {liked ? (
+          <Like>
+            <img src={icons.liked} alt="unlike" onClick={() => onRemoveLike()} />
+            </Like>
+        ) : (
+          <Like>
+            <img src={icons.likes} alt="unlike" onClick={() => onAddLike()} />
+          </Like>
+        )}
             
-              <i className="far fa-comment" onClick={this.onAddCurrentPost} />
+              <img src={icons.comment} onClick={this.onAddCurrentPost} />
         
           
 

@@ -15,7 +15,6 @@ const Story = loadable(() => import('./Story'), {
 })
 
 const StoriesStyled = styled.div`
-
   @media (min-width: 1000px) {
     width: 25vw;
     min-height: 550px;
@@ -57,14 +56,24 @@ const ForMobile = styled.div`
 
 // NOTE STORIES NOT ALLIGNED 100% EQUALLY (MYSTORY VS OTHER STORY) BECAUSE OF A LINK TAG THAT WRAPS A OTHERSTORY COMPONENT
 const StoriesContainer = styled.div`
-margin-top: 0.5em;
+margin-top: 0em;
 max-width: 100%; 
 height: 58px;
 display: flex;
-padding: 15px 0 5px 18px;
+padding: 30px 0 5px 18px;
 align-items: center;
+@media (max-width: 980px) {
+  position: fixed;
+  z-index: 1050;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+}
 justify-content: flex-start;
-
+@media (max-width: 980px) {
+  box-shadow: 0 0.5px 1px #909090;
+}
 
 @media (min-width: 1000px) {
   width: 100%;

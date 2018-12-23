@@ -4,6 +4,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { deletePost } from '../../actions/postActions';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { icons } from '../../images-and-icons';
 
 const PostHeaderStyled = styled.div`
   display: flex;
@@ -12,6 +13,14 @@ const PostHeaderStyled = styled.div`
 
   button {
     border: none;
+    display: flex;
+    align-items: center;
+  }
+
+  button img {
+    margin: 0 0.5em;
+    
+    width: auto;
   }
 
   @media (min-width: 1000px) {
@@ -22,6 +31,7 @@ const PostHeaderStyled = styled.div`
 const ProfileInfo = styled.div`
   display: flex;
   flex: 1;
+
 
   @media (min-width: 1000px) {
     align-items: center;
@@ -45,6 +55,7 @@ const ProfileThumbnail = styled.div`
     bottom: -0.1em;
     left: 0;
   }
+
 
   @media (min-width: 1000px) {
     margin: 0;
@@ -91,7 +102,7 @@ class PostHeader extends Component {
 
     return (
       <PostHeaderStyled>
-      {this.props.match.params.postId ? <button onClick={this.onGoBack} className="goBackBtn"><i className="fas fa-arrow-left" /> Go back</button> : null}
+      {this.props.match.params.postId ? <button onClick={this.onGoBack} className="goBackBtn"><img src={icons.goback} /> Go back</button> : null}
         <ProfileInfo>
           <ProfileThumbnail>
             <img src={profileImage} alt="profPic" />

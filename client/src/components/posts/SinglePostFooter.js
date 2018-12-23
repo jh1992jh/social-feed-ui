@@ -36,7 +36,7 @@ const Comments = styled.div`
   max-height: 28.5vh;
 
   @media (min-width: 1000px) {
-
+    width: 100%;
     max-height: 30vh;
     overflow-y: scroll;
   }
@@ -61,11 +61,19 @@ const CommentForm = styled.div`
     position: fixed;
   bottom: 4em;
   left: 0;
+
+  input {
+    border: 2px solid #888;
+  }
   }
 
   @media (min-width: 1000px) {
     position: static;
     bottom: 0;
+    input {
+      border: none;
+      max-width: calc(100% - 30px)
+    }
   }
 `
 

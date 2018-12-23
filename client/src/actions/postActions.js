@@ -113,16 +113,16 @@ export const addCurrentPost = postData => dispatch => {
   export const addLike = postId => dispatch => {
       axios
         .post(`/api/posts/like/${postId}`)
-        .then(res => dispatch(setPostLoading))
-        .then(res => dispatch(getPost(postId)))
+        //.then(res => dispatch(setPostLoading))
+        //.then(res => dispatch(getPost(postId)))
         .catch(err => console.log(err));
   }
 
   export const removeLike = postId => dispatch => {
       axios
         .post(`/api/posts/unlike/${postId}`)
-        .then(res => dispatch(setPostLoading))
-        .then(res => dispatch(getPost(postId)))
+        //.then(res => dispatch(setPostLoading))
+        //.then(res => dispatch(getPost(postId)))
         .catch(err => console.log(err));
   }
 

@@ -68,6 +68,7 @@ const NavLogout = styled.div`
 const NavLogoutLink = styled.div`
   display: flex;
   align-items: center;
+  color: #888;
 `
 
 const TopNavIcon = styled.img`

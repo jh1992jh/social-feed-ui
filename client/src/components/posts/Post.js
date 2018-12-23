@@ -12,6 +12,7 @@ import Loading from './Loading';
 
 
 
+
 const PostBody = loadable(() => import('../posts/PostBody'), {
   fallback: <Loading height="37.5vh"/>,
 })
