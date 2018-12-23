@@ -2,17 +2,33 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { watchAllStories } from '../../actions/storyActions';
+import styled from 'styled-components';
+
+const StoryContHeader = styled.div`
+display: flex;
+justify-content: space-between;
+font-weight: 600;
+margin: 1em 0;
+
+a {
+  color: #0099cc;
+}
+`
+
+const Muted = styled.span`
+color: #0099cc;
+`
 
 class StoryContainerHeader extends Component {
   render()  {
     return (
  
-        <div className="storyContainerHeader">
-          <span className="muted">Stories</span>
+        <StoryContHeader>
+          <Muted>Stories</Muted>
           <Link to="/stories">
           <span>Watch All</span>
           </Link>
-        </div>
+        </StoryContHeader>
       
     )
   }

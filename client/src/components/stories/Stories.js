@@ -2,20 +2,116 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getStories, getFollowedStories } from '../../actions/storyActions';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import MyStory from './MyStory';
-import Story from './Story';
+//import Story from './Story';
 import StoryContainerHeader from './StoryContainerHeader';
-import InfoFooter from './InfoFooter';
+// import InfoFooter from './InfoFooter';
+import loadable from '@loadable/component'
+import styled from 'styled-components';
+
+const Story = loadable(() => import('./Story'), {
+  fallback: <div style={{width: '50px', height:'50px', border: '1px solid oranged', borderRadius: '100%'}} />,
+})
+
+const StoriesStyled = styled.div`
+
+  @media (min-width: 1000px) {
+    width: 25vw;
+    min-height: 550px;
+    
+    display: flex;
+    flex-direction: column;
+    font-size: 0.7rem;
+    position: fixed;
+    top: 15.5%;
+    right: 8%;
+    z-index: 0;
+    
+    border-radius: 15px;
+  } 
+`
+
+const MyStoryContainerDesktop = styled.div`
+min-height: 100px;
+display: flex;
+padding: 1em;
+justify-content: flex-start;
+@media (max-width: 980px) {
+  display: none
+}
+`
+
+const ForDesktop = styled.div`
+@media (max-width: 980px) {
+  display: none
+}
+`
+
+const ForMobile = styled.div`
+@media (min-width: 1000px) {
+  display: none;
+}
+`
+
+
+// NOTE STORIES NOT ALLIGNED 100% EQUALLY (MYSTORY VS OTHER STORY) BECAUSE OF A LINK TAG THAT WRAPS A OTHERSTORY COMPONENT
+const StoriesContainer = styled.div`
+margin-top: 0.5em;
+max-width: 100%; 
+height: 58px;
+display: flex;
+padding: 15px 0 5px 18px;
+align-items: center;
+justify-content: flex-start;
+
+
+@media (min-width: 1000px) {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+ 
+  height: 100%;
+  
+}
+` 
+
+const OtherStories = styled.div`
+display: flex;
+
+margin: 0 0.5em; 
+align-items: flex-start;
+padding-bottom: 19px;
+@media (min-width: 1000px) {
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+`
+
+const DesktopHr = styled.hr`
+  margin: 1em 0;
+  min-height: 1px;
+  background: #d0d0d0;
+  border: none;
+  max-width: 100% !important;
+
+  @media (max-width: 980px) {
+    display: none
+  }
+`
+
 
 class Stories extends Component {
   componentDidMount() {
-    this.props.getStories();
+    //this.props.getStories();
     this.props.getFollowedStories(this.props.auth.user.id);
-    console.log(this.props.stories.watchAll)
+    
   }
   render() {
-    const { showLikes, profile } = this.props;
+    const { profile } = this.props;
     const { loading, followedStories } = this.props.stories;
  
 
@@ -40,38 +136,29 @@ class Stories extends Component {
      ));
     }
     return (
-      <div
-        className="stories"
-        
-      >
-        <div
-          className="forDesktop myStoryContainer"
-         
-        >
+      <StoriesStyled>
+        <MyStoryContainerDesktop>
         {outputMyStory}
-        </div>
+        </MyStoryContainerDesktop>
 
-        <hr className="forDesktop" />
-        <div
-          className="forDesktop"
+        <DesktopHr />
+        <ForDesktop
         >
           <StoryContainerHeader />
-        </div>
-        <div
-          className="storiesContainer"
-        >
-          <div className="forMobile">
+        </ForDesktop>
+        <StoriesContainer>
+          <ForMobile>
             {outputMyStory}
-          </div>
-          <div className="otherStories">
+          </ForMobile>
+          <OtherStories>
           {outputStories}
-          </div>
-        </div>
-        <hr className="forDesktop" />
-        <div className="forDesktop">
+          </OtherStories>
+        </StoriesContainer>
+
+        {/* <div className="forDesktop">
           <InfoFooter />
-        </div>
-      </div>
+    </div> */}
+      </StoriesStyled>
     );
   }
 }

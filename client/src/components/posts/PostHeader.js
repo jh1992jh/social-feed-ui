@@ -2,7 +2,66 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { deletePost } from '../../actions/postActions';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
+
+const PostHeaderStyled = styled.div`
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  button {
+    border: none;
+  }
+
+  @media (min-width: 1000px) {
+    padding: 0.5em;
+  }
+`;
+
+const ProfileInfo = styled.div`
+  display: flex;
+  flex: 1;
+
+  @media (min-width: 1000px) {
+    align-items: center;
+  }
+`;
+
+const ProfileThumbnail = styled.div`
+  height: 25px;
+  width: 30px;
+  border-radius: 360px;
+  border: 1px solid #808080;
+  margin: 0 0.5em 0.3em 0.2em;
+  position: relative;
+  background: #eee;
+
+  img {
+    height: 30px;
+    width: 30px;
+    border-radius: 360px;
+    position: absolute;
+    bottom: -0.1em;
+    left: 0;
+  }
+
+  @media (min-width: 1000px) {
+    margin: 0;
+  }
+`
+
+const ProfileName = styled.p`
+  color: #222;
+  font-size: 0.6rem;
+  font-weight: 500;
+  margin-bottom: -100px;
+
+  @media (min-width: 1000px) {
+    margin: 1em;
+    display: block;
+  }
+`
 
 class PostHeader extends Component {
   state = {
@@ -23,26 +82,25 @@ class PostHeader extends Component {
   } 
   render() {
     const {
-      auth,
       handle,
       userId,
       profileImage,
     } = this.props;
 
-    const { showMenu } = this.state;
+
 
     return (
-      <div className="postHeader">
+      <PostHeaderStyled>
       {this.props.match.params.postId ? <button onClick={this.onGoBack} className="goBackBtn"><i className="fas fa-arrow-left" /> Go back</button> : null}
-        <div className="postHeaderProfInfo">
-          <div className="roundedProfThumbSmall">
+        <ProfileInfo>
+          <ProfileThumbnail>
             <img src={profileImage} alt="profPic" />
-          </div>
+          </ProfileThumbnail>
           <Link to={`/profile/${userId}`}>
-            <p className="profileName">{handle}</p>{' '}
-    </Link> 
-        </div>
-        <div className="postHeaderProfInfo2">
+            <ProfileName>{handle}</ProfileName>{' '}
+          </Link> 
+        </ProfileInfo>
+       {/* <div className="postHeaderProfInfo2">
           <i onClick={this.onToggleMenu} className="fas fa-ellipsis-v" />
           {showMenu === true ? (
             <div className="showMenuContainer">
@@ -53,8 +111,8 @@ class PostHeader extends Component {
               )}
             </div>
           ) : null}
-        </div>
-      </div>
+              </div> */}
+      </PostHeaderStyled>
     );
   }
 }

@@ -42,7 +42,6 @@ router.post('/',upload.single('postImage'), passport.authenticate('jwt', { sessi
 
     console.log(req.file)
     /* const { errors, isValid } = validatePostInput(req.body);
-
     if(!isValid) {
         return res.status(400).json(errors)
     } */

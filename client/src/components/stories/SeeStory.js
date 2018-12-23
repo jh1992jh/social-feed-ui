@@ -2,9 +2,130 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getStory } from '../../actions/storyActions';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import Loading from '../../utilities/Loading';
+
+const SeeStoryStyled = styled.div` 
+    position: relative;
+    height: 100vh;
+
+    img {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+
+    @media (min-width: 1000px) {
+        height: 100vh;
+        width: 100vw;
+        background: #222;
+        display: flex;
+        padding-top: 10%;
+        align-items: center;
+        flex-direction: column;
+        z-index: 0;
+
+        img {
+         width: 30%;
+         height: 60%;
+         position: relative;
+
+        }
+    }
+`;
+
+const StoryInfo = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1030;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    color: ${props => props.color}
+
+    @media (min-width: 1000px) {
+    z-index: 1030;
+    max-width: 30%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+  
+  
+    position: static;
+    }
+`;
+
+const StoryCreator = styled.div`
+    display: flex;
+    align-items: center;
+    margin: 0.5em 0 0 0.5em;
+    font-weight: 600;
+    span {
+        color: ${props => props.color}
+    }
+    img {
+        height: 28px;
+        width: 28px;
+        border-radius: 360px;
+        margin-right: 0.5em;
+      }
+`
+
+const StoryCreated = styled.div`
+    display: flex;
+    align-items: center;
+    margin: 0.5em 0.5em 0 0;
+`;
+
+const StoryText = styled.p`
+    position: absolute;
+    bottom: 40%;
+    left: 0;
+    min-width: 100%;
+    max-width: 100%;
+    background: transparent;
+    font-size: 2rem;
+    font-weight: 600;
+    z-index: 1050;
+    text-align: center;
+    color: ${(props) => props.color}
+
+    @media (min-width: 1000px) {
+    bottom: 35%;
+    display: block;
+    min-width: 100%;
+    font-size: 2rem;
+    font-weight: 600;
+    }
+`;
+
+const StoryLocation = styled.h3`
+    position: absolute;
+    z-index: 1050;
+    bottom: 20%;
+    left: 0;
+    min-width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: ${props => props.color}
+
+    @media (min-width: 1000px) {
+    bottom: 25%;
+    }
+`;
+
+const StoryDurationBar = styled.div`
+    width: 1%;
+    height: 50px;
+    background: red;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+`
 
 class SeeStory extends Component {
 componentDidMount() {
@@ -30,28 +151,28 @@ componentWillReceiveProps(nextProps) {
     } else if (loading === false && Object.keys(story).length > 0) {
         outputContent = (
             <Fragment>
-            <div className="storyInfo">
-            <div className="storyCreator" >
+            <StoryInfo color={`${story.color}`}>
+            <StoryCreator color={`${story.color}`}>
             <img src={story.profileImage} alt="profile"/>
             <Link to={`/profile/${story.user}`}>
-            <span style={{color: `${story.color}`}}>{story.handle}</span>
+            <span>{story.handle}</span>
             </Link>
-        </div>
-        <div className="storyCreated">
+        </StoryCreator>
+        <StoryCreated>
             <Moment style={{color: `${story.color}`}} fromNow>{story.date}</Moment>
-        </div>
-            </div>
-            <p className="storyText" style={{color: `${story.color}`}}>{story.text}</p> 
-         <h3 className="storylocation" style={{color: `${story.color}`}}>{story.storyLocation}</h3>
-         {story.storyImage.length > 0 ? <img src={story.storyImage} className="storyBackgroundImage" alt="story background" /> : null}  
+        </StoryCreated>
+            </StoryInfo>
+            <StoryText color={`${story.color}`}>{story.text}</StoryText> 
+         <StoryLocation color={`${story.color}`}>{story.storyLocation}</StoryLocation>
+         {story.storyImage.length > 0 ? <img src={story.storyImage} alt="story background" /> : null}  
          <div className={`storyDurationBar ${story.storyDuration}`} />
             </Fragment>
         )
     }
     return (
-        <div className="seeStoryContainer">
+        <SeeStoryStyled>
         {outputContent}
-        </div>
+        </SeeStoryStyled>
     )
     
   }

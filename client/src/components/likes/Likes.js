@@ -1,11 +1,19 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profileActions';
-import { getOwnedPosts, getPostNotifications } from '../../actions/postActions'
+import { getOwnedPosts, getPostNotifications } from '../../actions/postActions';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import LikeInfo from './LikeInfo';
 import LikesContainer from './LikesContainer';
-import Loading from '../../utilities/Loading';
+import Loading from '../posts/Loading';
+//import Loading from '../../utilities/Loading';
+
+
+const LikesStyled = styled.div`
+  max-width: 100%;
+
+`;
 
 class Likes extends Component {
   componentDidMount() {
@@ -20,7 +28,7 @@ class Likes extends Component {
     let outputContent; 
     
     if(profile.loading === true || loading === true ) {
-      outputContent = <Loading />
+      outputContent = <Loading height="100vh" />
     } else if (profile.loading === false && loading === false && postNotifications.length > 0)  {
       postNotifications.sort((a, b ) => a.date < b.date.toString())
       outputContent = (
@@ -40,10 +48,10 @@ class Likes extends Component {
     }
     
     return (
-      <div className="likes">
+      <LikesStyled>
        {/* <LikesHeader /> */} 
         <LikesContainer>{outputContent}</LikesContainer>
-      </div>
+      </LikesStyled>
     );
   }
 }

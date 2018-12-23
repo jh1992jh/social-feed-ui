@@ -23,8 +23,8 @@ class PostaPost extends Component {
   onPostSubmit = e => {
     e.preventDefault();
 
-    const { postImage, text, filter } = this.state;
-    const { profile } = this.props.profile
+    //const { postImage, text, filter } = this.state;
+    //const { profile } = this.props.profile
 
     const fd = new FormData()
    /*const newPost = {

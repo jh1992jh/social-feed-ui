@@ -1,63 +1,71 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { addCurrentPost, addLike, removeLike } from '../../actions/postActions';
 import { Link, withRouter } from 'react-router-dom';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-class PostBody extends Component {
-  state = {
-    image: ''
-  }
-  
-  onAddCurrentPost = () => {
-    this.props.addCurrentPost(this.props);
+const PostBodyStyled = styled.div`
+  min-width: 100%;
+  margin: 0.5em 0;
+`;
+
+const PostImg = styled.div`
+  min-width: 100%;
+  margin: 0.5em 0;
+
+  img {
+    height: auto;
+    width: 100%;
   }
 
-  onAddLike = () => {
-    this.props.addLike(this.props.match.params.postId)
+  @media (min-width: 1000px) {
+    img {
+      min-width: 100%;
+    }
   }
+ 
+`
 
-  onRemoveLike = () => {
-    this.props.removeLike(this.props.match.params.postId)
+const Icons = styled.div`
+  display: flex;
+  margin: 0.2em 0;
+  padding: 0 1em;
+
+  i {
+    margin-right: 0.5em;
+    font-size: 1.2rem;
   }
-  render() {
-    const {
-      postImage,
-      filter,
-      postId,
-      likes,
-      auth
-    } = this.props;
-    const checkLikes =  () => likes.filter(like => like.user === auth.user.id).length
-    return (
-      <div className="postBody">
-        <div className="postBodyImg forMobile">
+`
+
+const PostBody = ({postImage, filter, postId, liked, onAddLike, onRemoveLike}) => (
+  <PostBodyStyled>
+        <PostImg>
           <img src={postImage} className={filter !== 'none' ? filter : null } alt="post" />
-        </div>
-        <div className={this.props.match.params.postId ? 'singlePostImage forDesktop' : 'postBodyImage forDesktop'}>
+        </PostImg>
+        {/* <div className={this.props.match.params.postId ? 'singlePostImage forDesktop' : 'postBodyImage forDesktop'}>
           <img src={postImage} alt="post" className={filter !== 'none' ? filter : null } />
-        </div>
-        <div
-          className="postBodyIcons"
-        >
-          <div className="postBodyIconsLeft forMobile">
-            <i className="far fa-heart" onClick={checkLikes() === 1 ? this.onRemoveLike : this.onAddLike} style={checkLikes() ? {color:'#dd0000'} : null}/>
+</div> */}
+        <Icons>
+          
+          <i className="far fa-heart" onClick={liked ? () => onRemoveLike() : () => onAddLike()} style={liked ? {color:'#dd0000'} : null}/>
             <Link to={`/post/${postId}`}>
               <i className="far fa-comment" onClick={this.onAddCurrentPost} />
         </Link>
-          </div>
-
-          <div className="postBodyIconsLeft forDesktop">
-            <i className="far fa-heart" onClick={checkLikes() === 1 ? this.onRemoveLike : this.onAddLike} style={checkLikes() ? {color:'#dd0000'} : null} />
-
-            <i className="far fa-comment" />
-          </div>
           
-        </div>
-      </div>
-    );
-  }
-}
+
+          {/* <div className="postBodyIconsLeft forDesktop">
+          <i className="far fa-heart" onClick={liked ? () => onRemoveLike() : () => onAddLike()} style={liked ? {color:'#dd0000'} : null}/>
+
+            <Link to={`/post/${postId}`}>
+            <i className="far fa-comment" onClick={this.onAddCurrentPost} />
+      </Link>
+</div> */}
+          
+        </Icons>
+      </PostBodyStyled>
+)
+
 
 PostBody.propTypes = {
   auth: PropTypes.object.isRequired,

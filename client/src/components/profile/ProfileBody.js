@@ -1,31 +1,62 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import ProfilePosts from './ProfilePosts';
+
+const ProfileBodyStyled = styled.div`
+width: 100vw;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+margin-bottom: 3.1em;
+
+@media (min-width: 1000px) {
+    margin: 1em auto;
+    width: 80vw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1em;
+}
+`
+
+const ProfilePost = styled.div`
+height: 33vw;
+img {
+  height: 33.3vw;
+  width: 33.3vw;
+}
+
+@media (min-width: 1000px) {
+  height: 20vw;
+img {
+  height: 20vw;
+  width: 20vw;
+}
+}
+`
+
+const NoPosts = styled.div`
+display: flex;
+min-width: 100%;
+
+justify-content: center;
+padding: 5em 0;
+text-align: center;
+
+`;
+
 
 const ProfileBody = ({ ownedPosts }) => {
-  let outputContent;
-
-  if(ownedPosts.length > 0) {
-    outputContent = ownedPosts.map(post => (
-      <Link to={`/post/${post._id}`} key={post._id} className="profileBodyItem">
-        <img src={post.postImage} className={post.filter !== 'none' ? post.filter : null} alt="postImg" />
-      </Link>
-    ));
-  } else if (ownedPosts.length === 0) {
-    outputContent = ( 
-      <div className="noPosts">
-    <i className="far fa-image" />
-    <p>You have no posts yet <br /> 
-      start by adding some
-    </p>
-    </div>
-  )
-  }
-  return (
-    <div className="profileBody">
-      {outputContent}
-    </div>
-  );
+    if(ownedPosts.length > 0) {
+      return <ProfilePosts ownedPosts={ownedPosts} />
+    } else {
+      return (
+        <NoPosts>
+        
+        <p>User has no posts yet</p>
+        </NoPosts>
+      )
+    }
 };
 
 ProfileBody.propTypes = {

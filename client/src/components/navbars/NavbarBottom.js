@@ -1,9 +1,12 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
-import { getCurrentProfile } from '../../actions/profileActions';
+import styled from 'styled-components';
+import { icons } from '../../images-and-icons';
 
-class NavbarBottom extends Component {
+
+
+/* class NavbarBottom extends Component {
   componentDidMount() {
   
   }
@@ -36,10 +39,61 @@ class NavbarBottom extends Component {
     }
     return <Fragment>{outputContent}</Fragment>;
   }
+} 
+*/
+
+const NavBottom = styled.nav`
+position: fixed;
+padding: 10px 10px;
+display: block;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 1030;
+max-width: 100%;
+background: #fff;
+box-shadow: 0 -0.5px 1px #909090;
+@media (min-width: 1000px) {
+  display: none;
+}
+`
+
+const IconContainer = styled.div`
+display: flex;
+justify-content: space-around;
+` 
+
+
+
+const NavbarBottom = ({ auth }) => {
+  if(!auth.isAuthenticated) return null;
+  
+  return (
+    <NavBottom>
+      <IconContainer>
+      <NavLink exact to="/" activeClassName="selected">
+              <img src={icons.home} alt="home"/>
+            </NavLink>
+            <NavLink to="/explore" activeClassName="selected">
+            <img src={icons.search} alt="search"/>
+            </NavLink>
+            <NavLink to="/create-post" activeClassName="selected">
+            <img src={icons.add} alt="add"/>
+            </NavLink>
+            <NavLink to="/likes" activeClassName="selected">
+            <img src={icons.likes} alt="likes"/>
+            </NavLink>
+            <NavLink to="/my-profile" activeClassName="selected">
+            <img src={icons.user} alt="my profile"/>
+            </NavLink>
+      
+      </IconContainer>  
+    </NavBottom>
+  )
 }
 
 const mapStateToProps = state => ({
   auth: state.auth
 })
 
-export default connect(mapStateToProps, { getCurrentProfile })(withRouter(NavbarBottom));
+export default connect(mapStateToProps)(withRouter(NavbarBottom));

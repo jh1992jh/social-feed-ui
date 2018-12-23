@@ -1,13 +1,52 @@
-import React, { Component } from 'react'
+import React, { Fragment, Component } from 'react'
 import { connect } from 'react-redux';
 import { getCurrentProfile, editProfile } from '../../actions/profileActions';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Loading from '../../utilities/Loading';
+
+const EditProfileStyled = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+width: 100%;
+height: 100vh;
+
+h3 {
+    justify-self: flex-start;
+}
+
+img {
+    width: 80%;
+    height: auto
+    margin: 0 auto;
+}
+
+@media (min-width: 1000px) {
+    img {
+        width: auto;
+        max-height: 50%;
+    }
+}
+`;
+
+const EditProfileForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    input {
+        box-shadow: 0 2px 0 -1px #808080;
+        margin: 1.5em 0;
+      }
+`
 
 class EditProfile extends Component {
     state = {
         description: '',
-        profileImage: null
+        profileImage: null,
+        previewImage: null
     }
     componentDidMount () {
       this.props.getCurrentProfile();
@@ -15,7 +54,7 @@ class EditProfile extends Component {
 
     componentWillReceiveProps(nextProps) {
         if(nextProps.profile.profile !== null ) {
-            this.setState({ description: nextProps.profile.profile.description, profileImage: nextProps.profile.profile.profileImage})
+            this.setState({ description: nextProps.profile.profile.description, profileImage: nextProps.profile.profile.profileImage, previewImage: nextProps.profile.profile.profileImage})
         }
     }
 
@@ -24,7 +63,8 @@ class EditProfile extends Component {
     }
 
     profileImageHandler = e => {
-        this.setState({profileImage: e.target.files[0]})
+        this.setState({profileImage: e.target.files[0], previewImage: URL.createObjectURL(e.target.files[0])})
+        
     }
     onFormSubmit = e => {
         e.preventDefault()
@@ -46,7 +86,7 @@ class EditProfile extends Component {
     
   render() {
     const { loading, profile } = this.props.profile;
-    const { description } = this.state;
+    const { description, previewImage } = this.state;
     
     let outputContent;
 
@@ -54,20 +94,22 @@ class EditProfile extends Component {
         outputContent = <Loading  />
     } else if (loading === false && profile !== null ) {
         outputContent = (
-            <form className="editProfileForm" onSubmit={this.onFormSubmit}>
-                <input type="text" name="description" value={description} onChange={this.onInputChange}
-                placeholder="description" />
-                <input type="file" name="profileImage" onChange={this.profileImageHandler} />
-                <button>Submit</button>
-            </form>
+            <Fragment>
+                <img src={previewImage} alt="profile"/>
+                <EditProfileForm onSubmit={this.onFormSubmit}>
+                    <input type="text" name="description" value={description} onChange={this.onInputChange}
+                    placeholder="description" />
+                    <input type="file" name="profileImage" onChange={this.profileImageHandler} />
+                    <button>Submit</button>
+                </EditProfileForm>
+            </Fragment>
         )
     }
     return (
-      <div className="editProfile">
-      <i className="fas fa-user-edit" />
+      <EditProfileStyled>
         <h3>Edit Profile</h3>
         {outputContent}
-      </div>
+      </EditProfileStyled>
     )
   }
 }

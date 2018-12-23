@@ -1,10 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
+import styled from 'styled-components';
 
-class LikesContainer extends Component {
-  render() {
-    const { children } = this.props;
-    return <div className="likesContainer">{children}</div>;
-  }
-}
+const LikesContainerStyled = styled.div`
+  margin: 3em 0;
+`;
+
+const LikesContainer = ({ children }) => (
+  <LikesContainerStyled>{children}</LikesContainerStyled>
+)
+
 
 export default LikesContainer;

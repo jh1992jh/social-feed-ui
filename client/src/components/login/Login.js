@@ -2,10 +2,37 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { loginUser } from '../../actions/authActions';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import LoginHeader from './LoginHeader';
-    
 
+const LoginStyled = styled.div`
+    min-height: 100%;
+    width: 100vw;
+    position: relative;
+    background-color: #f9f9f9;
+`
+
+const LoginContainer = styled.div`
+    position: absolute;
+    top: 5vh;
+    left: 5vw;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    width: 80vw;
+`
+    
+const LoginForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+`;
+
+const ErrorContainer = styled.div`
+    min-height: 1rem;
+`;
 class Login extends Component {
     state = {
         email: '',
@@ -50,30 +77,30 @@ class Login extends Component {
   render() {
       const { email, password, errors } = this.state;     
     return (
-      <div className="login">
-        <div className="loginContainer">
+      <LoginStyled>
+        <LoginContainer>
         <LoginHeader  />
 
-       <form className="loginForm" onSubmit={this.onLoginUser}>
+       <LoginForm onSubmit={this.onLoginUser}>
                     <input type="email" name="email" value={email} onChange={this.onInputChange} placeholder="Email" />
-                    <div className="errorContainer">
+                    <ErrorContainer>
                     {errors.email ? (
                         <p className="errorText">{errors.email}</p>
                     ): null}
-                    </div>
+                    </ErrorContainer>
                     <input type="password" name="password" value={password} onChange={this.onInputChange} placeholder="Password"/>
-                    <div className="errorContainer">
+                    <ErrorContainer>
                     {errors.password ? (
                         <p className="errorText">{errors.password}</p>
                     ): null} 
-                    </div>
+                    </ErrorContainer>
                     <button>Sign in</button>
-                </form>
+        </LoginForm>
  
                 
            
-        </div>
-      </div>
+        </LoginContainer>
+      </LoginStyled>
     )
   }
 }

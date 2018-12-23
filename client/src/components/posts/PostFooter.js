@@ -2,8 +2,88 @@ import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { addComment, deleteComment } from '../../actions/postActions';
 import { Link, withRouter } from 'react-router-dom';
-import Moment from 'react-moment';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
+
+const PostFooterStyled = styled.div`
+  padding: 0.3em;
+  font-size: 0.9rem;
+`;
+
+const Likes = styled.div`
+  font-weight: 600;
+  margin-top: -0.8em;
+  min-height: 2rem;
+`;
+
+const PostFooterText = styled.div`
+  margin-top: -1.3em;
+`;
+
+const Username = styled.span`
+  font-weight: 600;
+`
+
+const DesktopHr = styled.hr`
+  margin: 1em 0;
+  min-height: 1px;
+  background: #d0d0d0;
+  border: none;
+  max-width: 100% !important;
+
+  @media (max-width: 980px) {
+    display: none
+  }
+`
+
+const Comments = styled.div`
+  overflow-y: auto;
+  max-height: 26vh;
+  margin-bottom: 0.5em;
+`;
+
+const PostFooterComment = styled.div`
+  display: flex;
+  font-size: 0.8rem;
+`
+
+const ProfileThumbnail = styled.div`
+  height: 20px;
+  width: 20px;
+  border-radius: 360px;
+  border: 1px solid #808080;
+  margin: -0.5em 0.3em 0.3em 0;
+  position: relative;
+
+  img {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+`
+const CommentForm = styled.form`
+  width: 100%;
+
+  input {
+    width: 100%;
+    border: none;
+  }
+`
+
+const ViewAll = styled.p`
+  color: #707070;
+`
+
+const CommentName = styled.span`
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin: 0.2em;
+  color: #222;
+  margin: 0.2em 0;
+`
 
 class PostFooter extends Component {
   state = {
@@ -32,94 +112,62 @@ class PostFooter extends Component {
   }
   render() {
     const {
-      likes,
+      postlikes,
       comments,
-      date,
       handle,
       text,
-      auth,
+      postId,
       userId,
       profile
     } = this.props;
    
     let outputComments;
 
-    if (this.props.match.params.postId && this.props.profile.profile !== null) {
+    if (comments.length > 0){
       outputComments = (
         <Fragment>
-          {this.props.comments.map((comment, i) => (
-            <Fragment key={comment._id}>
-              <div className="commentContainer">
-                <div className="roundedProfThumbSmall">
-                  <img src={comment.profileImage} alt="profPic " />
-                </div>
-                <p>
-                  <span className="postCommentName">
-                  <Link to={`/profile/${comment.user}`}>
-                  {comment.handle}
-                  </Link>
-                  </span>
-                  
-                  <span className="commentText">
-                  {comment.text} {auth.user.id === comment.user ? (
-                    <i className="far fa-trash-alt" onClick={() => this.props.deleteComment(this.props.match.params.postId, comment._id)} />
-                  ) : null} </span>
-                </p>
-                <br />
-              </div>
-              <Moment fromNow className="commentTime">{comment.date}</Moment>
-            </Fragment>
-          ))}
-        </Fragment>
-      );
-    }  else if (comments.length === 0) {
-      outputComments = null
-    }  else if (comments.length > 0){
-      outputComments = (
-        <Fragment>
-          <p className="viewAll">View all {comments.length} comments</p>
+          <ViewAll>View all {comments.length} comments</ViewAll>
           <p>
-            <span className="postCommentName">
+            <CommentName className="postCommentName">
             <Link to={`/profile/${comments[0].user}`}>
             {comments[0].handle} 
             </Link>
-            </span>
+            </CommentName>
             {' '}
             {comments[0].text}
           </p>
         </Fragment>
       );
-    }
+    } else if  (comments.length === 0) {
+      outputComments = null
+    }  
     return (
-      <div className="postFooter">
+      <PostFooterStyled>
       
-        {likes.length > 0 ? (
-          <div className="postFooterLikes">
-          <p>{likes.length} likes <br />
-          </p>
-        </div>
-        ) : <div className="postFooterLikes"/> }
+
+          <Likes>
+            <p>{postlikes} likes </p>
+          </Likes>
+        
   
-        <div className="postFooterText">
-        {this.props.match.params.postId ? <Moment fromNow className="postFooterTime">{date}</Moment> : null}
-        <div>
-        <Link to={`/profile/${userId}`}>
-        <span className="postFooterUserName">{handle}</span>
-        </Link> {' '}
-       <p>{text}</p> 
-        
-        
-        </div>
-        </div>
-        <div className={this.props.match.params.postId ? "postFooterComments postFooterCommentsSingle" : "postFooterComments"}>
-        {outputComments}
-        <hr className="forDesktop ago" />
-        </div>
-        <div className={this.props.match.params.postId ? 'postFooterComment singlePostForm' : 'postFooterComment'}>
-          <div className="roundedProfThumbVerySmall">
-            {profile.profile !== null ? <img src={profile.profile.profileImage} alt="profPic " /> : null}
+        <PostFooterText>
+          <div>
+            <Link to={`/profile/${userId}`}>
+            <Username>{handle}</Username>
+            </Link> {' '}
+            <p>{text}</p>           
           </div>
-          <form onSubmit={this.onCommentSubmit}>
+        </PostFooterText>
+        <Comments>
+          {outputComments}
+        <DesktopHr />
+        </Comments>
+        <PostFooterComment>
+          <ProfileThumbnail>
+            {profile.profile !== null ? <img src={profile.profile.profileImage} alt="profPic " /> : null}
+          </ProfileThumbnail>
+          <Link to={`/post/${postId}`}>
+          <CommentForm onSubmit={this.onCommentSubmit}>
             <input
               name="text"
               value={this.state.text}
@@ -127,11 +175,12 @@ class PostFooter extends Component {
               type="text"
               placeholder="Add a comment..."
             />
-          </form>
-        </div>
+          </CommentForm>
+          </Link>
+        </PostFooterComment>
         
         
-      </div>
+      </PostFooterStyled>
     );
   }
 }

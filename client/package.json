@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@loadable/component": "^5.2.2",
     "axios": "^0.18.0",
     "gh-pages": "^1.2.0",
     "jwt-decode": "^2.2.0",
@@ -13,7 +14,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^4.1.2"
   },
   "scripts": {
     "start": "react-scripts start",

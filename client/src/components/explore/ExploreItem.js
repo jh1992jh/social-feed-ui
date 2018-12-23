@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 
-const ExportItem = ({ post }) => {
+
+const ExploreItem = ({ post }) => {
   const {  postImage, _id, filter } = post;
   return (
     <Fragment>
@@ -17,8 +19,8 @@ const ExportItem = ({ post }) => {
   );
 };
 
-ExportItem.propTypes = {
+ExploreItem.propTypes = {
   post: PropTypes.object.isRequired
 }
 
-export default ExportItem;
+export default ExploreItem;

@@ -2,12 +2,80 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { getPosts } from '../../actions/postActions';
 import { getProfiles } from '../../actions/profileActions';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Categories from './Categories';
 import ExploreItem from './ExploreItem';
-import NavbarTop from '../navbars/NavbarTop';
 import SuggestedPeople from './SuggestedPeople';
-import Loading from '../../utilities/Loading';
+import Loading from '../posts/Loading';
+// import Loading from '../../utilities/Loading';
+
+const ExploreStyled = styled.div`
+  .exploreItems {
+  margin-bottom: 3.1em;
+  margin-top: 0.1em;
+  display: flex;
+  flex-wrap: wrap;
+  }
+
+  @media (max-width: 980px) {
+    .exploreItems img,
+    .exploreItems a {
+      width: 33vw;
+      height: 33vw;
+    }
+  
+    .exploreItems :nth-child(18n + 2), .exploreItems :nth-child(18n + 2) img {
+      width: 66vw;
+      height: 66vw;
+    }
+  
+    .exploreItems :nth-child(18n + 10),
+    .exploreItems :nth-child(18n + 10) img {
+      width: 66vw;
+      height: 66vw;
+    }
+  
+  .exploreItems :nth-child(18n + 3) {
+      margin-top: -33vw;
+    }
+  
+    .exploreItems :nth-child(18n + 15) {
+      margin-top: -33vw;
+    }
+  
+    .exploreItems :nth-child(18n + 4) {
+      margin-left: -33vw;
+    }
+  
+    .exploreItems :nth-child(18n + 14) {
+      margin-right: -33vw;
+    }
+  }
+ 
+
+  @media (min-width: 1000px) {
+    img {
+      width: 20vw;
+      height: 22vw;
+      display: block;
+    }
+    .exploreItems {
+      width: 90%;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 3vw;
+      margin: auto;
+    }
+  }
+`
+
+const ForDesktop = styled.div`
+  @media (max-width: 1000px) {
+    display: none;
+  }
+`
 
 class Explore extends Component {
   state = {
@@ -31,7 +99,7 @@ onChooseFilterCategory = (category) => {
     let filteredPosts = posts.filter(post => post.category === filterCategory);
     if(filterCategory === 'all') filteredPosts = posts;
     if(loading === true) {
-      outputContent = null;
+      outputContent = <Loading height="100vh"/>;
     } else if (loading === false && posts.length > 0) {
       outputContent = filteredPosts.map((post, i) => (
        <Fragment key={i}>
@@ -42,16 +110,16 @@ onChooseFilterCategory = (category) => {
       outputContent = <h3>There are no posts</h3>
     }
     return (
-      <div className="explore">
+      <ExploreStyled>
         {/* <ExploreHeader /> */}
-        <div className="forDesktop">
-          <NavbarTop />
+        <ForDesktop>
+          
           {loading === false && profiles !== null ? <SuggestedPeople profiles={profiles} /> : null }
-        </div>
-        {loading === true ? null : <Categories onChooseFilterCategory={this.onChooseFilterCategory} posts={posts} /> }
+        </ForDesktop>
+       <Categories onChooseFilterCategory={this.onChooseFilterCategory} posts={posts} /> 
 
         <div className="exploreItems">{outputContent}</div>
-      </div>
+      </ExploreStyled>
     );
   }
 }

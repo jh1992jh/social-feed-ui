@@ -161,4 +161,3 @@ export const setPostLoading = () => {
         type: POST_LOADING
     }
 }
-

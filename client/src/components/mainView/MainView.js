@@ -3,19 +3,46 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { getPosts, getFollowedPosts, clearCurrentPost } from '../../actions/postActions';
 import { getCurrentProfile } from '../../actions/profileActions';
-import PropTypes from 'prop-types';
-import NavbarTop from '../navbars/NavbarTop';
+import styled from 'styled-components';
+// import PropTypes from 'prop-types';
+
 import Feed from '../feed/Feed';
 import Stories from '../stories/Stories';
 import Post from '../posts/Post';
 import Loading from '../../utilities/Loading';
+import { icons } from '../../images-and-icons';
+
+
+const NoProfile = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 4em 2em 2em 2em;
+text-align: center;
+
+a {
+  color: #0099cc;
+  
+}
+`
+
+const NotFollowing = styled.div`
+text-align: center;
+
+a {
+  color: #0099cc;
+  
+}
+`;
 
 class MainView extends Component {
 
   componentDidMount() {
-    this.props.clearCurrentPost();
-    this.props.getPosts();
+    if(Object.keys(this.props.posts.post).length > 0) {
+      this.props.clearCurrentPost();
+    }
     this.props.getCurrentProfile();
+    this.props.getPosts();
     this.props.getFollowedPosts(this.props.auth.user.id);
    
   }
@@ -30,7 +57,9 @@ class MainView extends Component {
     } else if (posts.loading === false && posts.followedPosts.length > 0 && Object.keys(profile.profile).length > 0) {
       outputPosts = posts.followedPosts.map((post, i) => (
         <Post
-          key={post._id}
+        {...post}
+        key={post._id}
+         /* key={post._id}
           postId={post._id}
           profileImage={post.profileImage}
           handle={post.handle}
@@ -40,37 +69,37 @@ class MainView extends Component {
           text={post.text}
           likes={post.likes}
           comments={post.comments}
-          date={post.date}
+          date={post.date} */
         />
       ));
     } else if (Object.keys(profile.profile).length === 0 && profile.loading === false) {
       outputPosts = (
-        <div className="noProfile">
-        <i className="far fa-user-circle" />
-        <h3>Hey {auth.user.username}<br /></h3>
-        <p>you have no profile yet<br />
-        click this link to to make one <br />
-        <Link to="/create-profile" className="createProfileLink"> 
-          Create a profile
-        </Link>
-        </p>
-        </div>
+        <NoProfile>
+        <img src={icons.user} alt="user"/>
+          <h3>Hey {auth.user.username}<br /></h3>
+          <p>you have no profile yet<br />
+          click this link to to make one <br />
+          <Link to="/create-profile" className="createProfileLink"> 
+            Create a profile
+          </Link>
+          </p>
+        </NoProfile>
       )
     } else if (profile.profile.following.length === 0) {
       outputPosts = (
-        <div className="notFollowing">
+        <NotFollowing>
           <p>You have not followed anyone yet<br />
           <Link to="/explore" className="notFollwingLink">
             click here{' '}
           </Link>
             to see posts <br />and to find people to follow.
           </p>
-        </div>
+        </NotFollowing>
       )
     }
     return (
       <Fragment>
-        <NavbarTop />
+
         <Feed>
           <Stories />
           {outputPosts}
