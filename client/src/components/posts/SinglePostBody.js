@@ -81,7 +81,7 @@ class SinglePostBody extends Component {
           </Like>
         )}
             
-              <img src={icons.comment} onClick={this.onAddCurrentPost} />
+              <img src={icons.comment} alt="comment" onClick={this.onAddCurrentPost} />
         
           
 

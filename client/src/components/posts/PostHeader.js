@@ -102,7 +102,7 @@ class PostHeader extends Component {
 
     return (
       <PostHeaderStyled>
-      {this.props.match.params.postId ? <button onClick={this.onGoBack} className="goBackBtn"><img src={icons.goback} /> Go back</button> : null}
+      {this.props.match.params.postId ? <button onClick={this.onGoBack} className="goBackBtn"><img src={icons.goback} alt="go back"/> Go back</button> : null}
         <ProfileInfo>
           <ProfileThumbnail>
             <img src={profileImage} alt="profPic" />

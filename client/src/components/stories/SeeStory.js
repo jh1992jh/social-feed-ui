@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getStory } from '../../actions/storyActions';
+import { getStory, clearStory } from '../../actions/storyActions';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
@@ -123,7 +123,7 @@ const StoryDurationBar = styled.div`
     height: 50px;
     background: red;
     position: absolute;
-    bottom: 0;
+    bottom: 3em;
     left: 0;
 `
 
@@ -137,11 +137,16 @@ componentWillReceiveProps(nextProps) {
         const storyDurationStr = nextProps.stories.story.storyDuration.charAt(7)
         const storyDuration = Number(storyDurationStr)
 
-         setTimeout((storyDuration) => {
+        this.timeoutID =  setTimeout((storyDuration) => {
             this.props.history.push('/')
         }, (storyDuration * 1000)) 
     }
 } 
+
+componentWillUnmount() {
+    clearTimeout(this.timeoutID)
+    this.props.clearStory();
+}
   render() {
     let outputContent;
     const { story, loading } = this.props.stories;
@@ -165,7 +170,7 @@ componentWillReceiveProps(nextProps) {
             <StoryText color={`${story.color}`}>{story.text}</StoryText> 
          <StoryLocation color={`${story.color}`}>{story.storyLocation}</StoryLocation>
          {story.storyImage.length > 0 ? <img src={story.storyImage} alt="story background" /> : null}  
-         <div className={`storyDurationBar ${story.storyDuration}`} />
+         <StoryDurationBar className={`storyDurationBar ${story.storyDuration}`} />
             </Fragment>
         )
     }
@@ -186,4 +191,4 @@ const mapStateToProps = state => ({
     stories: state.stories
 })
 
-export default connect(mapStateToProps, { getStory })(SeeStory)
+export default connect(mapStateToProps, { getStory, clearStory})(SeeStory)

@@ -33,7 +33,7 @@ export const getPostNotifications = userId => dispatch => {
     //dispatch(setPostLoading());
 
     axios
-        .get(`/api/posts/owned/${userId}`)
+        .get(`/api/posts/owned/${userId}/notifications`)
         .then(res => 
         dispatch({
             type: GET_POST_NOTIFICATIONS,

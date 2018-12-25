@@ -1,4 +1,4 @@
-import { GET_STORIES, GET_FOLLOWED_STORIES, GET_A_STORY, POST_A_STORY, STORY_LOADING, PREVIEW_STORY, WATCH_ALL_STORIES } from './types';
+import { GET_STORIES, GET_FOLLOWED_STORIES, GET_A_STORY, POST_A_STORY, STORY_LOADING, PREVIEW_STORY, WATCH_ALL_STORIES, CLEAR_STORY } from './types';
 import axios from 'axios';
 
 export const getStories = () => dispatch => {
@@ -64,6 +64,12 @@ export const previewStory = (storyData, history) => dispatch => {
 export const watchAllStories = () => dispatch => {
     dispatch({
         type: WATCH_ALL_STORIES
+    })
+}
+
+export const clearStory = () => dispatch => {
+    dispatch({
+        type: CLEAR_STORY
     })
 }
 

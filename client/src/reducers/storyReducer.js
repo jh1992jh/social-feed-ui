@@ -1,4 +1,4 @@
-import { GET_STORIES, GET_FOLLOWED_STORIES, GET_A_STORY, POST_A_STORY, STORY_LOADING, PREVIEW_STORY, WATCH_ALL_STORIES } from '../actions/types';
+import { GET_STORIES, GET_FOLLOWED_STORIES, GET_A_STORY, POST_A_STORY, STORY_LOADING, PREVIEW_STORY, WATCH_ALL_STORIES, CLEAR_STORY } from '../actions/types';
 
 const initialState = {
     stories: [],
@@ -49,6 +49,11 @@ export default function(state = initialState, action ) {
             return {
                 ...state,
                 watchAll: !state.watchAll
+            }
+        case CLEAR_STORY:
+            return {
+                ...state,
+                story: {}
             }
         default: 
             return state;

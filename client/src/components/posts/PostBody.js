@@ -65,7 +65,7 @@ const PostBody = ({postImage, filter, postId, liked, onAddLike, onRemoveLike}) =
           )}
           
             <Link to={`/post/${postId}`}>
-              <img src={icons.comment} onClick={this.onAddCurrentPost} />
+              <img src={icons.comment} alt="comment" onClick={this.onAddCurrentPost} />
         </Link>
           
 

@@ -79,6 +79,45 @@ router.get('/owned/:user_id', passport.authenticate('jwt', { session: false}), (
     .catch(err => res.status(404).json(err));
 })
 
+router.get('/owned/:user_id/notifications', passport.authenticate('jwt', { session: false}), (req, res) => {
+    Profile.findOne({user: req.params.user_id}).then(user => {
+        Post.find({user: req.params.user_id})
+            .then(posts => {
+               const commentsArr = posts.map(post => {
+                if(post.comments.length > 0) {
+                    return {
+                     postImage: post.postImage,
+                     postId: post._id,
+                     handle: post.comments[0].handle,
+                     profileImage: post.comments[0].profileImage,
+                     text: post.comments[0].text,
+                     date: post.comments[0].date
+                    }
+                } else {
+                    return null
+                }
+               })
+
+             const commentsArrFiltered = commentsArr.filter(post => {
+                   if(post === null) {
+                       return false
+                   } else {
+                       return true
+                   }
+               })
+               
+               return commentsArrFiltered;
+            })
+            .then(posts => {
+               const sortedComments = posts.sort((a, b ) => a.date < b.date)
+               res.json(sortedComments);
+            })
+            .catch(err => console.log(err))
+    })
+    .catch(err => res.status(404).json(err));
+})
+
+
 router.get('/following/posts/:user_id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Profile.findOne({user: req.user.id }).then(profile => {
         const followers = profile.following.map(follower => follower.user.toString())

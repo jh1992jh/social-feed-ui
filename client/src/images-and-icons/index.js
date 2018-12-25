@@ -7,6 +7,7 @@ import search from './icons/search.png';
 import user from './icons/user.png';
 import signout from './icons/signout.png';
 import goback from './icons/goback.png';
+import trashcan from './icons/trashcan.png'
 import mainLogo1 from './main-logo1.png';
 import mainLogo2 from './main-logo2.png';
 
@@ -19,7 +20,8 @@ export const icons = {
     search,
     user,
     signout,
-    goback
+    goback,
+    trashcan
 }
 
 export const logos = {

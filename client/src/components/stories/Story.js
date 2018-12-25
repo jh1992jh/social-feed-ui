@@ -1,6 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Moment from 'react-moment'
 
 const OtherStoryContainer = styled.div`
 display: flex;
@@ -73,9 +74,6 @@ const ForMobile = styled.p`
     display: none;
   }
 `
-const Ago = styled.li`
-  color: #888;
-`
 
 /*const StoryText = styled.p`
 color: #222;
@@ -112,7 +110,7 @@ margin-right: 0.5em;
 
 
 
-const Story = ({ storyImage, handle }) => {
+const Story = ({ storyImage, handle,date }) => {
   return (
     <OtherStoryContainer>
 
@@ -125,7 +123,7 @@ const Story = ({ storyImage, handle }) => {
         </OtherStory>
          <ForDesktop>
           <li>{handle}</li>
-          <Ago className="ago">{new Date().getHours()} HOURS AGO</Ago>
+          <Moment fromNow className="ago">{date}</Moment>
         </ForDesktop> 
         <ForMobile>
         {handle}

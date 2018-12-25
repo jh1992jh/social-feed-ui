@@ -37,7 +37,7 @@ const Right = styled.div`
 const ProfileHeaderTop = ({ username, onGoBack, logoutUser }) => (
     <MyProfileHeaderTopStyled>
       <Left>
-        <img src={icons.goback} onClick={() => onGoBack()}/>{' '} <span className="username">{username}</span>
+        <img src={icons.goback} alt="go back" onClick={() => onGoBack()}/>{' '} <span className="username">{username}</span>
       </Left>
       <Right>
         <a onClick={() => logoutUser()}>

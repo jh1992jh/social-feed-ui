@@ -25,3 +25,4 @@ export const POST_A_STORY = 'POST_A_STORY';
 export const WATCH_ALL_STORIES = 'WATCH_ALL_STORIES';
 export const PREVIEW_STORY = 'PREVIEW_STORY';
 export const STORY_LOADING = 'STORY_LOADING';
+export const CLEAR_STORY = 'CLEAR_STORY';

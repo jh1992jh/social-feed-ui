@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { toggleLikesMenu } from '../../actions/postActions';
 
@@ -63,25 +63,22 @@ img {
 }
 `;
 const LikeInfo = ({ post }) => {
-  const { comments, _id, postImage } = post;
-  let like;
-
-  if(comments.length > 0) {
-    like = (
-      <LikeInfoStyled>
-      <Link to={`/post/${_id}`} onClick={() => this.props.toggleLikesMenu()}>
+  const { profileImage, handle, date, text, postId, postImage } = post;
+      return (
+        <LikeInfoStyled>
+      <Link to={`/post/${postId}`} onClick={() => this.props.toggleLikesMenu()}>
       <LikeInfoContainer>
         <ProfilePicSmall>
-          <img src={comments[0].profileImage} alt="profPic" />
+          <img src={profileImage} alt="profPic" />
         </ProfilePicSmall>
         <p>
        
-          <Username>{comments[0].handle} </Username>
+          <Username>{handle} </Username>
 
-            <span>commented: {comments[0].text}</span>
+            <span>commented: {text}</span>
         
           {' '}
-          <Moment fromNow className="ago">{comments[0].date}</Moment>
+          <Moment fromNow className="ago">{date}</Moment>
          
         </p>
         <LikedPostPic>
@@ -90,17 +87,14 @@ const LikeInfo = ({ post }) => {
       </LikeInfoContainer>
       </Link>
     </LikeInfoStyled>
-    ) 
-  } else {
-    like = null
-  }
-  return like;
+      )
+     
 };
 
-LikeInfo.propTypes = {
+/*LikeInfo.propTypes = {
   comments: PropTypes.array.isRequired,
   postImage: PropTypes.string.isRequired,
   postId: PropTypes.string.isRequired
-}
+}*/
 
 export default connect(null, { toggleLikesMenu })(LikeInfo);

@@ -63,6 +63,7 @@ const PreviewImage = styled.div`
 
       span {
         display: block;
+        color: #0099cc;
         margin: 0.2em auto 0 auto;
       }
     }

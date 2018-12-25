@@ -30,14 +30,11 @@ class Likes extends Component {
     if(profile.loading === true || loading === true ) {
       outputContent = <Loading height="100vh" />
     } else if (profile.loading === false && loading === false && postNotifications.length > 0)  {
-      postNotifications.sort((a, b ) => a.date < b.date.toString())
+     // postNotifications.sort((a, b ) => a.date < b.date.toString())
       outputContent = (
         postNotifications.map(post => (
-          <Fragment key={post._id}>
+          <Fragment key={post.postId}>
             <LikeInfo
-              postId={post._id}
-              comments={post.comments}
-              postImage={post.postImage}
               post={post}
             />
           </Fragment>

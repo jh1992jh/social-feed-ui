@@ -5,6 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 import Moment from 'react-moment';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { icons } from '../../images-and-icons/';
 
 const PostFooterStyled = styled.div`
   padding: 0.3em;
@@ -106,12 +107,14 @@ margin: 0.1em 0;
 p {
   display: inline;
 }
+`
 
-.fa-trash-alt {
-  position: absolute;
-  right: 1em;
-  bottom: 50%
-}
+const Trashcan = styled.img`
+position: absolute;
+right: 2em;
+bottom: 50%
+max-height: 1rem;
+width: auto;
 `
 
 const CommentName = styled.span`
@@ -185,7 +188,7 @@ class SinglePostFooter extends Component {
                   
                   <span className="commentText">
                   {comment.text} {auth.user.id === comment.user ? (
-                    <i className="far fa-trash-alt" onClick={() => this.props.deleteComment(this.props.match.params.postId, comment._id)} />
+                    <Trashcan src={icons.trashcan} alt="delete" onClick={() => this.props.deleteComment(this.props.match.params.postId, comment._id)} />
                   ) : null} </span>
                 </p>
                 <br />

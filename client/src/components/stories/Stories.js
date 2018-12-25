@@ -140,7 +140,7 @@ class Stories extends Component {
     } else if (loading === false && followedStories.length > 0) {
       outputStories = followedStories.map(story => (
         <Link key={story._id} to={`/story/${story._id}`}>
-       <Story storyImage={story.storyImage} handle={story.handle} />
+       <Story storyImage={story.storyImage} handle={story.handle} date={story.date}/>
        </Link>
      ));
     }
