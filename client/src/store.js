@@ -7,6 +7,7 @@ const middleware = [thunk];
 
 const initialState = {};
 
+// UNCOMMENT WHEN IN DEV
 /* const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   rootReducer,
@@ -24,6 +25,7 @@ const store = createStore(
   )
 );*/
 
+// UNCOMMENT BEFORE DEPLOY
 const store = createStore(
   rootReducer,
   initialState,

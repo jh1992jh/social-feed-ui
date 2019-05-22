@@ -1,8 +1,7 @@
-import React, { Fragment } from 'react';
-import{ Link } from 'react-router-dom';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-
+import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const SuggestedPeopleContainer = styled.div`
   margin-top: 3em;
@@ -23,7 +22,7 @@ const SuggestedPeopleHeader = styled.div`
   .showAll {
     color: #0099cc;
   }
-`
+`;
 
 const SuggestedCard = styled.div`
   width: auto;
@@ -40,7 +39,7 @@ const SuggestedCard = styled.div`
     height: auto;
     max-height: 100%;
     max-width: 100%;
-  
+
     margin-bottom: 0.2em;
   }
 
@@ -52,13 +51,13 @@ const SuggestedCard = styled.div`
     border-radius: 5.5px;
     padding: 0.6em;
   }
-`
+`;
 
 const SuggestedPeopleStyled = styled.div`
   display: flex;
   justify-content: center;
   color: #d0d0d0;
-`
+`;
 
 const SuggestedPeople = ({ profiles }) => {
   const outputSuggestions = profiles.slice(0, 3).map(profile => (
@@ -70,7 +69,7 @@ const SuggestedPeople = ({ profiles }) => {
       />
       <p className="name">{profile.handle}</p>
       <Link to={`/profile/${profile.user._id}`}>
-      <button className="suggestedButton">See their profile</button>
+        <button className="suggestedButton">See their profile</button>
       </Link>
     </SuggestedCard>
   ));
@@ -88,6 +87,6 @@ const SuggestedPeople = ({ profiles }) => {
 
 SuggestedPeople.propTypes = {
   profiles: PropTypes.array.isRequired
-}
+};
 
 export default SuggestedPeople;

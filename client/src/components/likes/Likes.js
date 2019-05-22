@@ -12,7 +12,9 @@ import Loading from '../posts/Loading';
 
 const LikesStyled = styled.div`
   max-width: 100%;
-
+  h3 {
+    text-align: center;
+  }
 `;
 
 class Likes extends Component {

@@ -1,7 +1,8 @@
-import React from 'react';
-import styled from 'styled-components';
-import {keyframes} from 'styled-components';
-
+import React from "react";
+import styled from "styled-components";
+import loadingGif from "./Cube-1s-200px.gif";
+//import {keyframes} from 'styled-components';
+/*
 const loadingLineAnim = keyframes`
     from {width: 1%}
     to {width: 100%}
@@ -18,14 +19,21 @@ const LoadingLine = styled.div`
     width: 1%
     animation: ${loadingLineAnim} 0.7s linear infinite;
 `
+*/
 
-const Loading = ({height}) => (
-    <LoadingStyled height={height}>
+const LoadingStyled = styled.img`
+  position: absolute;
+  z-index: 1050;
+  width: 50px !important;
+  height: 50px !important;
+  top: calc(50vh - 25px);
+  left: calc(50vw - 25px);
+`;
+const Loading = ({ height }) => (
+  /*<LoadingStyled height={height}>
         <LoadingLine />
-    </LoadingStyled>
-)
-
-
-
+    </LoadingStyled>*/
+  <LoadingStyled src={loadingGif} />
+);
 
 export default Loading;

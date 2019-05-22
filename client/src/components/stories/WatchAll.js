@@ -133,10 +133,15 @@ componentWillReceiveProps(nextProps) {
         const storyDurationStr = nextProps.stories.story.storyDuration.charAt(7)
         const storyDuration = Number(storyDurationStr)
 
-         setTimeout((storyDuration) => {
+         this.timeoutID = setTimeout((storyDuration) => {
             this.setState({activeStoryIndex: this.state.activeStoryIndex + 1})
         }, (storyDuration * 1000)) 
     }
+}
+
+componentWillUnmount() {
+    clearTimeout(this.timeoutID)
+    //this.props.clearStory();
 }
   render() {
     let outputContent;

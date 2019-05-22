@@ -64,7 +64,7 @@ const CommentForm = styled.div`
   left: 0;
 
   input {
-    border: 2px solid #888;
+    border: 1px solid #888;
   }
   }
 

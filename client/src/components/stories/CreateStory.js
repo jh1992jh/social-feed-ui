@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 // import { previewStory } from '../../actions/storyActions';
 import { postStory } from '../../actions/storyActions';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const CreateStoryStyled = styled.div`
     display: flex;
@@ -186,10 +186,10 @@ class CreateStory extends Component {
   }
 }
 
-CreateStory.propTypes = {
+/* CreateStory.propTypes = {
     stories: PropTypes.object.isRequired,
     previewStory: PropTypes.func.isRequired
-}
+} */
 
 const mapStateToProps = state => ({
     stories: state.stories
