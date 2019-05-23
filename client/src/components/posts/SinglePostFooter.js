@@ -1,11 +1,11 @@
-import React, { Fragment, Component } from 'react';
-import { connect } from 'react-redux';
-import { addComment, deleteComment } from '../../actions/postActions';
-import { Link, withRouter } from 'react-router-dom';
-import Moment from 'react-moment';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { icons } from '../../images-and-icons/';
+import React, { Fragment, Component } from "react";
+import { connect } from "react-redux";
+import { addComment, deleteComment } from "../../actions/postActions";
+import { Link, withRouter } from "react-router-dom";
+import Moment from "react-moment";
+import styled from "styled-components";
+import PropTypes from "prop-types";
+import { icons } from "../../images-and-icons/";
 
 const PostFooterStyled = styled.div`
   padding: 0.3em;
@@ -30,18 +30,18 @@ const PostFooterText = styled.div`
 
 const Username = styled.span`
   font-weight: 600;
-`
+`;
 
 const Comments = styled.div`
   min-height: 28.5vh;
   max-height: 28.5vh;
-
+  background: #fff;
   @media (min-width: 1000px) {
     width: 100%;
     max-height: 30vh;
     overflow-y: scroll;
   }
-`
+`;
 
 const CommentForm = styled.div`
   display: flex;
@@ -60,12 +60,12 @@ const CommentForm = styled.div`
 
   @media (max-width: 980px) {
     position: fixed;
-  bottom: 4em;
-  left: 0;
+    bottom: 4em;
+    left: 0;
 
-  input {
-    border: 1px solid #888;
-  }
+    input {
+      border: 1px solid #888;
+    }
   }
 
   @media (min-width: 1000px) {
@@ -73,10 +73,10 @@ const CommentForm = styled.div`
     bottom: 0;
     input {
       border: none;
-      max-width: calc(100% - 30px)
+      max-width: calc(100% - 30px);
     }
   }
-`
+`;
 
 const ProfileThumbnail = styled.div`
   height: 30px;
@@ -84,30 +84,35 @@ const ProfileThumbnail = styled.div`
   border-radius: 360px;
   border: 1px solid #808080;
   margin: -0.5em 0.3em 0.3em 0;
-  position: relative;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   img {
     height: 30px;
     width: 30px;
     border-radius: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
   }
-`
+`;
 
 const CommentContainer = styled.div`
-display: flex;
-flex-wrap: wrap;
-align-items: center;
-position: relative;
-padding: 0.5em;
-margin: 0.1em 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  position: relative;
+  padding: 0.5em;
+  margin: 0.1em 0;
 
-p {
-  display: inline;
-}
-`
+  p {
+    display: flex;
+    align-items: center;
+    word-break: break-all;
+    max-width: 100%;
+    span {
+      word-break: break-all;
+      max-width: 100%;
+    }
+  }
+`;
 
 const Trashcan = styled.img`
 position: absolute;
@@ -115,7 +120,7 @@ right: 2em;
 bottom: 50%
 max-height: 1rem;
 width: auto;
-`
+`;
 
 const CommentName = styled.span`
   font-weight: 600;
@@ -123,24 +128,24 @@ const CommentName = styled.span`
   margin: 0.2em;
   color: #222;
   margin: 0.2em 0.5em;
-`
+`;
 
 const CommentTime = styled.div`
-display: block;
-color: #707070;
-margin: -1.5em 0 1em 2.5em;
-`
+  display: block;
+  color: #707070;
+  margin: -1.5em 0 1em 2.5em;
+`;
 
 class SinglePostFooter extends Component {
   state = {
-    text: ''
-  }
-  
-  onCommentInputChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+    text: ""
+  };
 
-  onCommentSubmit = e  => {
+  onCommentInputChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onCommentSubmit = e => {
     e.preventDefault();
 
     const { postId } = this.props.match.params;
@@ -151,11 +156,11 @@ class SinglePostFooter extends Component {
       handle: profile.handle,
       profileImage: profile.profileImage,
       text
-    }
+    };
 
-    this.props.addComment(postId, commentData)
-    this.setState({text: ''})
-  }
+    this.props.addComment(postId, commentData);
+    this.setState({ text: "" });
+  };
   render() {
     const {
       postlikes,
@@ -167,7 +172,7 @@ class SinglePostFooter extends Component {
       userId,
       profile
     } = this.props;
-   
+
     let outputComments;
 
     if (this.props.profile.profile !== null) {
@@ -181,56 +186,64 @@ class SinglePostFooter extends Component {
                 </ProfileThumbnail>
                 <p>
                   <CommentName>
-                  <Link to={`/profile/${comment.user}`}>
-                  {comment.handle}
-                  </Link>
+                    <Link to={`/profile/${comment.user}`}>
+                      {comment.handle}
+                    </Link>
                   </CommentName>
-                  
+
                   <span className="commentText">
-                  {comment.text} {auth.user.id === comment.user ? (
-                    <Trashcan src={icons.trashcan} alt="delete" onClick={() => this.props.deleteComment(this.props.match.params.postId, comment._id)} />
-                  ) : null} </span>
+                    {comment.text}{" "}
+                    {auth.user.id === comment.user ? (
+                      <Trashcan
+                        src={icons.trashcan}
+                        alt="delete"
+                        onClick={() =>
+                          this.props.deleteComment(
+                            this.props.match.params.postId,
+                            comment._id
+                          )
+                        }
+                      />
+                    ) : null}{" "}
+                  </span>
                 </p>
                 <br />
               </CommentContainer>
               <CommentTime>
-                <Moment fromNow className="commentTime">{comment.date}</Moment>
+                <Moment fromNow className="commentTime">
+                  {comment.date}
+                </Moment>
               </CommentTime>
             </Fragment>
           ))}
         </Fragment>
       );
-    }  else if (comments.length === 0) {
-      outputComments = null
-    }  
-    
+    } else if (comments.length === 0) {
+      outputComments = null;
+    }
+
     return (
       <PostFooterStyled>
-      
-      
-          <Likes>
-            <p>{postlikes} likes <br />
-            </p>
-          </Likes>
-        
-  
+        <Likes>
+          <p>
+            {postlikes} likes <br />
+          </p>
+        </Likes>
         <PostFooterText>
-             <Moment fromNow className="postFooterTime">{date}</Moment> 
+          <Moment fromNow className="postFooterTime">
+            {date}
+          </Moment>
         </PostFooterText>
         <Link to={`/profile/${userId}`}>
-        <Username>{handle}</Username>
-        </Link> {' '}
-       <p>{text}</p> 
-        
-        
-        
-        
-        <Comments>
-        {outputComments}
-        </Comments>
+          <Username>{handle}</Username>
+        </Link>{" "}
+        <p>{text}</p>
+        <Comments>{outputComments}</Comments>
         <CommentForm>
           <ProfileThumbnail>
-            {profile.profile !== null ? <img src={profile.profile.profileImage} alt="profPic " /> : null}
+            {profile.profile !== null ? (
+              <img src={profile.profile.profileImage} alt="profPic " />
+            ) : null}
           </ProfileThumbnail>
           <form onSubmit={this.onCommentSubmit}>
             <input
@@ -242,8 +255,6 @@ class SinglePostFooter extends Component {
             />
           </form>
         </CommentForm>
-        
-        
       </PostFooterStyled>
     );
   }
@@ -254,11 +265,14 @@ SinglePostFooter.propTypes = {
   profile: PropTypes.object.isRequired,
   addComment: PropTypes.func.isRequired,
   deleteComment: PropTypes.func.isRequired
-}
+};
 
 const mapStateToProps = state => ({
   auth: state.auth,
   profile: state.profile
-})
+});
 
-export default connect(mapStateToProps, { addComment, deleteComment })(withRouter(SinglePostFooter))
+export default connect(
+  mapStateToProps,
+  { addComment, deleteComment }
+)(withRouter(SinglePostFooter));

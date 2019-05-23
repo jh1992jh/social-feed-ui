@@ -90,6 +90,13 @@ class Explore extends Component {
     this.setState({ filterCategory: category });
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.profile.profile !== null) {
+      if (Object.keys(nextProps.profile.profile).length === 0) {
+        this.props.history.push("/no-profile");
+      }
+    }
+  }
   render() {
     const { posts, loading } = this.props.posts;
     const { profiles } = this.props.profile;

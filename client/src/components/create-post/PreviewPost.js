@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addPost } from '../../actions/postActions';
+import { withRouter } from 'react-router-dom';
 import PreviewFilter from './PreviewFilter';
 import placeHolder from './placeholder1.png';
 
@@ -152,6 +153,14 @@ class PreviewPost extends Component {
         showForm: 'preview'
     }
 
+    componentDidMount() {
+      if(this.props.profile.profile !== null) {
+        if(Object.keys(this.props.profile.profile).length === 0) {
+          this.props.history.push('/no-profile');
+        } 
+      }
+    }
+
     handleImageUpload = (e) => {
       this.setState({ previewImage: URL.createObjectURL(e.target.files[0]), postImage: e.target.files[0]})
     }
@@ -250,4 +259,8 @@ PreviewPost.propTypes = {
   addPost: PropTypes.func.isRequired
 }
 
-export default connect(null , { addPost })(PreviewPost)
+const mapStateToProps = state => ({
+  profile: state.profile
+})
+
+export default connect(mapStateToProps , { addPost })(withRouter(PreviewPost))

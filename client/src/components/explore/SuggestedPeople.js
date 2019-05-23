@@ -38,7 +38,7 @@ const SuggestedCard = styled.div`
   img {
     height: auto;
     max-height: 100%;
-    max-width: 100%;
+    max-width: auto;
 
     margin-bottom: 0.2em;
   }

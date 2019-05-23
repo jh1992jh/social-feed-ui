@@ -1,21 +1,23 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { addComment, addCurrentPost, addLike, removeLike } from '../../actions/postActions';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import PostHeader from './PostHeader';
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import {
+  addComment,
+  addCurrentPost,
+  addLike,
+  removeLike
+} from "../../actions/postActions";
+import styled from "styled-components";
+import PropTypes from "prop-types";
+import PostHeader from "./PostHeader";
 // import PostBody from './PostBody';
-import PostFooter from './PostFooter';
-import loadable from '@loadable/component'
-import Loading from './Loading';
+import PostFooter from "./PostFooter";
+import loadable from "@loadable/component";
+import Loading from "./Loading";
 
-
-
-
-const PostBody = loadable(() => import('../posts/PostBody'), {
-  fallback: <Loading height="37.5vh"/>,
-})
+const PostBody = loadable(() => import("../posts/PostBody"), {
+  fallback: <Loading />
+});
 
 const PostStyled = styled.div`
   margin: 0.8em 0;
@@ -25,67 +27,65 @@ const PostStyled = styled.div`
     margin: 1em auto !important;
     max-width: 45vw;
     margin: auto;
-    
+
     border: 1px solid #d0d0d0;
-    border-radius: 15px;
+    border-radius: 5px;
     background: #fff;
-    box-shadow: 0 0.5px 1px #d0d0d0;
+    box-shadow: 0 1px 3px #d0d0d0;
   }
-`
+`;
 class Post extends Component {
   state = {
     postlikes: 0,
     liked: false
-}
+  };
   componentDidMount() {
-    this.setState({postlikes: this.props.likes.length}) 
-            const { likes } = this.props;
-            const { auth } = this.props;
-  
-            
-            const checkLikes =  () => likes.filter(like => like.user === auth.user.id).length;
-            
-            if(checkLikes() === 1) {
-                this.setState({liked: true})
-            } 
+    this.setState({ postlikes: this.props.likes.length });
+    const { likes } = this.props;
+    const { auth } = this.props;
+
+    const checkLikes = () =>
+      likes.filter(like => like.user === auth.user.id).length;
+
+    if (checkLikes() === 1) {
+      this.setState({ liked: true });
+    }
   }
 
   onAddCurrentPost = () => {
     this.props.addCurrentPost(this.props);
-  }
+  };
 
   onAddLike = () => {
     const { postlikes } = this.state;
-    this.props.addLike(this.props._id)
-    this.setState({postlikes: postlikes + 1, liked: true})
-
-  }
+    this.props.addLike(this.props._id);
+    this.setState({ postlikes: postlikes + 1, liked: true });
+  };
 
   onRemoveLike = () => {
     const { postlikes } = this.state;
-    this.props.removeLike(this.props._id)
-    this.setState({postlikes: postlikes - 1, liked: false})
-  }
+    this.props.removeLike(this.props._id);
+    this.setState({ postlikes: postlikes - 1, liked: false });
+  };
 
   render() {
-    const {      
-          profileImage,
-          handle,
-          
-          postImage,
-          filter,
-          text,
-          date,
-          comments,
-          user,
-          _id
+    const {
+      profileImage,
+      handle,
+
+      postImage,
+      filter,
+      text,
+      date,
+      comments,
+      user,
+      _id
     } = this.props;
 
     const { liked, postlikes } = this.state;
- 
+
     let postContent = (
       <Fragment>
-     
         <PostHeader
           onToggleMenu={this.onToggleMenu}
           profileImage={profileImage}
@@ -93,18 +93,18 @@ class Post extends Component {
           userId={user}
         />
         <PostBody
-        postImage={postImage}
-        filter={filter}
-        postId={_id}
-        profileImage={profileImage}
-        handle={handle}
-        text={text}
-        onAddLike={this.onAddLike}
-        onRemoveLike={this.onRemoveLike}
-        liked={liked}
-        likes={postlikes}
-        date={date}
-        comments={comments}
+          postImage={postImage}
+          filter={filter}
+          postId={_id}
+          profileImage={profileImage}
+          handle={handle}
+          text={text}
+          onAddLike={this.onAddLike}
+          onRemoveLike={this.onRemoveLike}
+          liked={liked}
+          likes={postlikes}
+          date={date}
+          comments={comments}
         />
         <PostFooter
           postlikes={postlikes}
@@ -114,13 +114,11 @@ class Post extends Component {
           date={date}
           profileImage={profileImage}
           postId={_id}
-          comments={comments}     
+          comments={comments}
         />
-        
       </Fragment>
-    ) 
+    );
 
-   
     return (
       <Fragment>
         <PostStyled>{postContent}</PostStyled>
@@ -133,8 +131,8 @@ Post.propTypes = {
   auth: PropTypes.object.isRequired,
   posts: PropTypes.object.isRequired,
   addComment: PropTypes.func.isRequired,
-  addCurrentPost: PropTypes.func.isRequired,
-}
+  addCurrentPost: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   auth: state.auth,

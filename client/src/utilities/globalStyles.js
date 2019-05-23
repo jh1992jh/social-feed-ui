@@ -1,8 +1,15 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
 * {
   font-family: 'Raleway', sans-serif;
+}
+
+body {
+  background: #fff;
+  @media (min-width: 1000px) {
+    background: #fafafa;
+  }
 }
 
 a,
@@ -44,6 +51,6 @@ button {
     min-width: 30%;
   }
 }
-`
+`;
 
 export default GlobalStyles;
