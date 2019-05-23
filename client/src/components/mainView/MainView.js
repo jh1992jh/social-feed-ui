@@ -21,9 +21,10 @@ class MainView extends Component {
     if (Object.keys(this.props.posts.post).length > 0) {
       this.props.clearCurrentPost();
     }
-    this.props.getCurrentProfile();
+
+    let followedPosts = true;
+    this.props.getCurrentProfile(followedPosts);
     this.props.getPosts();
-    this.props.getFollowedPosts(this.props.auth.user.id);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -49,7 +50,7 @@ class MainView extends Component {
       }
     }
 
-    if (posts.loading === true || profile.profile === null) {
+    if (posts.loading === true || profile.profile === null || profile.loading) {
       outputPosts = <Loading />;
     } else if (
       posts.loading === false &&
@@ -59,15 +60,28 @@ class MainView extends Component {
       outputPosts = posts.followedPosts.map((post, i) => (
         <Post {...post} key={post._id} />
       ));
-    } else if (
-      Object.keys(profile.profile).length > 0 &&
-      posts.followedPosts.length === 0
-    ) {
+    } /* else if (Object.keys(profile.profile).length > 0) {
       if (profile.profile.following.length === 0) {
         outputPosts = <NoPosts message="You are not following any one yet" />;
       }
-    } else if (posts.followedPosts.length === 0) {
-      outputPosts = <NoPosts message={null} />;
+    } */
+
+    if (posts.followedPosts.length === 0) {
+      if (profile.profile !== null) {
+        if (
+          Object.keys(profile.profile).length > 0 &&
+          profile.profile.following.length > 0
+        ) {
+          outputPosts = <NoPosts message={null} />;
+        }
+
+        if (
+          Object.keys(profile.profile).length > 0 &&
+          profile.profile.following.length === 0
+        ) {
+          outputPosts = <NoPosts message="You are not following any one yet" />;
+        }
+      }
     }
     return (
       <Fragment>

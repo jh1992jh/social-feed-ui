@@ -22,12 +22,15 @@ const Muted = styled.span`
 
 class StoryContainerHeader extends Component {
   render() {
+    const { showWatchAll } = this.props;
     return (
       <StoryContHeader>
         <Muted>Stories</Muted>
-        <Link to="/stories">
-          <span>Watch All</span>
-        </Link>
+        {showWatchAll && (
+          <Link to="/stories">
+            <span>Watch All</span>
+          </Link>
+        )}
       </StoryContHeader>
     );
   }

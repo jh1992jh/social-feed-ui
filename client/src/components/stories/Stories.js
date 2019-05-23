@@ -121,6 +121,7 @@ class Stories extends Component {
 
     let outputMyStory;
     let outputStories;
+    let showWatchAll = followedStories.length > 0;
 
     if (profile.loading === true || profile.profile === null) {
       outputMyStory = <MyStory />;
@@ -154,7 +155,7 @@ class Stories extends Component {
 
         <StoriesContainer>
           <ForDesktop>
-            <StoryContainerHeader />
+            <StoryContainerHeader showWatchAll={showWatchAll} />
           </ForDesktop>
           <ForMobile>{outputMyStory}</ForMobile>
           <OtherStories>{outputStories}</OtherStories>

@@ -6,21 +6,30 @@ import {
   RESET_PROFILE_STATE,
   GET_ERRORS
 } from "./types";
+import { getFollowedPosts } from "./postActions";
 import axios from "axios";
 
-export const getCurrentProfile = () => dispatch => {
+export const getCurrentProfile = followedPosts => dispatch => {
   dispatch(setProfileLoading());
 
   axios
     .get("/api/profiles")
-    .then(res =>
+    .then(res => {
       dispatch({
         type: GET_PROFILE,
         payload: res.data
-      })
-    )
+      });
+      return res;
+    })
+    .then(resData => {
+      if (followedPosts && resData.data.following.length > 0) {
+        dispatch(getFollowedPosts(resData.data.user._id));
+      }
+
+      return resData;
+    })
     .catch(err => {
-      dispatch(setErrors(err));
+      console.error(err.response.data.noprofile);
       dispatch({
         type: GET_PROFILE,
         payload: {}

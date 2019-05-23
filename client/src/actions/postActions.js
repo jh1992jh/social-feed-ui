@@ -67,7 +67,7 @@ export const getFollowedPosts = userId => dispatch => {
         payload: res.data
       })
     )
-    .catch(err => console.error(err));
+    .catch(err => console.error(err.response.data));
 };
 
 export const getPost = postId => dispatch => {

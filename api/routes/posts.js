@@ -123,8 +123,12 @@ router.get('/following/posts/:user_id', passport.authenticate('jwt', { session: 
         const followers = profile.following.map(follower => follower.user.toString())
         Post.find({user: followers})
         .then(posts => {
+
+            if(followers.length === 0) {
+                return res.status(400).json('User has not followed anyone yet, therefore can\'t fecth followed posts')
+            }
             if(posts.length === 0) {
-                return res.status(400).json('User has no posts')
+                return res.status(400).json('The profiles user follows haven\'t made any posts yet')
             }
             res.json(posts)
         });

@@ -14,7 +14,8 @@ import PropTypes from "prop-types";
 
 class MyProfile extends Component {
   componentDidMount() {
-    this.props.getCurrentProfile();
+    let followedPosts = false;
+    this.props.getCurrentProfile(followedPosts);
     this.props.getOwnedPosts(this.props.auth.user.id);
   }
 
