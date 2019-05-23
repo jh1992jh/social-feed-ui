@@ -1,40 +1,20 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import {
   getPosts,
   getFollowedPosts,
   clearCurrentPost
 } from "../../actions/postActions";
 import { getCurrentProfile } from "../../actions/profileActions";
-import styled from "styled-components";
+
 // import PropTypes from 'prop-types';
 
 import Feed from "../feed/Feed";
 import Stories from "../stories/Stories";
 import Post from "../posts/Post";
+import NoPosts from "../posts/NoPosts";
 import Loading from "../../utilities/Loading";
-import { icons } from "../../images-and-icons";
-
-const NoProfile = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 4em 2em 2em 2em;
-  text-align: center;
-
-  a {
-    color: #0099cc !important;
-  }
-`;
-
-const NotFollowing = styled.div`
-  text-align: center;
-
-  a {
-    color: #0099cc;
-  }
-`;
 
 class MainView extends Component {
   componentDidMount() {
@@ -55,9 +35,19 @@ class MainView extends Component {
   }
 
   render() {
-    const { posts, auth, profile } = this.props;
+    const { posts, profile } = this.props;
 
     let outputPosts = null;
+
+    let outputStories;
+
+    if (profile.profile !== null) {
+      if (Object.keys(profile.profile).length > 0) {
+        outputStories = <Stories />;
+      } else {
+        outputStories = null;
+      }
+    }
 
     if (posts.loading === true || profile.profile === null) {
       outputPosts = <Loading />;
@@ -67,27 +57,22 @@ class MainView extends Component {
       Object.keys(profile.profile).length > 0
     ) {
       outputPosts = posts.followedPosts.map((post, i) => (
-        <Post
-          {...post}
-          key={post._id}
-          /* key={post._id}
-          postId={post._id}
-          profileImage={post.profileImage}
-          handle={post.handle}
-          userId={post.user}
-          postImage={post.postImage}
-          filter={post.filter}
-          text={post.text}
-          likes={post.likes}
-          comments={post.comments}
-          date={post.date} */
-        />
+        <Post {...post} key={post._id} />
       ));
+    } else if (
+      Object.keys(profile.profile).length > 0 &&
+      posts.followedPosts.length === 0
+    ) {
+      if (profile.profile.following.length === 0) {
+        outputPosts = <NoPosts message="You are not following any one yet" />;
+      }
+    } else if (posts.followedPosts.length === 0) {
+      outputPosts = <NoPosts message={null} />;
     }
     return (
       <Fragment>
         <Feed>
-          <Stories />
+          {outputStories}
           {outputPosts}
         </Feed>
       </Fragment>

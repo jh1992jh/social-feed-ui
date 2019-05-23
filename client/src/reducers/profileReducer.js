@@ -2,6 +2,7 @@ import {
   GET_PROFILE,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
+  RESET_PROFILE_STATE,
   GET_PROFILES
 } from "../actions/types";
 
@@ -35,6 +36,9 @@ export default function(state = initialState, action) {
         ...state,
         profile: null
       };
+    case RESET_PROFILE_STATE: {
+      return initialState;
+    }
     default:
       return state;
   }

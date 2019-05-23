@@ -1,22 +1,20 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
 
-import rootReducer from './reducers';
+import rootReducer from "./reducers";
 
 const middleware = [thunk];
 
 const initialState = {};
 
 // UNCOMMENT WHEN IN DEV
-/* const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+/*const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   rootReducer,
-   initialState, 
-   composeEnhancers(
-    applyMiddleware(...middleware)
-   )
-) */
-
+  initialState,
+  composeEnhancers(applyMiddleware(...middleware))
+);
+*/
 /*const store = createStore(
   rootReducer,
   initialState,
@@ -26,6 +24,7 @@ const store = createStore(
 );*/
 
 // UNCOMMENT BEFORE DEPLOY
+
 const store = createStore(
   rootReducer,
   initialState,

@@ -1,21 +1,21 @@
-const express = require('express');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const passport = require('passport');
-const keys = require('../../config/keys');
+const express = require("express");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const passport = require("passport");
+const keys = require("../../config/keys");
 
 const router = express.Router();
 
-const validateRegisterInput = require('../../validation/register');
-const validateLoginInput = require('../../validation/login');
+const validateRegisterInput = require("../../validation/register");
+const validateLoginInput = require("../../validation/login");
 
-const User = require('../../models/User');
+const User = require("../../models/User");
 
-router.get('/test', (req, res) => {
-  res.json({ msg: 'users works' });
+router.get("/test", (req, res) => {
+  res.json({ msg: "users works" });
 });
 
-router.post('/register', (req, res) => {
+router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
 
   // Check Validation
@@ -25,10 +25,9 @@ router.post('/register', (req, res) => {
 
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      errors.email = 'Email already exists';
+      errors.email = "Email already exists";
       return res.status(400).json(errors);
     } else {
-
       const newUser = new User({
         email: req.body.email,
         username: req.body.username,
@@ -49,7 +48,7 @@ router.post('/register', (req, res) => {
   });
 });
 
-router.post('/login', (req, res) => {
+router.post("/login", (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
 
   if (!isValid) {
@@ -62,7 +61,8 @@ router.post('/login', (req, res) => {
   User.findOne({ email })
     .then(user => {
       if (!user) {
-        return res.status(400).json({ Error: "That User doesn't exist" });
+        errors.email = "That User doesn't exist";
+        return res.status(400).json(errors);
       }
 
       bcrypt.compare(password, user.password).then(isMatch => {
@@ -80,12 +80,13 @@ router.post('/login', (req, res) => {
             (err, token) => {
               res.json({
                 success: true,
-                token: 'Bearer ' + token
+                token: "Bearer " + token
               });
             }
           );
         } else {
-          return res.status(400).json({ Error: 'Invalid Password' });
+          errors.password = "Invalid Password";
+          return res.status(400).json(errors);
         }
       });
     })
@@ -93,8 +94,8 @@ router.post('/login', (req, res) => {
 });
 
 router.get(
-  '/current',
-  passport.authenticate('jwt', { session: false }),
+  "/current",
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     res.json({
       id: req.user.id,

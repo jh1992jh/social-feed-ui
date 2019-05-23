@@ -122,9 +122,14 @@ router.get('/following/posts/:user_id', passport.authenticate('jwt', { session: 
     Profile.findOne({user: req.user.id }).then(profile => {
         const followers = profile.following.map(follower => follower.user.toString())
         Post.find({user: followers})
-        .then(posts => res.json(posts));
+        .then(posts => {
+            if(posts.length === 0) {
+                return res.status(400).json('User has no posts')
+            }
+            res.json(posts)
+        });
     })
-    .catch(err => console.log(err))
+    .catch(err => res.status(400).json('No posts'))
 })
 
 router.get('/:id', passport.authenticate('jwt', { session: false}), (req, res) => {

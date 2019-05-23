@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import ProfileHeaderTop from "./ProfileHeaderTop";
 import ProfileHeaderBottom from "./ProfileHeaderBottom";
@@ -10,21 +10,7 @@ import Loading from "../posts/Loading";
 //import Loading from '../../utilities/Loading';
 import { getOwnedPosts } from "../../actions/postActions";
 import { getCurrentProfile } from "../../actions/profileActions";
-import styled from "styled-components";
 import PropTypes from "prop-types";
-import { icons } from "../../images-and-icons";
-
-const NoProfile = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 4em 2em 2em 2em;
-  text-align: center;
-
-  a {
-    color: #0099cc;
-  }
-`;
 
 class MyProfile extends Component {
   componentDidMount() {

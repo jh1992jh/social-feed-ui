@@ -15,10 +15,10 @@ const NoProfileStyled = styled.div`
     text-align: center;
   }
   a {
-    color: #0099cc;
+    color: #0099cc !important;
   }
   span {
-    color: #0099cc;
+    color: #0099cc !important;
     cursor: pointer;
   }
 `;
