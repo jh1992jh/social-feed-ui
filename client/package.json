@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@loadable/component": "^5.2.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "gh-pages": "^1.2.0",
     "jwt-decode": "^2.2.0",
     "react": "^16.4.1",
